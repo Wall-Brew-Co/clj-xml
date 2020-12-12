@@ -10,4 +10,4 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         issue-message: 'Thank you for taking the time to let us know!'
-        pr-message: 'Congratulations! This is your first PR to {{template}}!'
+        pr-message: 'Congratulations! This is your first PR to clj-xml!'

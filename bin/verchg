@@ -44,7 +44,7 @@ function bump {
 # and populate the following variables:
 #
 # $version = "1.54.3"
-# $project = "{{template}}"
+# $project = "clj-xml"
 # $today = "2019 Dec 12"
 #
 function pull_values {

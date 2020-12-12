@@ -6,8 +6,8 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 ## Pull Requests
 
-1. Update the [CHANGELOG.md](https://github.com/Wall-Brew-Co/{{template}}/blob/master/CHANGELOG.md) with details of all changes.
-2. If any changes impact the external interface or use of **{{template}}**, please update the [README](https://github.com/Wall-Brew-Co/{{template}}/blob/master/README.md) to reflect any relevant differences.
+1. Update the [CHANGELOG.md](https://github.com/Wall-Brew-Co/clj-xml/blob/master/CHANGELOG.md) with details of all changes.
+2. If any changes impact the external interface or use of **clj-xml**, please update the [README](https://github.com/Wall-Brew-Co/clj-xml/blob/master/README.md) to reflect any relevant differences.
 3. Update all version numbers to the new version that this Pull Request would represent.
    The versioning scheme we use is [SemVer](http://semver.org/).
 
@@ -20,7 +20,7 @@ If you have questions which aren't in the documentation, open a ticket or submit
 
 If you're looking for ways to contribute, try adding/fixing tests.
 Additionally improving documentation or adding examples as you learn a new project can is an easy way to pitch in.
-If you're looking to pitch in more extensively, check out the open [issues and feature requests](https://github.com/Wall-Brew-Co/{{template}}/issues) and take a crack at one of them.
+If you're looking to pitch in more extensively, check out the open [issues and feature requests](https://github.com/Wall-Brew-Co/clj-xml/issues) and take a crack at one of them.
 
 ## Code of Conduct
 
@@ -29,4 +29,4 @@ If you're looking to pitch in more extensively, check out the open [issues and f
 In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body
 size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
 
-A full copy of our [code of conduct may be found here.](https://github.com/Wall-Brew-Co/{{template}}/blob/master/CODE_OF_CONDUCT.md)
+A full copy of our [code of conduct may be found here.](https://github.com/Wall-Brew-Co/clj-xml/blob/master/CODE_OF_CONDUCT.md)
