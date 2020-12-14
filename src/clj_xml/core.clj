@@ -41,8 +41,8 @@
        (let [attrs-suffix (if preserve-keys? "_ATTRS" "-attrs")
              attrs-key    (keyword (str (name edn-tag) attrs-suffix))
              attrs-val    (impl/update-vals (impl/update-keys attrs kw-function) val-function)]
-         {edn-tag   (xml->edn content opts)
-          attrs-key attrs-val})
+         (merge {edn-tag (xml->edn content opts)}
+                (when (seq attrs-val) {attrs-key attrs-val})))
        {edn-tag (xml->edn content opts)}))))
 
 (defn xml->edn
@@ -69,13 +69,13 @@
 (defn xml-str->edn
   "Parse an XML document with `clojure.xml/parse-str` and transform it into normalized EDN.
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
-  
+
    To change this behavior, an option map may be provided with the following keys:
      preserve-keys? - to maintain the exact keyword structure provided by `clojure.xml/parse`
      preserve-attrs? - to maintain embedded XML attributes
      stringify-values? - to coerce non-nil, non-string, non-collection values to strings
-   
-   
+
+
    It also surfaces the original options from `clojure.data.xml/parse-str`
      include-node? - a subset of #{:element :characters :comment} default #{:element :characters}
      location-info - pass false to skip generating location meta data"
@@ -98,7 +98,7 @@
   "Parse an XML document source with `clojure.xml/parse` and transform it into normalized EDN.
    `xml-source` may be an instance of java.io.InputStream or java.io.Reader
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
-   
+
    To change this behavior, an option map may be provided with the following keys:
      preserve-keys? - to maintain the exact keyword structure provided by `clojure.xml/parse`
      preserve-attrs? - to maintain embedded XML attributes
@@ -214,7 +214,7 @@
 
 (defn edn->xml-stream
   "Transform an EDN data structure into XML and stream is out via `clojure.data.xml`.
-   
+
    To change the default behavior, an option map may be provided with the following keys:
      to-xml-case? - To modify the keys representing XML tags to XML_CASE
      from-xml-case? - If the source EDN has XML_CASE keys
