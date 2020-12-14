@@ -18,7 +18,7 @@
       :SUBJECT "TEST DATA"}
      :content
      [{:tag :GROUPS
-       :attrs nil
+       :attrs {}
        :content
        [{:tag :GROUP :attrs nil :content ["test-data-club"]}]}
       {:tag :SEGMENTS
@@ -52,6 +52,7 @@
    {:head [{:meta-data "Some Fake Data!" :meta-data-attrs {:type "title"}}
            {:meta-data "Example Content" :meta-data-attrs {:type "tag"}}]
     :file {:groups [{:group "test-data-club"}]
+           :groups-attrs {}
            :segments [{:segment "more data" :segment-attrs {:bits "00111010" :number "58"}}
                       {:segment "more fake data" :segment-attrs {:bytes "10100010" :number "-94"}}]}
     :file-attrs {:poster "JANE DOE <j.doe@fake-email.not-real>"
@@ -64,6 +65,7 @@
    {:HEAD [{:META_DATA "Some Fake Data!" :META_DATA_ATTRS {:TYPE "title"}}
            {:META_DATA "Example Content" :META_DATA_ATTRS {:TYPE "tag"}}]
     :FILE {:GROUPS [{:GROUP "test-data-club"}]
+           :GROUPS_ATTRS {}
            :SEGMENTS [{:SEGMENT "more data" :SEGMENT_ATTRS {:BITS "00111010" :NUMBER "58"}}
                       {:SEGMENT "more fake data" :SEGMENT_ATTRS {:BYTES "10100010" :NUMBER "-94"}}]}
     :FILE_ATTRS {:POSTER "JANE DOE <j.doe@fake-email.not-real>"
@@ -76,6 +78,7 @@
     (is (= (sut/xml->edn xml-example) edn-example))
     (is (= (sut/xml->edn xml-example {:preserve-keys? true}) edn-example-original-keys))
     (is (= (sut/xml->edn xml-example {:preserve-attrs? true}) edn-example-with-attrs))
+    (is (= (sut/xml->edn xml-example {:preserve-attrs? true :remove-empty-attrs? true}) (update-in edn-example-with-attrs [:test-document :file] dissoc :groups-attrs)))
     (is (= (sut/xml->edn xml-example {:preserve-keys? true :preserve-attrs? true}) edn-example-with-attrs-and-original-keys))
     (is (nil? (sut/xml->edn nil)))
     (is (nil? (sut/xml->edn :edn)))
