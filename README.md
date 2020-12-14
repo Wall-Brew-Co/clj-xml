@@ -1,6 +1,7 @@
 # clj-xml
 
 [![Clojars Project](https://img.shields.io/clojars/v/com.wallbrew/clj-xml.svg)](https://clojars.org/com.wallbrew/clj-xml)
+[![cljdoc badge](https://cljdoc.org/badge/com.wallbrew/clj-xml)](https://cljdoc.org/d/com.wallbrew/clj-xml/CURRENT)
 ![GitHub Runner](https://github.com/Wall-Brew-Co/clj-xml/workflows/Clojure%20CI/badge.svg)
 
 A clojure library designed to make conversions between EDN and XML a little easier.
