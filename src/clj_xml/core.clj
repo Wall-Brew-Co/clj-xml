@@ -10,9 +10,12 @@
 (defn xml-seq->edn
   "Transform an XML sequence as formatted by `clojure.xml/parse`, and transform it into normalized EDN.
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
+
    To change this behavior, an option map be provided with the following keys:
      preserve-keys? - to maintain the exact keyword structure provided by `clojure.xml/parse`
-     preserve-attrs? - to maintain embedded XML attributes"
+     preserve-attrs? - to maintain embedded XML attributes
+     stringify-values? - to coerce non-nil, non-string, non-collection values to strings
+     remove-empty-attrs? - to remove any empty attribute maps"
   ([xml-seq]
    (xml-seq->edn xml-seq {}))
 
@@ -27,31 +30,38 @@
 (defn xml-map->edn
   "Transform an XML map as formatted by `clojure.xml/parse`, and transform it into normalized EDN.
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
+
    To change this behavior, an option map be provided with the following keys:
-   preserve-keys? - to maintain the exact keyword structure provided by `clojure.xml/parse`
-   preserve-attrs? - to maintain embedded XML attributes"
+     preserve-keys? - to maintain the exact keyword structure provided by `clojure.xml/parse`
+     preserve-attrs? - to maintain embedded XML attributes
+     stringify-values? - to coerce non-nil, non-string, non-collection values to strings
+     remove-empty-attrs? - to remove any empty attribute maps"
   ([xml-map]
    (xml-map->edn xml-map {}))
 
-  ([{:keys [tag attrs content]} {:keys [preserve-keys? preserve-attrs? stringify-values?] :as opts}]
+  ([{:keys [tag attrs content]} {:keys [preserve-keys? preserve-attrs? stringify-values? remove-empty-attrs?] :as opts}]
    (let [kw-function  (fn [k] (if preserve-keys? k (impl/xml-tag->keyword k)))
          val-function (fn [v] (if stringify-values? (str v) v))
-         edn-tag      (kw-function tag)]
+         edn-tag      (kw-function tag)
+         edn-value    (xml->edn content opts)]
      (if (and attrs preserve-attrs?)
        (let [attrs-suffix (if preserve-keys? "_ATTRS" "-attrs")
              attrs-key    (keyword (str (name edn-tag) attrs-suffix))
-             attrs-val    (impl/update-vals (impl/update-keys attrs kw-function) val-function)]
-         (merge {edn-tag (xml->edn content opts)}
-                (when (seq attrs-val) {attrs-key attrs-val})))
-       {edn-tag (xml->edn content opts)}))))
+             attrs-val    (impl/update-vals (impl/update-keys attrs kw-function) val-function)
+             add-attrs?   (or (not remove-empty-attrs?)
+                              (and remove-empty-attrs? (seq attrs-val)))]
+         (merge {edn-tag edn-value}
+                (when add-attrs? {attrs-key attrs-val})))
+       {edn-tag edn-value}))))
 
 (defn xml->edn
   "Transform an XML document as formatted by `clojure.xml/parse`, and transform it into normalized EDN.
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
    To change this behavior, an option map may be provided with the following keys:
-   preserve-keys? - to maintain the exact keyword structure provided by `clojure.xml/parse`
-   preserve-attrs? - to maintain embedded XML attributes
-   stringify-values? - to coerce non-nil, non-string, non-collection values to strings"
+     preserve-keys? - to maintain the exact keyword structure provided by `clojure.xml/parse`
+     preserve-attrs? - to maintain embedded XML attributes
+     stringify-values? - to coerce non-nil, non-string, non-collection values to strings
+     remove-empty-attrs? - to remove any empty attribute maps"
   ([xml-doc]
    (xml->edn xml-doc {}))
 
@@ -74,7 +84,7 @@
      preserve-keys? - to maintain the exact keyword structure provided by `clojure.xml/parse`
      preserve-attrs? - to maintain embedded XML attributes
      stringify-values? - to coerce non-nil, non-string, non-collection values to strings
-
+     remove-empty-attrs? - to remove any empty attribute maps
 
    It also surfaces the original options from `clojure.data.xml/parse-str`
      include-node? - a subset of #{:element :characters :comment} default #{:element :characters}
@@ -103,6 +113,7 @@
      preserve-keys? - to maintain the exact keyword structure provided by `clojure.xml/parse`
      preserve-attrs? - to maintain embedded XML attributes
      stringify-values? - to coerce non-nil, non-string, non-collection values to strings
+     remove-empty-attrs? - to remove any empty attribute maps
 
    It also surfaces the original options from `clojure.data.xml/parse`
      include-node? - a subset of #{:element :characters :comment} default #{:element :characters}
@@ -140,9 +151,9 @@
 (defn edn-map->xml
   "Transform an EDN map to the pseudo XML expected by `clojure.data.xml`.
    To change the default behavior, an option map may be provided with the following keys:
-   to-xml-case? - To modify the keys representing XML tags to XML_CASE
-   from-xml-case? - If the source EDN has XML_CASE keys
-   stringify-values? - to coerce non-nil, non-string, non-collection values to strings"
+     to-xml-case? - To modify the keys representing XML tags to XML_CASE
+     from-xml-case? - If the source EDN has XML_CASE keys
+     stringify-values? - to coerce non-nil, non-string, non-collection values to strings"
   ([edn]
    (edn-map->xml edn {}))
 

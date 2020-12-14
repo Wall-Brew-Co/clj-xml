@@ -30,6 +30,7 @@ Each of these functions accepts an option map as an optional second argument, su
 
 * `preserve-keys?` - to maintain the exact keyword structure provided by `clojure.xml/parse`
 * `preserve-attrs?` - to maintain embedded XML attributes
+* `remove-empty-attrs?` - to remove any empty attribute maps
 * `stringify-values?` - to coerce non-nil, non-string, non-collection values to strings
 
 `xml-str->edn` and `xml-source->edn` also support the parsing options from `clojure.data.xml`:
