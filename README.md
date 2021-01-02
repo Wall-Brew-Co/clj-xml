@@ -159,6 +159,6 @@ Lets see how it works:
 
 ## License
 
-Copyright © 2020 - [Wall Brew Co](https://wallbrew.com/)
+Copyright © 2020-2021 - [Wall Brew Co](https://wallbrew.com/)
 
 This software is provided for free, public use as outlined in the [MIT License](https://github.com/Wall-Brew-Co/clj-xml/blob/master/LICENSE)
