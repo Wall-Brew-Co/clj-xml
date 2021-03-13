@@ -21,9 +21,11 @@
 
   ([xml-seq opts]
    (let [xml-transformer (fn [x] (xml->edn x opts))]
-     (if (and (impl/unique-tags? xml-seq) (> (count xml-seq) 1))
+     (if (and (impl/unique-tags? xml-seq)
+              (> (count xml-seq) 1))
        (reduce into {} (mapv xml-transformer xml-seq))
-       (if (or (string? (first xml-seq)) (nil? (first xml-seq)))
+       (if (or (string? (first xml-seq))
+               (nil? (first xml-seq)))
          (xml-transformer (first xml-seq))
          (mapv xml-transformer xml-seq))))))
 
@@ -39,7 +41,8 @@
   ([xml-map]
    (xml-map->edn xml-map {}))
 
-  ([{:keys [tag attrs content]} {:keys [preserve-keys? preserve-attrs? stringify-values? remove-empty-attrs?] :as opts}]
+  ([{:keys [tag attrs content]} {:keys [preserve-keys? preserve-attrs? stringify-values? remove-empty-attrs?]
+                                 :as   opts}]
    (let [kw-function  (fn [k] (if preserve-keys? k (impl/xml-tag->keyword k)))
          val-function (fn [v] (if stringify-values? (str v) v))
          edn-tag      (kw-function tag)
@@ -81,28 +84,43 @@
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
 
    To change this behavior, an option map may be provided with the following keys:
-     preserve-keys? - to maintain the exact keyword structure provided by `clojure.xml/parse`
-     preserve-attrs? - to maintain embedded XML attributes
-     stringify-values? - to coerce non-nil, non-string, non-collection values to strings
+     preserve-keys?      - to maintain the exact keyword structure provided by `clojure.xml/parse`
+     preserve-attrs?     - to maintain embedded XML attributes
+     stringify-values?   - to coerce non-nil, non-string, non-collection values to strings
      remove-empty-attrs? - to remove any empty attribute maps
 
    It also surfaces the original options from `clojure.data.xml/parse-str`
-     include-node? - a subset of #{:element :characters :comment} default #{:element :characters}
-     location-info - pass false to skip generating location meta data"
+     include-node?                - a subset of #{:element :characters :comment} default #{:element :characters}
+     location-info                - pass false to skip generating location meta data
+     allocator                    - An instance of a XMLInputFactory/ALLOCATOR to allocate events
+     coalescing                   - A boolean, that if set to true, coalesces adjacent characters
+     namespace-aware              - A boolean, that if set to false, disables XML 1.0 namespacing support
+     replacing-entity-references  - A boolean, that if set to false, disables entity text replacement
+     supporting-external-entities - A boolean, that if set to true, will resolve external entities and parse them
+     validating                   - A boolean, that if set to true, will enable DTD validation
+     reporter                     - An instance of a XMLInputFactory/REPORTER to use in place of defaults
+     resolver                     - An instance of a XMLInputFactory/RESOLVER to use in place of defaults
+     support-dtd                  - A boolean, that if set to false, disables DTD support in parsers"
   ([xml-str]
    (xml-str->edn xml-str {}))
 
-  ([xml-str {:keys [:include-node? :location-info]
-             :as   opts}]
-   (let [c-xml (cond
-                 (and include-node? location-info) (fn [edn] (xml/parse-str edn :include-node? include-node? :location-info location-info))
-                 include-node?                     (fn [edn] (xml/parse-str edn :include-node? include-node?))
-                 location-info                     (fn [edn] (xml/parse-str edn :location-info location-info))
-                 :else                             (fn [edn] (xml/parse-str edn)))]
-     (-> xml-str
-         impl/deformat
-         c-xml
-         (xml->edn opts)))))
+  ([xml-str opts]
+   (let [additional-args (select-keys opts [:include-node?
+                                            :location-info
+                                            :allocator
+                                            :coalescing
+                                            :namespace-aware
+                                            :replacing-entity-references
+                                            :supporting-external-entities
+                                            :validating
+                                            :reporter
+                                            :resolver
+                                            :support-dtd])
+         flattened-args  (flatten (into [] additional-args))
+         sanitized-xml   (impl/deformat xml-str)
+         parsing-args    (cons sanitized-xml flattened-args)
+         parsed-xml      (apply xml/parse-str parsing-args)]
+     (xml->edn parsed-xml opts))))
 
 (defn xml-source->edn
   "Parse an XML document source with `clojure.xml/parse` and transform it into normalized EDN.
@@ -110,27 +128,40 @@
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
 
    To change this behavior, an option map may be provided with the following keys:
-     preserve-keys? - to maintain the exact keyword structure provided by `clojure.xml/parse`
-     preserve-attrs? - to maintain embedded XML attributes
-     stringify-values? - to coerce non-nil, non-string, non-collection values to strings
+     preserve-keys?      - to maintain the exact keyword structure provided by `clojure.xml/parse`
+     preserve-attrs?     - to maintain embedded XML attributes
+     stringify-values?   - to coerce non-nil, non-string, non-collection values to strings
      remove-empty-attrs? - to remove any empty attribute maps
 
    It also surfaces the original options from `clojure.data.xml/parse`
-     include-node? - a subset of #{:element :characters :comment} default #{:element :characters}
-     location-info - pass false to skip generating location meta data"
+     include-node?                - a subset of #{:element :characters :comment} default #{:element :characters}
+     location-info                - pass false to skip generating location meta data
+     allocator                    - An instance of a XMLInputFactory/ALLOCATOR to allocate events
+     coalescing                   - A boolean, that if set to true, coalesces adjacent characters
+     namespace-aware              - A boolean, that if set to false, disables XML 1.0 namespacing support
+     replacing-entity-references  - A boolean, that if set to false, disables entity text replacement
+     supporting-external-entities - A boolean, that if set to true, will resolve external entities and parse them
+     validating                   - A boolean, that if set to true, will enable DTD validation
+     reporter                     - An instance of a XMLInputFactory/REPORTER to use in place of defaults
+     resolver                     - An instance of a XMLInputFactory/RESOLVER to use in place of defaults
+     support-dtd                  - A boolean, that if set to false, disables DTD support in parsers"
   ([xml-source]
    (xml-source->edn xml-source {}))
 
-  ([xml-source {:keys [:include-node? :location-info]
-                :as   opts}]
-   (let [c-xml (cond
-                 (and include-node? location-info) (fn [edn] (xml/parse edn :include-node? include-node? :location-info location-info))
-                 include-node?                     (fn [edn] (xml/parse edn :include-node? include-node?))
-                 location-info                     (fn [edn] (xml/parse edn :location-info location-info))
-                 :else                             (fn [edn] (xml/parse edn)))]
-     (-> xml-source
-         c-xml
-         (xml->edn opts)))))
+  ([xml-source opts]
+   (let [additional-args (select-keys opts [:allocator
+                                            :coalescing
+                                            :namespace-aware
+                                            :replacing-entity-references
+                                            :supporting-external-entities
+                                            :validating
+                                            :reporter
+                                            :resolver
+                                            :support-dtd])
+         flattened-args  (flatten (into [] additional-args))
+         parsing-args    (cons xml-source flattened-args)
+         parsed-xml      (apply xml/parse parsing-args)]
+     (xml->edn parsed-xml opts))))
 
 ;; Parsing EDN as XML
 
@@ -157,23 +188,24 @@
   ([edn]
    (edn-map->xml edn {}))
 
-  ([edn {:keys [to-xml-case? from-xml-case? stringify-values?] :as opts}]
-   (let [edn-keys (keys edn)
-         key-set (set (map name edn-keys))
-         {attrs true tags false} (group-by #(impl/edn-attrs-tag? (name %) key-set) edn-keys)
-         attrs-set (set (map #(impl/attrs-tag->tag (name %)) attrs))
-         kw-function (fn [k] (if to-xml-case? (impl/keyword->xml-tag k) k))
-         val-function (fn [v] (if stringify-values? (str v) v))
-         tag-generator (fn [t]
-                         (let [xml-tag     (kw-function t)
-                               xml-content (edn->xml (get edn t) opts)
-                               xml-attrs   (when (contains? attrs-set (name t))
-                                             (-> (get edn (impl/tag->attrs-tag t from-xml-case?))
-                                                 (impl/update-keys kw-function)
-                                                 (impl/update-vals val-function)))]
-                           {:tag     xml-tag
-                            :content xml-content
-                            :attrs   xml-attrs}))]
+  ([edn {:keys [to-xml-case? from-xml-case? stringify-values?]
+         :as   opts}]
+   (let [edn-keys                 (keys edn)
+         key-set                  (set (map name edn-keys))
+         {attrs true tags false}  (group-by #(impl/edn-attrs-tag? (name %) key-set) edn-keys)
+         attrs-set                (set (map #(impl/attrs-tag->tag (name %)) attrs))
+         kw-function              (fn [k] (if to-xml-case? (impl/keyword->xml-tag k) k))
+         val-function             (fn [v] (if stringify-values? (str v) v))
+         tag-generator            (fn [t]
+                                    (let [xml-tag     (kw-function t)
+                                          xml-content (edn->xml (get edn t) opts)
+                                          xml-attrs   (when (contains? attrs-set (name t))
+                                                        (-> (get edn (impl/tag->attrs-tag t from-xml-case?))
+                                                            (impl/update-keys kw-function)
+                                                            (impl/update-vals val-function)))]
+                                      {:tag     xml-tag
+                                       :content xml-content
+                                       :attrs   xml-attrs}))]
      (if (= 1 (count tags))
        (tag-generator (first tags))
        (mapv tag-generator tags)))))

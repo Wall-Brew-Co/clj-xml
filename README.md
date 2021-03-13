@@ -34,10 +34,21 @@ Each of these functions accepts an option map as an optional second argument, su
 * `remove-empty-attrs?` - to remove any empty attribute maps
 * `stringify-values?` - to coerce non-nil, non-string, non-collection values to strings
 
-`xml-str->edn` and `xml-source->edn` also support the parsing options from `clojure.data.xml`:
+`xml-str->edn` and `xml-source->edn` also support the parsing options from `clojure.data.xml` and Java's `XMLInputFactory` class.
+[Additional documentation](http://docs.oracle.com/javase/6/docs/api/javax/xml/stream/XMLInputFactory.html) from Oracle is available.
+This library does not override the default behavior of `XMLInputFactory`.
 
-* `include-node?` - a subset of #{:element :characters :comment} default #{:element :characters}
-* `location-info` - pass false to skip generating location metadata
+* `include-node?`                - a subset of #{:element :characters :comment} default #{:element :characters}
+* `location-info`                - pass false to skip generating location metadata
+* `allocator`                    - An instance of a XMLInputFactory/ALLOCATOR to allocate events
+* `coalescing`                   - A boolean, that if set to true, coalesces adjacent characters
+* `namespace-aware`              - A boolean, that if set to false, disables XML 1.0 namespacing support
+* `replacing-entity-references`  - A boolean, that if set to false, disables entity text replacement
+* `supporting-external-entities` - A boolean, that if set to true, will resolve external entities and parse them
+* `validating`                   - A boolean, that if set to true, will enable DTD validation
+* `reporter`                     - An instance of a XMLInputFactory/REPORTER to use in place of defaults
+* `resolver`                     - An instance of a XMLInputFactory/RESOLVER to use in place of defaults
+* `support-dtd`                  - A boolean, that if set to false, disables DTD support in parsers
 
 Lets see how it works:
 

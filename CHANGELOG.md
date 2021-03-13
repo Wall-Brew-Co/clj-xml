@@ -1,3 +1,7 @@
+## v1.2.0 / 2021 Mar 13
+
+> This release enables XMLInputFactory options for all parsers
+
 ## v1.1.0 / 2020 Dec 14
 
 > This release allows consumers to prune empty -attrs maps
