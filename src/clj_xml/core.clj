@@ -92,17 +92,23 @@
   ([xml-str]
    (xml-str->edn xml-str {}))
 
-  ([xml-str {:keys [:include-node? :location-info]
-             :as   opts}]
-   (let [c-xml (cond
-                 (and include-node? location-info) (fn [edn] (xml/parse-str edn :include-node? include-node? :location-info location-info))
-                 include-node?                     (fn [edn] (xml/parse-str edn :include-node? include-node?))
-                 location-info                     (fn [edn] (xml/parse-str edn :location-info location-info))
-                 :else                             (fn [edn] (xml/parse-str edn)))]
-     (-> xml-str
-         impl/deformat
-         c-xml
-         (xml->edn opts)))))
+  ([xml-str opts]
+   (let [additional-args (select-keys opts [:include-node?
+                                            :location-info
+                                            :allocator
+                                            :coalescing
+                                            :namespace-aware
+                                            :replacing-entity-references
+                                            :supporting-external-entities
+                                            :validating
+                                            :reporter
+                                            :resolver
+                                            :support-dtd])
+         flattened-args (flatten (into [] additional-args))
+         sanitized-xml (impl/deformat xml-str)
+         parsing-args (cons sanitized-xml flattened-args)
+         parsed-xml (apply xml/parse-str parsing-args)]
+     (xml->edn parsed-xml opts))))
 
 (defn xml-source->edn
   "Parse an XML document source with `clojure.xml/parse` and transform it into normalized EDN.
