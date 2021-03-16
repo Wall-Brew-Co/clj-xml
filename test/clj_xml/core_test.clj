@@ -102,4 +102,4 @@
 
 (deftest xml-string-tests
   (testing "functional correctness"
-    (is (= xml-test-string (sut/edn->xml-str (sut/xml-str->edn xml-test-string {:preserve-attrs? true :support-dtd false}) {:to-xml-case? true})))))
+    (is (= xml-test-string (sut/edn->xml-str (sut/xml-str->edn xml-test-string {:preserve-attrs? true :support-dtd false :remove-newlines? true}) {:to-xml-case? true})))))

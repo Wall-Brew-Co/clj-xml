@@ -44,8 +44,11 @@
 
 (defn deformat
   "Remove line termination formatting specific to Windows (since we're ingesting XML) and double spacing"
-  [s]
-  (cs/replace (cs/replace s #"\r\n" "") #"\s\s+" ""))
+  [s {:keys [remove-newlines?]}]
+  (cond-> s
+    :always          (cs/replace #"\r\n" "")
+    :always          (cs/replace #"\s\s+" "")
+    remove-newlines? (cs/replace #"\n" "")))
 
 (defn update-vals
   "Return `m` with `f` applied to each val in `m` with its `args`"
