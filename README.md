@@ -29,10 +29,11 @@ Based on where your XML is and how it's stored, you'll want to use one of the th
 
 Each of these functions accepts an option map as an optional second argument, supporting the following keys:
 
-* `preserve-keys?` - to maintain the exact keyword structure provided by `clojure.xml/parse`
-* `preserve-attrs?` - to maintain embedded XML attributes
+* `preserve-keys?`      - to maintain the exact keyword structure provided by `clojure.xml/parse`
+* `preserve-attrs?`     - to maintain embedded XML attributes
 * `remove-empty-attrs?` - to remove any empty attribute maps
-* `stringify-values?` - to coerce non-nil, non-string, non-collection values to strings
+* `stringify-values?`   - to coerce non-nil, non-string, non-collection values to strings
+* `remove-newlines?`    - to remove any newline characters in `xml-str`
 
 `xml-str->edn` and `xml-source->edn` also support the parsing options from `clojure.data.xml` and Java's `XMLInputFactory` class.
 [Additional documentation](http://docs.oracle.com/javase/6/docs/api/javax/xml/stream/XMLInputFactory.html) from Oracle is available.
