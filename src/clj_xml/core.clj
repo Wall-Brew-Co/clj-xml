@@ -88,6 +88,7 @@
      preserve-attrs?     - to maintain embedded XML attributes
      stringify-values?   - to coerce non-nil, non-string, non-collection values to strings
      remove-empty-attrs? - to remove any empty attribute maps
+     remove-newlines?    - to remove any newline characters in `xml-str`
 
    It also surfaces the original options from `clojure.data.xml/parse-str`
      include-node?                - a subset of #{:element :characters :comment} default #{:element :characters}
@@ -117,7 +118,7 @@
                                             :resolver
                                             :support-dtd])
          flattened-args  (flatten (into [] additional-args))
-         sanitized-xml   (impl/deformat xml-str)
+         sanitized-xml   (impl/deformat xml-str opts)
          parsing-args    (cons sanitized-xml flattened-args)
          parsed-xml      (apply xml/parse-str parsing-args)]
      (xml->edn parsed-xml opts))))
