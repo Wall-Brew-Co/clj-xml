@@ -103,3 +103,15 @@
 (deftest xml-string-tests
   (testing "functional correctness"
     (is (= xml-test-string (sut/edn->xml-str (sut/xml-str->edn xml-test-string {:preserve-attrs? true :support-dtd false :remove-newlines? true}) {:to-xml-case? true})))))
+
+(deftest insignificant-whitespace-test
+  (testing "Corner-cases around embedded insignificant whitespace"
+    (let [no-ws (str "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                     "<someTag><foo>wurdz</foo> \n"
+                     "</someTag>")
+          ws (str "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                  "<someTag> <foo>wurdz</foo> \n"
+                  "</someTag>")]
+      (is (= {:sometag [{:foo "wurdz"}]} (sut/xml-str->edn no-ws)))
+      (is (= {:sometag [" " {:foo "wurdz"}]} (sut/xml-str->edn ws)))
+      (is (= {:sometag {:foo "wurdz", :bar "bla"}} (sut/xml-str->edn (str "<sometag><foo>wurdz</foo><bar>bla</bar></sometag>")))))))

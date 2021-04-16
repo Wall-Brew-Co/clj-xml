@@ -19,15 +19,22 @@
   ([xml-seq]
    (xml-seq->edn xml-seq {}))
 
-  ([xml-seq opts]
+  ([xml-seq {:keys [stringify-values?] :as opts}]
    (let [xml-transformer (fn [x] (xml->edn x opts))]
-     (if (and (impl/unique-tags? xml-seq)
-              (> (count xml-seq) 1))
-       (reduce into {} (mapv xml-transformer xml-seq))
-       (if (or (string? (first xml-seq))
-               (nil? (first xml-seq)))
-         (xml-transformer (first xml-seq))
-         (mapv xml-transformer xml-seq))))))
+    val (cond
+       (or (nil? xml-seq)
+           (string? xml-seq))       xml-seq
+       (and (= 1 (count xml-seq))
+            (or (nil? (first xml-seq))
+                (string? (first  xml-seq)))) (first xml-seq)
+       (and (impl/unique-tags? xml-seq)
+            (> (count xml-seq) 1))  (reduce into {} (mapv xml-transformer xml-seq))
+       (and (map? xml-seq)
+            (empty? xml-seq))       {}
+       (map? xml-seq)               (xml-transformer xml-seq)
+       (sequential? xml-seq)        (mapv xml-transformer xml-seq)
+       (and stringify-values?
+            (some? xml-seq))        (str xml-seq)))))
 
 (defn xml-map->edn
   "Transform an XML map as formatted by `clojure.xml/parse`, and transform it into normalized EDN.
@@ -280,3 +287,10 @@
      (-> edn
          (edn->xml opts)
          c-xml))))
+
+(comment
+
+  (def ws (str "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+               "<someTag> <foo>wurdz</foo>\n"
+               "</someTag>"))
+  )
