@@ -109,7 +109,8 @@
      validating                   - A boolean, that if set to true, will enable DTD validation
      reporter                     - An instance of a XMLInputFactory/REPORTER to use in place of defaults
      resolver                     - An instance of a XMLInputFactory/RESOLVER to use in place of defaults
-     support-dtd                  - A boolean, that if set to false, disables DTD support in parsers"
+     support-dtd                  - A boolean, that if set to false, disables DTD support in parsers
+     skip-whitespace              - A boolean, that if set to true, removes whitespace only elements"
   ([xml-str]
    (xml-str->edn xml-str {}))
 
@@ -124,7 +125,8 @@
                                             :validating
                                             :reporter
                                             :resolver
-                                            :support-dtd])
+                                            :support-dtd
+                                            :skip-whitespace])
          flattened-args  (flatten (into [] additional-args))
          sanitized-xml   (impl/deformat xml-str opts)
          parsing-args    (cons sanitized-xml flattened-args)
@@ -153,7 +155,8 @@
      validating                   - A boolean, that if set to true, will enable DTD validation
      reporter                     - An instance of a XMLInputFactory/REPORTER to use in place of defaults
      resolver                     - An instance of a XMLInputFactory/RESOLVER to use in place of defaults
-     support-dtd                  - A boolean, that if set to false, disables DTD support in parsers"
+     support-dtd                  - A boolean, that if set to false, disables DTD support in parsers
+     skip-whitespace              - A boolean, that if set to true, removes whitespace only elements"
   ([xml-source]
    (xml-source->edn xml-source {}))
 
@@ -166,7 +169,8 @@
                                             :validating
                                             :reporter
                                             :resolver
-                                            :support-dtd])
+                                            :support-dtd
+                                            :skip-whitespace])
          flattened-args  (flatten (into [] additional-args))
          parsing-args    (cons xml-source flattened-args)
          parsed-xml      (apply xml/parse parsing-args)]

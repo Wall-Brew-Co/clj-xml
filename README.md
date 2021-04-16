@@ -50,6 +50,7 @@ This library does not override the default behavior of `XMLInputFactory`.
 * `reporter`                     - An instance of a XMLInputFactory/REPORTER to use in place of defaults
 * `resolver`                     - An instance of a XMLInputFactory/RESOLVER to use in place of defaults
 * `support-dtd`                  - A boolean, that if set to false, disables DTD support in parsers
+* `skip-whitespace`              - A boolean, that if set to true, removes whitespace only elements
 
 Lets see how it works:
 

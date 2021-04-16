@@ -112,6 +112,7 @@
           ws (str "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
                   "<someTag> <foo>wurdz</foo> \n"
                   "</someTag>")]
-      (is (= {:sometag [{:foo "wurdz"}]} (sut/xml-str->edn no-ws)))
+      (is (= {:sometag [{:foo "wurdz"}]} (sut/xml-str->edn no-ws {:skip-whitespace true})))
       (is (= {:sometag [" " {:foo "wurdz"}]} (sut/xml-str->edn ws)))
-      (is (= {:sometag {:foo "wurdz", :bar "bla"}} (sut/xml-str->edn (str "<sometag><foo>wurdz</foo><bar>bla</bar></sometag>")))))))
+      (is (= {:sometag [{:foo "wurdz"}]} (sut/xml-str->edn ws {:skip-whitespace true})))
+      (is (= {:sometag {:foo "wurdz", :bar "bla"}} (sut/xml-str->edn (str "<sometag><foo>wurdz</foo><bar>bla</bar></sometag>") {:skip-whitespace true}))))))
