@@ -287,10 +287,3 @@
      (-> edn
          (edn->xml opts)
          c-xml))))
-
-(comment
-
-  (def ws (str "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-               "<someTag> <foo>wurdz</foo>\n"
-               "</someTag>"))
-  )
