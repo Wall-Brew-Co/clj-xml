@@ -1,3 +1,10 @@
+## v1.4.0 / 2021 Apr 16
+
+> This release ...
+
+* **Add** - the `skip-whitespace` option to remove whitespace between tags
+* **Fix** - parsing of whitespace separator elements as emitted by clojure.data/xml
+
 ## v1.3.0 / 2021 Mar 17
 
 > This release adds the `remove-newlines?` option for `xml-str->edn`
