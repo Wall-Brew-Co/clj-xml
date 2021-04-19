@@ -47,6 +47,14 @@
            :SEGMENTS [{:SEGMENT "more data"}
                       {:SEGMENT "more fake data"}]}}})
 
+(def edn-example-original-keys-force-seq
+  {:TEST_DOCUMENT
+   [{:HEAD [{:META_DATA "Some Fake Data!"}
+            {:META_DATA "Example Content"}]}
+    {:FILE [{:GROUPS [{:GROUP "test-data-club"}]}
+            {:SEGMENTS [{:SEGMENT "more data"}
+                        {:SEGMENT "more fake data"}]}]}]})
+
 (def edn-example-with-attrs
   {:test-document
    {:head [{:meta-data "Some Fake Data!" :meta-data-attrs {:type "title"}}
@@ -80,6 +88,7 @@
     (is (= (sut/xml->edn xml-example {:preserve-attrs? true}) edn-example-with-attrs))
     (is (= (sut/xml->edn xml-example {:preserve-attrs? true :remove-empty-attrs? true}) (update-in edn-example-with-attrs [:test-document :file] dissoc :groups-attrs)))
     (is (= (sut/xml->edn xml-example {:preserve-keys? true :preserve-attrs? true}) edn-example-with-attrs-and-original-keys))
+    (is (= (sut/xml->edn xml-example {:preserve-keys? true :force-seq? true}) edn-example-original-keys-force-seq))
     (is (nil? (sut/xml->edn nil)))
     (is (nil? (sut/xml->edn :edn)))
     (is (= (sut/xml->edn {}) {}))
