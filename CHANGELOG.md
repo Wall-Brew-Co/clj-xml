@@ -1,3 +1,9 @@
+## v1.5.0 / 2021 Apr 19
+
+> This release ...
+
+* **Add** - add `force-seq?` option to `xml-str->edn`
+
 ## v1.4.0 / 2021 Apr 16
 
 > This release ...
