@@ -19,7 +19,8 @@
   ([xml-seq]
    (xml-seq->edn xml-seq {}))
 
-  ([xml-seq {:keys [stringify-values?]
+  ([xml-seq {:keys [stringify-values? 
+                    force-seq?]
              :as   opts}]
    (let [xml-transformer (fn [x] (xml->edn x opts))]
      (cond
@@ -29,7 +30,8 @@
             (or (nil? (first xml-seq))
                 (string? (first xml-seq)))) (first xml-seq)
        (and (impl/unique-tags? xml-seq)
-            (> (count xml-seq) 1))          (reduce into {} (mapv xml-transformer xml-seq))
+            (> (count xml-seq) 1)
+            (not force-seq?))      (reduce into {} (mapv xml-transformer xml-seq))
        (and (map? xml-seq)
             (empty? xml-seq))               {}
        (map? xml-seq)                       (xml-transformer xml-seq)
@@ -97,6 +99,7 @@
      stringify-values?   - to coerce non-nil, non-string, non-collection values to strings
      remove-empty-attrs? - to remove any empty attribute maps
      remove-newlines?    - to remove any newline characters in `xml-str`
+     force-seq?          - to coerce child XML nodes into a sequence of maps
 
    It also surfaces the original options from `clojure.data.xml/parse-str`
      include-node?                - a subset of #{:element :characters :comment} default #{:element :characters}
