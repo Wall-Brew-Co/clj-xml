@@ -12,10 +12,11 @@
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
 
    To change this behavior, an option map be provided with the following keys:
-     preserve-keys? - to maintain the exact keyword structure provided by `clojure.xml/parse`
-     preserve-attrs? - to maintain embedded XML attributes
-     stringify-values? - to coerce non-nil, non-string, non-collection values to strings
-     remove-empty-attrs? - to remove any empty attribute maps"
+     preserve-keys?      - to maintain the exact keyword structure provided by `clojure.xml/parse`
+     preserve-attrs?     - to maintain embedded XML attributes
+     stringify-values?   - to coerce non-nil, non-string, non-collection values to strings
+     remove-empty-attrs? - to remove any empty attribute maps
+     force-seq?          - to coerce child XML nodes into a sequence of maps"
   ([xml-seq]
    (xml-seq->edn xml-seq {}))
 
@@ -31,7 +32,7 @@
                 (string? (first xml-seq)))) (first xml-seq)
        (and (impl/unique-tags? xml-seq)
             (> (count xml-seq) 1)
-            (not force-seq?))      (reduce into {} (mapv xml-transformer xml-seq))
+            (not force-seq?))               (reduce into {} (mapv xml-transformer xml-seq))
        (and (map? xml-seq)
             (empty? xml-seq))               {}
        (map? xml-seq)                       (xml-transformer xml-seq)
