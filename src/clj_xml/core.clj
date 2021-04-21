@@ -15,6 +15,10 @@
   "An alias for the ::last namespaced keyword"
   ::last)
 
+(defn- child-key?
+  [k]
+  (#{first-child last-child every-child} k))
+
 (defn force-xml-seq-at-path
   "Update `xml-edn` to convert the specified child node in the key path to a vector.
    `key-paths` is a sequence of `key` and `key-seq`, each of which is either a bare keywords or the following namespaced keywords:
@@ -28,14 +32,15 @@
   (if key
     (cond
       (and (sequential? xml-edn)
-           (= every-child key)) (mapv #(force-xml-seq-at-path % key-seq) xml-edn)
+           (= every-child key))   (mapv #(force-xml-seq-at-path % key-seq) xml-edn)
       (and (sequential? xml-edn)
-           (= first-child key)) (cons (force-xml-seq-at-path (first xml-edn) key-seq) (rest xml-edn))
+           (= first-child key))   (cons (force-xml-seq-at-path (first xml-edn) key-seq) (rest xml-edn))
       (and (sequential? xml-edn)
-           (= last-child key))  (conj (into [] (butlast xml-edn)) (force-xml-seq-at-path (last xml-edn) key-seq))
+           (= last-child key))    (conj (into [] (butlast xml-edn)) (force-xml-seq-at-path (last xml-edn) key-seq))
       (and (map? xml-edn)
-           (keyword? key))      (update xml-edn key force-xml-seq-at-path (get xml-edn key) key-seq)
-      :else                     (throw (IllegalArgumentException. (str "The key " key " is incompatible with " (type xml-edn)))))
+           (not (child-key? key))
+           (keyword? key))        (update xml-edn key force-xml-seq-at-path key-seq)
+      :else                       (throw (IllegalArgumentException. (str "The key " key " is incompatible with " (type xml-edn)))))
     [xml-edn]))
 
 (defn force-xml-seq-at-paths
@@ -139,6 +144,15 @@
      (and stringify-values?
           (some? xml-doc))  (str xml-doc))))
 
+(defn xml->edn'
+  ([xml-doc]
+   (xml->edn' xml-doc {}))
+
+  ([xml-doc {:keys [force-seq-for-paths] :as opts}]
+   (cond-> xml-doc
+     :always                   (xml->edn opts)
+     (seq force-seq-for-paths) (force-xml-seq-at-paths force-seq-for-paths))))
+
 (defn xml-str->edn
   "Parse an XML document with `clojure.xml/parse-str` and transform it into normalized EDN.
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
@@ -168,8 +182,7 @@
   ([xml-str]
    (xml-str->edn xml-str {}))
 
-  ([xml-str {:keys [force-seq-for-paths]
-             :as   opts}]
+  ([xml-str opts]
    (let [additional-args (select-keys opts [:include-node?
                                             :location-info
                                             :allocator
@@ -186,9 +199,7 @@
          sanitized-xml   (impl/deformat xml-str opts)
          parsing-args    (cons sanitized-xml flattened-args)
          parsed-xml      (apply xml/parse-str parsing-args)]
-     (cond-> parsed-xml
-       :always                   (xml->edn opts)
-       (seq force-seq-for-paths) (force-xml-seq-at-paths force-seq-for-paths)))))
+     (xml->edn' parsed-xml opts))))
 
 (defn xml-source->edn
   "Parse an XML document source with `clojure.xml/parse` and transform it into normalized EDN.
@@ -219,8 +230,7 @@
   ([xml-source]
    (xml-source->edn xml-source {}))
 
-  ([xml-source {:keys [force-seq-for-paths]
-                :as   opts}]
+  ([xml-source opts]
    (let [additional-args (select-keys opts [:allocator
                                             :coalescing
                                             :namespace-aware
@@ -234,9 +244,7 @@
          flattened-args  (flatten (into [] additional-args))
          parsing-args    (cons xml-source flattened-args)
          parsed-xml      (apply xml/parse parsing-args)]
-     (cond-> parsed-xml
-       :always                   (xml->edn opts)
-       (seq force-seq-for-paths) (force-xml-seq-at-paths force-seq-for-paths)))))
+     (xml->edn' parsed-xml opts))))
 
 ;; Parsing EDN as XML
 

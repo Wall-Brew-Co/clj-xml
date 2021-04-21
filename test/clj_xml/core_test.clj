@@ -1,6 +1,6 @@
 (ns clj-xml.core-test
   (:require [clj-xml.core :as sut]
-            [clojure.test :refer [deftest is testing]]))
+            [clojure.test :refer :all]))
 
 (def xml-example
   {:tag :TEST_DOCUMENT
@@ -54,6 +54,14 @@
     {:FILE [{:GROUPS [{:GROUP "test-data-club"}]}
             {:SEGMENTS [{:SEGMENT "more data"}
                         {:SEGMENT "more fake data"}]}]}]})
+
+(def edn-example-with-targeted-coercion
+  {:test-document
+   [{:head [{:meta-data "Some Fake Data!"}
+            {:meta-data "Example Content"}]
+    :file {:groups [{:group "test-data-club"}]
+           :segments [[{:segment "more data"}]
+                      [{:segment "more fake data"}]]}}]})
 
 (def edn-example-with-attrs
   {:test-document
@@ -125,3 +133,37 @@
       (is (= {:sometag [" " {:foo "wurdz"}]} (sut/xml-str->edn ws)))
       (is (= {:sometag [{:foo "wurdz"}]} (sut/xml-str->edn ws {:skip-whitespace true})))
       (is (= {:sometag {:foo "wurdz", :bar "bla"}} (sut/xml-str->edn (str "<sometag><foo>wurdz</foo><bar>bla</bar></sometag>") {:skip-whitespace true}))))))
+
+(deftest force-xml-seq-at-path-test
+  (testing "Parsed XML can coerce child nodes to collections"
+    (let [nested-data {:a {:b [1 2 3] :c {:d "e"}}}]
+      (is (= (sut/force-xml-seq-at-path nested-data [:a :b sut/last-child])
+             {:a {:b [1 2 [3]] :c {:d "e"}}}))
+      (is (= (sut/force-xml-seq-at-path nested-data [:a :b sut/first-child])
+             {:a {:b [[1] 2 3] :c {:d "e"}}}))
+      (is (= (sut/force-xml-seq-at-path nested-data [:a :b sut/every-child])
+             {:a {:b [[1] [2] [3]] :c {:d "e"}}}))
+      (is (= (sut/force-xml-seq-at-path nested-data [:a :c :d])
+             {:a {:b [1 2 3] :c {:d ["e"]}}}))
+      (is (= (sut/force-xml-seq-at-path nested-data [:a :c :f])
+             {:a {:b [1 2 3] :c {:d "e" :f [nil]}}}))
+      (is (thrown-with-msg? IllegalArgumentException
+                            #"The key :clj-xml.core/first is incompatible with class clojure.lang.PersistentArrayMap"
+                            (sut/force-xml-seq-at-path nested-data [sut/first-child])))
+      (is (thrown-with-msg? IllegalArgumentException
+                            #"The key :c is incompatible with class clojure.lang.PersistentVector"
+                            (sut/force-xml-seq-at-path nested-data [:a :b :c]))))))
+
+(deftest force-xml-seq-at-paths-test
+  (testing "Parsed XML can coerce child nodes to collections"
+    (let [nested-data {:a {:b [1 2 3] :c {:d "e"}}}]
+      (is (= (sut/force-xml-seq-at-paths nested-data [[:a :b sut/first-child] [:a :b sut/last-child] [:a]])
+             {:a [{:b [[1] 2 [3]] :c {:d "e"}}]}))
+      (is (= (sut/force-xml-seq-at-paths nested-data [[:a] [:a sut/first-child :b]])
+             {:a [{:b [[1 2 3]] :c {:d "e"}}]})))))
+
+(deftest xml-sequence-coercion-test
+  (testing "parsed XML can be coerced"
+    (is (= (sut/xml->edn' xml-example {:force-seq-for-paths [[:test-document :file :segments sut/every-child]
+                                                            [:test-document]]})
+           edn-example-with-targeted-coercion))))
