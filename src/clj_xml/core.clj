@@ -3,6 +3,54 @@
   (:require [clj-xml.impl :as impl]
             [clojure.data.xml :as xml]))
 
+(def every-child
+  "An alias for the ::every namespaced keyword"
+  ::every)
+
+(def first-child
+  "An alias for the ::first namespaced keyword"
+  ::first)
+
+(def last-child
+  "An alias for the ::last namespaced keyword"
+  ::last)
+
+(defn force-xml-seq-at-path
+  "Update `xml-edn` to convert the specified child node in the key path to a vector.
+   `key-paths` is a sequence of `key` and `key-seq`, each of which is either a bare keywords or the following namespaced keywords:
+      - ::every or the alias every-child
+      - ::first or the alias first-child
+      - ::last or the alias last-child
+    For each element in `key-path`, `force-xml-seq-at-path` will traverse `xml-edn` one level
+       - If the current node is a map, clj-xml expects a keyword to update
+       - If the current node is a sequence, clj-xml expects one of the supplied namespaced keywords and will update the related members of that sequence"
+  [xml-edn [key & key-seq]]
+  (if key
+    (cond
+      (and (sequential? xml-edn)
+           (= every-child key)) (mapv #(force-xml-seq-at-path % key-seq) xml-edn)
+      (and (sequential? xml-edn)
+           (= first-child key)) (cons (force-xml-seq-at-path (first xml-edn) key-seq) (rest xml-edn))
+      (and (sequential? xml-edn)
+           (= last-child key))  (conj (into [] (butlast xml-edn)) (force-xml-seq-at-path (last xml-edn) key-seq))
+      (and (map? xml-edn)
+           (keyword? key))      (update xml-edn key force-xml-seq-at-path (get xml-edn key) key-seq)
+      :else                     (throw (IllegalArgumentException. (str "The key " key " is incompatible with " (type xml-edn)))))
+    [xml-edn]))
+
+(defn force-xml-seq-at-paths
+  "Convert every path specified in `key-paths` within `xml-edn` to convert the specified child node to a vector.
+   `key-paths` is a sequence of sequences, each of which contains a mixture of bare keywords or the following namespaced keywords:
+      - ::every or the alias every-child
+      - ::first or the alias first-child
+      - ::last or the alias last-child
+    For each element in `key-path`, `force-xml-seq-at-paths` will traverse `xml-edn` one level
+       - If the current node is a map, clj-xml expects a keyword to update
+       - If the current node is a sequence, clj-xml expects one of the supplied namespaced keywords and will update the related members of that sequence"
+  [xml-edn key-paths]
+  (let [reducing-fn (fn [running-xml path] (force-xml-seq-at-path running-xml path))]
+    (reduce reducing-fn xml-edn key-paths)))
+
 ;; Parsing XML into EDN
 
 (declare xml->edn)
@@ -105,8 +153,8 @@
      force-seq-for-paths - A sequence of key-path sequences that will be coerced into sequences.
 
    It also surfaces the original options from `clojure.data.xml/parse-str`
-     include-node?                - a subset of #{:element :characters :comment} default #{:element :characters}
-     location-info                - pass false to skip generating location meta data
+     include-node?                - A set containing elements of #{:element :characters :comment} default #{:element :characters}
+     location-info                - A boolean, that if set to false, skips generating location meta data
      allocator                    - An instance of a XMLInputFactory/ALLOCATOR to allocate events
      coalescing                   - A boolean, that if set to true, coalesces adjacent characters
      namespace-aware              - A boolean, that if set to false, disables XML 1.0 namespacing support
@@ -120,7 +168,8 @@
   ([xml-str]
    (xml-str->edn xml-str {}))
 
-  ([xml-str opts]
+  ([xml-str {:keys [force-seq-for-paths]
+             :as   opts}]
    (let [additional-args (select-keys opts [:include-node?
                                             :location-info
                                             :allocator
@@ -137,7 +186,9 @@
          sanitized-xml   (impl/deformat xml-str opts)
          parsing-args    (cons sanitized-xml flattened-args)
          parsed-xml      (apply xml/parse-str parsing-args)]
-     (xml->edn parsed-xml opts))))
+     (cond-> parsed-xml
+       :always                   (xml->edn opts)
+       (seq force-seq-for-paths) (force-xml-seq-at-paths force-seq-for-paths)))))
 
 (defn xml-source->edn
   "Parse an XML document source with `clojure.xml/parse` and transform it into normalized EDN.
@@ -168,7 +219,8 @@
   ([xml-source]
    (xml-source->edn xml-source {}))
 
-  ([xml-source opts]
+  ([xml-source {:keys [force-seq-for-paths]
+                :as   opts}]
    (let [additional-args (select-keys opts [:allocator
                                             :coalescing
                                             :namespace-aware
@@ -182,7 +234,9 @@
          flattened-args  (flatten (into [] additional-args))
          parsing-args    (cons xml-source flattened-args)
          parsed-xml      (apply xml/parse parsing-args)]
-     (xml->edn parsed-xml opts))))
+     (cond-> parsed-xml
+       :always                   (xml->edn opts)
+       (seq force-seq-for-paths) (force-xml-seq-at-paths force-seq-for-paths)))))
 
 ;; Parsing EDN as XML
 
