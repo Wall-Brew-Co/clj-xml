@@ -20,7 +20,7 @@
   ([xml-seq]
    (xml-seq->edn xml-seq {}))
 
-  ([xml-seq {:keys [stringify-values? 
+  ([xml-seq {:keys [stringify-values?
                     force-seq?]
              :as   opts}]
    (let [xml-transformer (fn [x] (xml->edn x opts))]
@@ -72,10 +72,11 @@
   "Transform an XML document as formatted by `clojure.xml/parse`, and transform it into normalized EDN.
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
    To change this behavior, an option map may be provided with the following keys:
-     preserve-keys? - to maintain the exact keyword structure provided by `clojure.xml/parse`
-     preserve-attrs? - to maintain embedded XML attributes
-     stringify-values? - to coerce non-nil, non-string, non-collection values to strings
-     remove-empty-attrs? - to remove any empty attribute maps"
+     preserve-keys?      - A boolean, that if set to true, maintains the exact keyword structure provided by `clojure.xml/parse`
+     preserve-attrs?     - A boolean, that if set to true, maintains embedded XML attributes
+     stringify-values?   - A boolean, that if set to true, coerces non-nil, non-string, non-collection values to strings
+     remove-empty-attrs? - A boolean, that if set to true, removes any empty attribute maps
+     force-seq?          - A boolean, that if set to true, coerces child XML nodes into a sequence of maps"
   ([xml-doc]
    (xml->edn xml-doc {}))
 
@@ -95,12 +96,13 @@
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
 
    To change this behavior, an option map may be provided with the following keys:
-     preserve-keys?      - to maintain the exact keyword structure provided by `clojure.xml/parse`
-     preserve-attrs?     - to maintain embedded XML attributes
-     stringify-values?   - to coerce non-nil, non-string, non-collection values to strings
-     remove-empty-attrs? - to remove any empty attribute maps
-     remove-newlines?    - to remove any newline characters in `xml-str`
-     force-seq?          - to coerce child XML nodes into a sequence of maps
+     preserve-keys?      - A boolean, that if set to true, maintains the exact keyword structure provided by `clojure.xml/parse`
+     preserve-attrs?     - A boolean, that if set to true, maintains embedded XML attributes
+     stringify-values?   - A boolean, that if set to true, coerces non-nil, non-string, non-collection values to strings
+     remove-empty-attrs? - A boolean, that if set to true, removes any empty attribute maps
+     remove-newlines?    - A boolean, that if set to true, removes any newline characters in `xml-str`
+     force-seq?          - A boolean, that if set to true, coerces child XML nodes into a sequence of maps
+     force-seq-for-paths - A sequence of key-path sequences that will be coerced into sequences.
 
    It also surfaces the original options from `clojure.data.xml/parse-str`
      include-node?                - a subset of #{:element :characters :comment} default #{:element :characters}
@@ -143,10 +145,12 @@
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
 
    To change this behavior, an option map may be provided with the following keys:
-     preserve-keys?      - to maintain the exact keyword structure provided by `clojure.xml/parse`
-     preserve-attrs?     - to maintain embedded XML attributes
-     stringify-values?   - to coerce non-nil, non-string, non-collection values to strings
-     remove-empty-attrs? - to remove any empty attribute maps
+     preserve-keys?      - A boolean, that if set to true, maintains the exact keyword structure provided by `clojure.xml/parse`
+     preserve-attrs?     - A boolean, that if set to true, maintains embedded XML attributes
+     stringify-values?   - A boolean, that if set to true, coerces non-nil, non-string, non-collection values to strings
+     remove-empty-attrs? - A boolean, that if set to true, removes any empty attribute maps
+     force-seq?          - A boolean, that if set to true, coerces child XML nodes into a sequence of maps
+     force-seq-for-paths - A sequence of key-path sequences that will be coerced into sequences.
 
    It also surfaces the original options from `clojure.data.xml/parse`
      include-node?                - a subset of #{:element :characters :comment} default #{:element :characters}
