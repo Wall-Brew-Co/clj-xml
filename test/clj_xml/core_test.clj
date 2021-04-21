@@ -165,5 +165,5 @@
 (deftest xml-sequence-coercion-test
   (testing "parsed XML can be coerced"
     (is (= (sut/xml->edn' xml-example {:force-seq-for-paths [[:test-document :file :segments sut/every-child]
-                                                            [:test-document]]})
+                                                             [:test-document]]})
            edn-example-with-targeted-coercion))))

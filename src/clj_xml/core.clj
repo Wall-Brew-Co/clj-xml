@@ -145,6 +145,7 @@
           (some? xml-doc))  (str xml-doc))))
 
 (defn xml->edn'
+  "Wrapper around xml->edn to apply sequence coercion"
   ([xml-doc]
    (xml->edn' xml-doc {}))
 
