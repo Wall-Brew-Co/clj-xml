@@ -25,3 +25,7 @@ version/bugfix:
 version:
 	$(info Adding CHANGELOG entry for existing version...)
 	@ $(VERCHG) 'push'
+
+deploy:
+	$(info Deploying com.wallbrew/clj-xml to Clojars...)
+	@ $(LEIN) deploy clojars
