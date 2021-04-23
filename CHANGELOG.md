@@ -1,8 +1,14 @@
+## v1.6.0 / 2021 Apr 23
+
+> This release an option to selectively force children node into sequences
+
+* **Add** - add `force-seq-for-paths` option to `xml-str->edn` and `xml-source->edn`
+
 ## v1.5.0 / 2021 Apr 19
 
-> This release ...
+> This release adds an option to force children node into sequences
 
-* **Add** - add `force-seq?` option to `xml-str->edn`
+* **Add** - add `force-seq?` option to `xml-str->edn` and `xml-source->edn`
 
 ## v1.4.0 / 2021 Apr 16
 

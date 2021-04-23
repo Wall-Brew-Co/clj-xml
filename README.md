@@ -34,7 +34,8 @@ Each of these functions accepts an option map as an optional second argument, su
 * `remove-empty-attrs?` - to remove any empty attribute maps
 * `stringify-values?`   - to coerce non-nil, non-string, non-collection values to strings
 * `remove-newlines?`    - to remove any newline characters in `xml-str`. Only applicable for `xml-str->edn`
-* `force-seq?`          - to coerce child XML nodes into an array of maps.
+* `force-seq?`          - to coerce all child XML nodes into an array of maps.
+* `force-seq-for-paths` - A sequence of key-path sequences that will be selectively coerced into sequences. Read more about Key Pathing below.
 
 `xml-str->edn` and `xml-source->edn` also support the parsing options from `clojure.data.xml` and Java's `XMLInputFactory` class.
 [Additional documentation](http://docs.oracle.com/javase/6/docs/api/javax/xml/stream/XMLInputFactory.html) from Oracle is available.
@@ -87,7 +88,7 @@ Lets see how it works:
          :attrs {:BYTES "10100010" :NUMBER "-94"}
          :content ["more fake data"]}]}]}]})
 
-(xml->edn xml-example)
+(xml/xml->edn xml-example)
 ;; => {:test-document
 ;;     {:head [{:meta-data "Some Fake Data!"}
 ;;             {:meta-data "Example Content"}]
@@ -99,7 +100,7 @@ Lets see how it works:
 (def xml-test-string
   "<?xml version=\"1.0\" encoding=\"UTF-8\"?><TEST_DOCUMENT XMLNS=\"https://www.fake.not/real\"><HEAD><META_DATA TYPE=\"title\">Some Fake Data!</META_DATA><META_DATA TYPE=\"tag\">Example Content</META_DATA></HEAD><FILE POSTER=\"JANE DOE &lt;j.doe@fake-email.not-real&gt;\" DATE=\"2020/04/12\" SUBJECT=\"TEST DATA\"><GROUPS><GROUP>test-data-club</GROUP></GROUPS><SEGMENTS><SEGMENT BITS=\"00111010\" NUMBER=\"58\">more data</SEGMENT><SEGMENT BYTES=\"10100010\" NUMBER=\"-94\">more fake data</SEGMENT></SEGMENTS></FILE></TEST_DOCUMENT>")
 
-(xml-str->edn xml-example)
+(xml/xml-str->edn xml-test-string)
 ;; => {:test-document
 ;;     {:head [{:meta-data "Some Fake Data!"}
 ;;             {:meta-data "Example Content"}]
@@ -108,7 +109,7 @@ Lets see how it works:
 ;;                        {:segment "more fake data"}]}}}
 
 ;; Preserve the XML_CASE
-(xml->edn xml-example {:preserve-keys? true})
+(xml/xml->edn xml-example {:preserve-keys? true})
 ;; => {:TEST_DOCUMENT
 ;;     {:HEAD [{:META-DATA "Some Fake Data!"}
 ;;             {:META-DATA "Example Content"}]
@@ -117,7 +118,7 @@ Lets see how it works:
 ;;                        {:SEGMENT "more fake data"}]}}}
 
 ;; Preserve the XML attributes
-(xml->edn xml-example {:preserve-attrs? true})
+(xml/xml->edn xml-example {:preserve-attrs? true})
 ;; =>   {:test-document
 ;;      {:head [{:meta-data "Some Fake Data!" :meta-data-attrs {:type "title"}}
 ;;              {:meta-data "Example Content" :meta-data-attrs {:type "tag"}}]
@@ -128,6 +129,41 @@ Lets see how it works:
 ;;                    :date "2020/04/12"
 ;;                    :subject "TEST DATA"}}
 ;;      :test-document-attrs {:xmlns "https://www.fake.not/real"}}
+```
+
+#### Key Pathing
+
+When you want to ensure selective paths in the returned XML are coerced to sequences, you may pick one of two options:
+
+* `force-seq?`          - to coerce all child XML nodes into a collection of nodes.
+* `force-seq-for-paths` - to coerce selective child XML nodes into collections of nodes.
+
+In the case of `force-seq-for-paths`, you will supply a sequence of key paths, each of which direct to children a la `assoc-in`.
+This key path may contain three types of paths, which may be used together.
+
+* The namespace qualified keywords: `:clj-xml.core/first`, `:clj-xml.core/last`, and `:clj-xml.core/every`
+  * These will modify a sequence's first, last, or every child, respectively
+* The provided alias symbols for the above keywords: `first-child`, `last-child`, and `every-child`
+  * These will modify a sequence's first, last, or every child, respectively
+* Bare keywords
+  * These will modify the matching given keyword in a map a la `update`
+
+If the key path is incongruent with the current data structure, (e.g. `every-child` and a hash-map), an exception will be thrown.
+
+```clojure
+(require [clj-xml.core :as xml])
+
+(xml/xml->edn' xml-example {:force-seq-for-paths [[:test-document :file :segments xml/every-child]
+                                                  [:test-document]]})
+;; => {:test-document
+;;     [{:head [{:meta-data "Some Fake Data!"}
+;;              {:meta-data "Example Content"}]
+;;      :file {:groups [{:group "test-data-club"}]
+;;             :segments [[{:segment "more data"}]
+;;                        [{:segment "more fake data"}
+
+(xml/xml->edn' xml-example {:force-seq-for-paths [[xml/every-child]]})
+;; => java.lang.IllegalArgumentException: The key clj-xml.core/every is incompatible with class clojure.lang.PersistentArrayMap
 ```
 
 ### XML Emission
