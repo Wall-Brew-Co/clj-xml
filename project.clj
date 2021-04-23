@@ -1,5 +1,5 @@
 (defproject com.wallbrew/clj-xml "1.6.0"
-  :description "The missingg link between clj and xml"
+  :description "The missing link between clj and xml"
   :url "https://github.com/nnichols/clj-xml"
   :license {:name "MIT"
             :url  "https://opensource.org/licenses/MIT"}
