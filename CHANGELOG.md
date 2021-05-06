@@ -1,3 +1,7 @@
+## v1.6.1 / 2021 May 06
+
+> This release fixes a typo in the project manifest
+
 ## v1.6.0 / 2021 Apr 23
 
 > This release an option to selectively force children node into sequences
