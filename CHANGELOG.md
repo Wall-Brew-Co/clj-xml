@@ -1,3 +1,9 @@
+## v1.6.2 / 2021 May 27
+
+> This release fixes an issue parsing hand-formatted XML files that split attributes with newline characters
+
+* **Fix** ^^^
+
 ## v1.6.1 / 2021 May 06
 
 > This release fixes a typo in the project manifest
