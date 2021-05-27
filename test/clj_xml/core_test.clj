@@ -1,5 +1,6 @@
 (ns clj-xml.core-test
   (:require [clj-xml.core :as sut]
+            [clojure.string :as cs]
             [clojure.test :refer :all]))
 
 (def xml-example
@@ -115,24 +116,26 @@
     (is (nil? (sut/edn->xml 100)))))
 
 (def xml-test-string
-  "<?xml version=\"1.0\" encoding=\"UTF-8\"?><TEST_DOCUMENT XMLNS=\"https://www.fake.not/real\"><HEAD><META_DATA TYPE=\"title\">Some Fake Data!</META_DATA> <META_DATA TYPE=\"tag\">Example Content</META_DATA></HEAD><FILE POSTER=\"JANE DOE &lt;j.doe@fake-email.not-real&gt;\" DATE=\"2020/04/12\" SUBJECT=\"TEST DATA\"><GROUPS><GROUP>test-data-club</GROUP></GROUPS><SEGMENTS><SEGMENT BITS=\"00111010\" NUMBER=\"58\">more data</SEGMENT><SEGMENT BYTES=\"10100010\" NUMBER=\"-94\">more fake data</SEGMENT></SEGMENTS></FILE></TEST_DOCUMENT>")
+  "<?xml version=\"1.0\" encoding=\"UTF-8\"?><TEST_DOCUMENT XMLNS=\"https://www.fake.not/real\"
+   XSI=\"abc\"><HEAD><META_DATA TYPE=\"title\">Some Fake Data!</META_DATA> <META_DATA TYPE=\"tag\">Example Content</META_DATA></HEAD><FILE POSTER=\"JANE DOE &lt;j.doe@fake-email.not-real&gt;\" DATE=\"2020/04/12\" SUBJECT=\"TEST DATA\"><GROUPS><GROUP>test-data-club</GROUP></GROUPS><SEGMENTS><SEGMENT BITS=\"00111010\" NUMBER=\"58\">more data</SEGMENT><SEGMENT BYTES=\"10100010\" NUMBER=\"-94\">more fake data</SEGMENT></SEGMENTS></FILE></TEST_DOCUMENT>")
 
 (deftest xml-string-tests
   (testing "functional correctness"
-    (is (= xml-test-string (sut/edn->xml-str (sut/xml-str->edn xml-test-string {:preserve-attrs? true :support-dtd false :remove-newlines? true}) {:to-xml-case? true})))))
+    (is (= (cs/replace xml-test-string #"\n   " " ") ;; The formatting of xml-test-string spans multiple lines with spaces for alignment, this is stripped internally
+           (sut/edn->xml-str (sut/xml-str->edn xml-test-string {:preserve-attrs? true :support-dtd false :remove-newlines? true}) {:to-xml-case? true})))))
 
 (deftest insignificant-whitespace-test
   (testing "Corner-cases around embedded insignificant whitespace"
     (let [no-ws (str "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-                     "<someTag><foo>wurdz</foo> \n"
+                     "<someTag><foo>some text</foo> \n"
                      "</someTag>")
           ws (str "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-                  "<someTag> <foo>wurdz</foo> \n"
+                  "<someTag> <foo>some text</foo> \n"
                   "</someTag>")]
-      (is (= {:sometag [{:foo "wurdz"}]} (sut/xml-str->edn no-ws {:skip-whitespace true})))
-      (is (= {:sometag [" " {:foo "wurdz"}]} (sut/xml-str->edn ws)))
-      (is (= {:sometag [{:foo "wurdz"}]} (sut/xml-str->edn ws {:skip-whitespace true})))
-      (is (= {:sometag {:foo "wurdz", :bar "bla"}} (sut/xml-str->edn (str "<sometag><foo>wurdz</foo><bar>bla</bar></sometag>") {:skip-whitespace true}))))))
+      (is (= {:sometag [{:foo "some text"}]} (sut/xml-str->edn no-ws {:skip-whitespace true})))
+      (is (= {:sometag [" " {:foo "some text"} " "]} (sut/xml-str->edn ws {:remove-newlines? true})))
+      (is (= {:sometag [{:foo "some text"}]} (sut/xml-str->edn ws {:skip-whitespace true})))
+      (is (= {:sometag {:foo "some text", :bar "bla"}} (sut/xml-str->edn (str "<sometag><foo>some text</foo><bar>bla</bar></sometag>") {:skip-whitespace true}))))))
 
 (deftest force-xml-seq-at-path-test
   (testing "Parsed XML can coerce child nodes to collections"
