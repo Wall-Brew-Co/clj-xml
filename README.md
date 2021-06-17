@@ -29,32 +29,36 @@ Based on where your XML is and how it's stored, you'll want to use one of the th
 
 Each of these functions accepts an option map as an optional second argument, supporting the following keys:
 
-* `preserve-keys?`      - to maintain the exact keyword structure provided by `clojure.xml/parse`
-* `preserve-attrs?`     - to maintain embedded XML attributes
-* `remove-empty-attrs?` - to remove any empty attribute maps
-* `stringify-values?`   - to coerce non-nil, non-string, non-collection values to strings
-* `remove-newlines?`    - to remove any newline characters in `xml-str`. Only applicable for `xml-str->edn`
-* `force-seq?`          - to coerce all child XML nodes into an array of maps.
-* `force-seq-for-paths` - A sequence of key-path sequences that will be selectively coerced into sequences. Read more about Key Pathing below.
+| Option                 | Default Value |Description                                                                                                                          |
+|------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| `:preserve-keys?`      | `false`       |Maintain the exact keyword structure provided by `clojure.xml/parse`                                                                 |
+| `:preserve-attrs?`     | `false`       |Maintain embedded XML attributes                                                                                                     |
+| `:remove-empty-attrs?` | `false`       |Remove any empty attribute maps                                                                                                      |
+| `:stringify-values?`   | `false`       |Coerce non-nil, non-string, non-collection values to strings                                                                         |
+| `:remove-newlines?`    | `false`       |Remove any newline characters in `xml-str`. Only applicable for `xml-str->edn`                                                       |
+| `:force-seq?`          | `false`       |Coerce all child XML nodes into an array of maps.                                                                                    |
+| `:force-seq-for-paths` | `[]`          |A sequence of key-path sequences that will be selectively coerced into sequences. Read more about [Key Pathing](#key-pathing) below. |
 
 `xml-str->edn` and `xml-source->edn` also support the parsing options from `clojure.data.xml` and Java's `XMLInputFactory` class.
 [Additional documentation](http://docs.oracle.com/javase/6/docs/api/javax/xml/stream/XMLInputFactory.html) from Oracle is available.
 This library does not override the default behavior of `XMLInputFactory`.
 
-* `include-node?`                - a subset of #{:element :characters :comment} default #{:element :characters}
-* `location-info`                - pass false to skip generating location metadata
-* `allocator`                    - An instance of a XMLInputFactory/ALLOCATOR to allocate events
-* `coalescing`                   - A boolean, that if set to true, coalesces adjacent characters
-* `namespace-aware`              - A boolean, that if set to false, disables XML 1.0 namespacing support
-* `replacing-entity-references`  - A boolean, that if set to false, disables entity text replacement
-* `supporting-external-entities` - A boolean, that if set to true, will resolve external entities and parse them
-* `validating`                   - A boolean, that if set to true, will enable DTD validation
-* `reporter`                     - An instance of a XMLInputFactory/REPORTER to use in place of defaults
-* `resolver`                     - An instance of a XMLInputFactory/RESOLVER to use in place of defaults
-* `support-dtd`                  - A boolean, that if set to false, disables DTD support in parsers
-* `skip-whitespace`              - A boolean, that if set to true, removes whitespace only elements
+| Option                          | Default Value               | Description                                                                             |
+|---------------------------------|-----------------------------|-----------------------------------------------------------------------------------------|
+| `:include-node?`                | `#{:element :characters}`   | A subset of #{:element :characters :comment}, representing the XML nodes to keep        |
+| `:location-info`                | `true`                      | Wether or not location metadata should be generated and attached to results             |
+| `:allocator`                    | Object created Just-In-Time | An instance of an XMLInputFactory/ALLOCATOR to allocate events                          |
+| `:coalescing`                   | `true`                      | Convert CDATA nodes to text, and append any adjacent text nodes                         |
+| `:namespace-aware`              | `false`                     | Wether or not XML 1.0 namespacing support is enabled                                    |
+| `:replacing-entity-references`  | `false`                     | Wether or not internal entity text should be replaced with its XML entity form          |
+| `:supporting-external-entities` | `false`                     | Wether or not externally hosted entities will be resolved at parsing time and evaluated |
+| `:validating`                   | `false`                     | Wether or not attached DTDs will be resolved and used to validate the XML document      |
+| `:reporter`                     | Object created Just-In-Time | An instance of a XMLInputFactory/REPORTER to use in place of default                    |
+| `:resolver`                     | Object created Just-In-Time | An instance of a XMLInputFactory/RESOLVER to use in place of defaults                   |
+| `:support-dtd`                  | `false`                     | Wether or not attached DTDs will be read by the parser                                  |
+| `:skip-whitespace`              | `false`                     | Wether or not any whitespace only elements will be preserved as nodes                   |
 
-Lets see how it works:
+Let's see how it works:
 
 ```clojure
 (require [clj-xml.core :as xml])
@@ -176,16 +180,20 @@ To convert EDN into XML, you'll want to use one of the following functions based
 
 Each of these functions accepts an option map as an optional final argument, supporting the following keys:
 
-* `to-xml-case?` - To modify the keys representing XML tags to XML_CASE
-* `from-xml-case?` - If the source EDN has XML_CASE keys
-* `stringify-values?` - to coerce non-nil, non-string, non-collection values to strings
+| Option               | Default Value | Description                                                                           |
+|----------------------|---------------|---------------------------------------------------------------------------------------|
+| `:to-xml-case?`      | `false`       | Wether or not the keys representing XML tags will be coerced to XML_CASE              |
+| `:from-xml-case?`    | `false`       | Wether or not the source EDN is in XML_CASE                                           |
+| `:stringify-values?` | `false`       | Wether or not non-nil, non-string, non-collection values should be coerced to strings |
 
 `edn->xml-str` and `edn->xml-stream` also support the parsing options from `clojure.data.xml`:
 
-* `encoding` - The character encoding to use
-* `doctype` - The DOCTYPE declaration to use
+| Option      | Default Value | Description                                                          |
+|-------------|---------------|----------------------------------------------------------------------|
+| `:encoding` | `UTF-8`       | A string representing the character encoding the encoder should emit |
+| `:doctype`  | `nil`         | An XML Doctype that should be written as the emitted document's DTD  |
 
-Lets see how it works:
+Let's see how it works:
 
 ```clojure
 (require [clj-xml.core :as xml])
