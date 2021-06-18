@@ -19,7 +19,7 @@ jobs:
           reporter: github-pr-review
           filter_mode: file
 
-  shellcheck:
+  shell-check:
     runs-on: ubuntu-latest
 
     steps:
