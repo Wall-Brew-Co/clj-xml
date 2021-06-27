@@ -1,15 +1,28 @@
-name: Clojure CI
+name: Clojure Tests
 
 on: ["push", "workflow_dispatch"]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2.3.4
+    - name: Checkout Repository
+      uses: actions/checkout@v2.3.4
+
+    - name: Cache maven dependencies
+      uses: actions/cache@v2
+      env:
+          cache-name: cache-maven
+      with:
+          path: ~/.m2
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/project.clj') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/project.clj') }}
+
     - name: Install dependencies
       run: lein deps
+
     - name: Run Clojure tests
       run: lein test

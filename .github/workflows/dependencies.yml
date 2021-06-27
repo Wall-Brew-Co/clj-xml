@@ -5,7 +5,7 @@ on:
     - cron: '0 15 * * *'
 
 jobs:
-  build:
+  dependency-update:
 
     runs-on: ubuntu-latest
 

@@ -11,10 +11,17 @@ Please note we have a code of conduct, please follow it in all your interactions
 3. Update all version numbers to the new version that this Pull Request would represent.
    The versioning scheme we use is [SemVer](http://semver.org/).
 
+### Restricted Files
+
+This repository automatically labels Pull Requests targeting a few select files as `restricted`.
+These files are generally related to Wall Brew development policies and standards.
+Changes to these files should be rare, and will generally only come from members of the Wall-Brew-Co organization.
+In most cases, Pull Requests targeting these files will be marked as requiring additional changes to revert the state of those files or denied.
+
 ### Read the Documentation
 
 Familiarize yourself with the documentation before you submit a Pull Request.
-If you have questions which aren't in the documentation, open a ticket or submit a Pull Request to update the documentation.
+If you have questions which aren't in the documentation, open an issue or submit a Pull Request to update the documentation.
 
 ### Want to contribute but don't know where to start?
 
