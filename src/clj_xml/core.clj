@@ -3,21 +3,26 @@
   (:require [clj-xml.impl :as impl]
             [clojure.data.xml :as xml]))
 
+
 (def every-child
   "An alias for the ::every namespaced keyword"
   ::every)
+
 
 (def first-child
   "An alias for the ::first namespaced keyword"
   ::first)
 
+
 (def last-child
   "An alias for the ::last namespaced keyword"
   ::last)
 
+
 (defn- child-key?
   [k]
   (#{first-child last-child every-child} k))
+
 
 (defn force-xml-seq-at-path
   "Update `xml-edn` to convert the specified child node in the key path to a vector.
@@ -43,6 +48,7 @@
       :else                       (throw (IllegalArgumentException. (str "The key " key " is incompatible with " (type xml-edn)))))
     [xml-edn]))
 
+
 (defn force-xml-seq-at-paths
   "Convert every path specified in `key-paths` within `xml-edn` to convert the specified child node to a vector.
    `key-paths` is a sequence of sequences, each of which contains a mixture of bare keywords or the following namespaced keywords:
@@ -59,6 +65,7 @@
 ;; Parsing XML into EDN
 
 (declare xml->edn)
+
 
 (defn xml-seq->edn
   "Transform an XML sequence as formatted by `clojure.xml/parse`, and transform it into normalized EDN.
@@ -93,6 +100,7 @@
        (and stringify-values?
             (some? xml-seq))                (str xml-seq)))))
 
+
 (defn xml-map->edn
   "Transform an XML map as formatted by `clojure.xml/parse`, and transform it into normalized EDN.
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
@@ -121,6 +129,7 @@
                 (when add-attrs? {attrs-key attrs-val})))
        {edn-tag edn-value}))))
 
+
 (defn xml->edn
   "Transform an XML document as formatted by `clojure.xml/parse`, and transform it into normalized EDN.
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
@@ -144,6 +153,7 @@
      (and stringify-values?
           (some? xml-doc))  (str xml-doc))))
 
+
 (defn xml->edn'
   "Wrapper around xml->edn to apply sequence coercion"
   ([xml-doc]
@@ -153,6 +163,7 @@
    (cond-> xml-doc
      :always                   (xml->edn opts)
      (seq force-seq-for-paths) (force-xml-seq-at-paths force-seq-for-paths))))
+
 
 (defn xml-str->edn
   "Parse an XML document with `clojure.xml/parse-str` and transform it into normalized EDN.
@@ -201,6 +212,7 @@
          parsing-args    (cons sanitized-xml flattened-args)
          parsed-xml      (apply xml/parse-str parsing-args)]
      (xml->edn' parsed-xml opts))))
+
 
 (defn xml-source->edn
   "Parse an XML document source with `clojure.xml/parse` and transform it into normalized EDN.
@@ -251,6 +263,7 @@
 
 (declare edn->xml)
 
+
 (defn edn-seq->xml
   "Transform an EDN sequence to the pseudo XML expected by `clojure.data.xml`.
    To change the default behavior, an option map may be provided with the following keys:
@@ -262,6 +275,7 @@
 
   ([edn opts]
    (mapv #(edn->xml % opts) edn)))
+
 
 (defn edn-map->xml
   "Transform an EDN map to the pseudo XML expected by `clojure.data.xml`.
@@ -294,6 +308,7 @@
        (tag-generator (first tags))
        (mapv tag-generator tags)))))
 
+
 (defn edn->xml
   "Transform an EDN data structure to the pseudo XML expected by `clojure.data.xml`.
    To change the default behavior, an option map may be provided with the following keys:
@@ -313,6 +328,7 @@
      (map? edn)             (edn-map->xml edn opts)
      (and stringify-values?
           (some? edn))      (str edn))))
+
 
 (defn edn->xml-str
   "Transform an EDN data structure into an XML string via `clojure.data.xml`.
@@ -338,6 +354,7 @@
      (-> edn
          (edn->xml opts)
          c-xml))))
+
 
 (defn edn->xml-stream
   "Transform an EDN data structure into XML and stream is out via `clojure.data.xml`.

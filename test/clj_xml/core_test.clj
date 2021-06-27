@@ -3,6 +3,7 @@
             [clojure.string :as cs]
             [clojure.test :refer :all]))
 
+
 (def xml-example
   {:tag :TEST_DOCUMENT
    :attrs {:XMLNS "https://www.fake.not/real"}
@@ -32,6 +33,7 @@
          :attrs {:BYTES "10100010" :NUMBER "-94"}
          :content ["more fake data"]}]}]}]})
 
+
 (def edn-example
   {:test-document
    {:head [{:meta-data "Some Fake Data!"}
@@ -39,6 +41,7 @@
     :file {:groups [{:group "test-data-club"}]
            :segments [{:segment "more data"}
                       {:segment "more fake data"}]}}})
+
 
 (def edn-example-original-keys
   {:TEST_DOCUMENT
@@ -48,6 +51,7 @@
            :SEGMENTS [{:SEGMENT "more data"}
                       {:SEGMENT "more fake data"}]}}})
 
+
 (def edn-example-original-keys-force-seq
   {:TEST_DOCUMENT
    [{:HEAD [{:META_DATA "Some Fake Data!"}
@@ -56,13 +60,15 @@
             {:SEGMENTS [{:SEGMENT "more data"}
                         {:SEGMENT "more fake data"}]}]}]})
 
+
 (def edn-example-with-targeted-coercion
   {:test-document
    [{:head [{:meta-data "Some Fake Data!"}
             {:meta-data "Example Content"}]
-    :file {:groups [{:group "test-data-club"}]
-           :segments [[{:segment "more data"}]
-                      [{:segment "more fake data"}]]}}]})
+     :file {:groups [{:group "test-data-club"}]
+            :segments [[{:segment "more data"}]
+                       [{:segment "more fake data"}]]}}]})
+
 
 (def edn-example-with-attrs
   {:test-document
@@ -77,6 +83,7 @@
                  :subject "TEST DATA"}}
    :test-document-attrs {:xmlns "https://www.fake.not/real"}})
 
+
 (def edn-example-with-attrs-and-original-keys
   {:TEST_DOCUMENT
    {:HEAD [{:META_DATA "Some Fake Data!" :META_DATA_ATTRS {:TYPE "title"}}
@@ -89,6 +96,7 @@
                  :DATE "2020/04/12"
                  :SUBJECT "TEST DATA"}}
    :TEST_DOCUMENT_ATTRS {:XMLNS "https://www.fake.not/real"}})
+
 
 (deftest xml->edn-test
   (testing "Functional correctness"
@@ -103,6 +111,7 @@
     (is (= (sut/xml->edn {}) {}))
     (is (= (sut/xml->edn "XML") "XML"))))
 
+
 (deftest edn->xml-test
   (testing "Functional correctness"
     (is (= xml-example (sut/edn->xml (sut/xml->edn xml-example {:preserve-attrs? true}) {:to-xml-case? true :stringify-values? true})))
@@ -115,14 +124,17 @@
     (is (= (sut/edn->xml 100 {:stringify-values? true}) "100"))
     (is (nil? (sut/edn->xml 100)))))
 
+
 (def xml-test-string
   "<?xml version=\"1.0\" encoding=\"UTF-8\"?><TEST_DOCUMENT XMLNS=\"https://www.fake.not/real\"
    XSI=\"abc\"><HEAD><META_DATA TYPE=\"title\">Some Fake Data!</META_DATA> <META_DATA TYPE=\"tag\">Example Content</META_DATA></HEAD><FILE POSTER=\"JANE DOE &lt;j.doe@fake-email.not-real&gt;\" DATE=\"2020/04/12\" SUBJECT=\"TEST DATA\"><GROUPS><GROUP>test-data-club</GROUP></GROUPS><SEGMENTS><SEGMENT BITS=\"00111010\" NUMBER=\"58\">more data</SEGMENT><SEGMENT BYTES=\"10100010\" NUMBER=\"-94\">more fake data</SEGMENT></SEGMENTS></FILE></TEST_DOCUMENT>")
+
 
 (deftest xml-string-tests
   (testing "functional correctness"
     (is (= (cs/replace xml-test-string #"\n   " " ") ;; The formatting of xml-test-string spans multiple lines with spaces for alignment, this is stripped internally
            (sut/edn->xml-str (sut/xml-str->edn xml-test-string {:preserve-attrs? true :support-dtd false :remove-newlines? true}) {:to-xml-case? true})))))
+
 
 (deftest insignificant-whitespace-test
   (testing "Corner-cases around embedded insignificant whitespace"
@@ -136,6 +148,7 @@
       (is (= {:sometag [" " {:foo "some text"} " "]} (sut/xml-str->edn ws {:remove-newlines? true})))
       (is (= {:sometag [{:foo "some text"}]} (sut/xml-str->edn ws {:skip-whitespace true})))
       (is (= {:sometag {:foo "some text", :bar "bla"}} (sut/xml-str->edn (str "<sometag><foo>some text</foo><bar>bla</bar></sometag>") {:skip-whitespace true}))))))
+
 
 (deftest force-xml-seq-at-path-test
   (testing "Parsed XML can coerce child nodes to collections"
@@ -152,10 +165,11 @@
              {:a {:b [1 2 3] :c {:d "e" :f [nil]}}}))
       (is (thrown-with-msg? IllegalArgumentException
                             #"The key :clj-xml.core/first is incompatible with class clojure.lang.PersistentArrayMap"
-                            (sut/force-xml-seq-at-path nested-data [sut/first-child])))
+            (sut/force-xml-seq-at-path nested-data [sut/first-child])))
       (is (thrown-with-msg? IllegalArgumentException
                             #"The key :c is incompatible with class clojure.lang.PersistentVector"
-                            (sut/force-xml-seq-at-path nested-data [:a :b :c]))))))
+            (sut/force-xml-seq-at-path nested-data [:a :b :c]))))))
+
 
 (deftest force-xml-seq-at-paths-test
   (testing "Parsed XML can coerce child nodes to collections"
@@ -164,6 +178,7 @@
              {:a [{:b [[1] 2 [3]] :c {:d "e"}}]}))
       (is (= (sut/force-xml-seq-at-paths nested-data [[:a] [:a sut/first-child :b]])
              {:a [{:b [[1 2 3]] :c {:d "e"}}]})))))
+
 
 (deftest xml-sequence-coercion-test
   (testing "parsed XML can be coerced"
