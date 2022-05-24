@@ -21,7 +21,7 @@ jobs:
 
       - name: Format Clojure code
         run: |
-          cljstyle fix --report --report-timing $(find . -regextype posix-extended -regex '.*\.clj[csx]?$')
+          cljstyle fix --report --report-timing
           git status
 
       - name: Commit changes
