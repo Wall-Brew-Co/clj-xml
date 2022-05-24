@@ -6,7 +6,7 @@
 
 (def every-child
   "An alias for the ::every namespaced keyword"
-  ::every)
+                     ::every)
 
 
 (def first-child
