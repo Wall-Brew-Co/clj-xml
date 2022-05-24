@@ -122,7 +122,7 @@
      (if (and attrs preserve-attrs?)
        (let [attrs-suffix (if preserve-keys? "_ATTRS" "-attrs")
              attrs-key    (keyword (str (name edn-tag) attrs-suffix))
-             attrs-val    (impl/update-vals (impl/update-keys attrs kw-function) val-function)
+             attrs-val    (update-vals (update-keys attrs kw-function) val-function)
              add-attrs?   (or (not remove-empty-attrs?)
                               (and remove-empty-attrs? (seq attrs-val)))]
          (merge {edn-tag edn-value}
@@ -299,8 +299,8 @@
                                           xml-content (edn->xml (get edn t) opts)
                                           xml-attrs   (when (contains? attrs-set (name t))
                                                         (-> (get edn (impl/tag->attrs-tag t from-xml-case?))
-                                                            (impl/update-keys kw-function)
-                                                            (impl/update-vals val-function)))]
+                                                            (update-keys kw-function)
+                                                            (update-vals val-function)))]
                                       {:tag     xml-tag
                                        :content xml-content
                                        :attrs   xml-attrs}))]

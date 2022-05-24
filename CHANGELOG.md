@@ -1,3 +1,10 @@
+## v1.7.0 / 2022 May 17
+
+> This release updates to use Clojure 1.11.1 and the new `update-vals` and `update-keys` functions.
+
+* **Add** - VS Code/Calva files to gitignore
+* **Update** - Update Clojure to 1.11.1. Use new functions in place of existing.
+
 ## v1.6.2 / 2021 May 27
 
 > This release fixes an issue parsing hand-formatted XML files that split attributes with newline characters
