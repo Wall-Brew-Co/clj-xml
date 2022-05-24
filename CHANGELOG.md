@@ -1,4 +1,4 @@
-## v1.6.2 / 2022 May 17
+## v1.7.0 / 2022 May 17
 
 > This release updates to use Clojure 1.11.1 and the new `update-vals` and `update-keys` functions.
 
