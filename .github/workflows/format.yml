@@ -22,8 +22,10 @@ jobs:
       - name: Format Clojure code
         run: |
           cljstyle fix --report --report-timing $(find . -regextype posix-extended -regex '.*\.clj[csx]?$')
+          git status
 
-      - uses: stefanzweifel/git-auto-commit-action@v4.14.1
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4.14.1
         with:
           commit_message: |
             [Format] Auto-formatting
