@@ -23,7 +23,7 @@ jobs:
         run: |
           cljstyle fix --report --report-timing $(find . -regextype posix-extended -regex '.*\.clj[csx]?$')
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v4.14.1
         with:
           commit_message: |
             [Format] Auto-formatting
