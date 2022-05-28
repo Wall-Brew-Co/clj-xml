@@ -28,12 +28,9 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Install clj-kondo
-        uses: DeLaGuardo/setup-clj-kondo@master
-        with:
-          version: '2021.06.01'
-
       - name: Lint Clojure
-        run: |
-          clj-kondo --config ./dev/lint/clj-kondo.edn --lint \
-            $(find . -type f -regex ".*\.clj[csx]?$")
+        uses: nnichols/clojure-lint-action@v1
+        with:
+          github_token: ${{ secrets.WALL_BREW_BOT_PAT }}
+          reporter: github-pr-review
+          filter_mode: file
