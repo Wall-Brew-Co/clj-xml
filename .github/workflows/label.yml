@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3.0.2
+    - uses: actions/labeler@v2
       with:
         repo-token: "${{ secrets.WALL_BREW_BOT_PAT }}"
