@@ -29,7 +29,7 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: Lint Clojure
-        uses: nnichols/clojure-lint-action@98e94f7cfeaa84b19c93f2b960b7f9f3afa89758
+        uses: nnichols/clojure-lint-action@659c215b8080b57e7f71d61e5faae74bf5c706b4
         with:
           github_token: ${{ secrets.WALL_BREW_BOT_PAT }}
           reporter: github-pr-review
