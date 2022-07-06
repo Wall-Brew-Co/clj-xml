@@ -81,7 +81,7 @@
    (xml-seq->edn xml-seq {}))
 
   ([xml-seq {:keys [stringify-values?
-                    force-seq?]
+                    force-seq? fake-key]
              :as   opts}]
    (let [xml-transformer (fn [x] (xml->edn x opts))]
      (cond
