@@ -59,13 +59,13 @@
     (cs/replace trimmed-str #"  " " ")))
 
 
-(defn update-vals
+(defn update-vals*
   "Return `m` with `f` applied to each val in `m` with its `args`"
   [m f & args]
   (reduce-kv (fn [m' k v] (assoc m' k (apply f v args))) {} m))
 
 
-(defn update-keys
+(defn update-keys*
   "Return `m` with `f` applied to each key in `m` with its `args`"
   [m f & args]
   (reduce-kv (fn [m' k v] (assoc m' (apply f k args) v)) {} m))

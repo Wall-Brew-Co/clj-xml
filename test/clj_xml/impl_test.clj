@@ -36,13 +36,13 @@
 
 (t/deftest update-vals-test
   (t/testing "Functional correctness"
-    (t/is (= {:a 2 :b 3} (sut/update-vals {:a 1 :b 2} inc)))
-    (t/is (= {} (sut/update-vals {} dec)))
-    (t/is (= {:b 3 :c 4} (sut/update-vals {:b 1 :c 2} + 2)))))
+    (t/is (= {:a 2 :b 3} (sut/update-vals* {:a 1 :b 2} inc)))
+    (t/is (= {} (sut/update-vals* {} dec)))
+    (t/is (= {:b 3 :c 4} (sut/update-vals* {:b 1 :c 2} + 2)))))
 
 
 (t/deftest update-keys-test
   (t/testing "Functional correctness"
-    (t/is (= {"a" 2 "b" 3} (sut/update-keys {:a 2 :b 3} name)))
-    (t/is (= {} (sut/update-keys {} dec)))
-    (t/is (= {":b-key" 3 ":c-key" 4} (sut/update-keys {:b 3 :c 4} str "-key")))))
+    (t/is (= {"a" 2 "b" 3} (sut/update-keys* {:a 2 :b 3} name)))
+    (t/is (= {} (sut/update-keys* {} dec)))
+    (t/is (= {":b-key" 3 ":c-key" 4} (sut/update-keys* {:b 3 :c 4} str "-key")))))
