@@ -133,7 +133,7 @@
 (deftest xml-string-tests
   (testing "functional correctness"
     (is (= (cs/replace xml-test-string #"\n   " " ") ;; The formatting of xml-test-string spans multiple lines with spaces for alignment, this is stripped internally
-             (sut/edn->xml-str (sut/xml-str->edn xml-test-string {:preserve-attrs? true :support-dtd false :remove-newlines? true}) {:to-xml-case? true})))))
+           (sut/edn->xml-str (sut/xml-str->edn xml-test-string {:preserve-attrs? true :support-dtd false :remove-newlines? true}) {:to-xml-case? true})))))
 
 
 (deftest insignificant-whitespace-test
@@ -154,34 +154,34 @@
   (testing "Parsed XML can coerce child nodes to collections"
     (let [nested-data {:a {:b [1 2 3] :c {:d "e"}}}]
       (is (= (sut/force-xml-seq-at-path nested-data [:a :b sut/last-child])
-               {:a {:b [1 2 [3]] :c {:d "e"}}}))
+             {:a {:b [1 2 [3]] :c {:d "e"}}}))
       (is (= (sut/force-xml-seq-at-path nested-data [:a :b sut/first-child])
-               {:a {:b [[1] 2 3] :c {:d "e"}}}))
+             {:a {:b [[1] 2 3] :c {:d "e"}}}))
       (is (= (sut/force-xml-seq-at-path nested-data [:a :b sut/every-child])
-               {:a {:b [[1] [2] [3]] :c {:d "e"}}}))
+             {:a {:b [[1] [2] [3]] :c {:d "e"}}}))
       (is (= (sut/force-xml-seq-at-path nested-data [:a :c :d])
-               {:a {:b [1 2 3] :c {:d ["e"]}}}))
+             {:a {:b [1 2 3] :c {:d ["e"]}}}))
       (is (= (sut/force-xml-seq-at-path nested-data [:a :c :f])
-               {:a {:b [1 2 3] :c {:d "e" :f [nil]}}}))
+             {:a {:b [1 2 3] :c {:d "e" :f [nil]}}}))
       (is (thrown-with-msg? IllegalArgumentException
-                              #"The key :clj-xml.core/first is incompatible with class clojure.lang.PersistentArrayMap"
-              (sut/force-xml-seq-at-path nested-data [sut/first-child])))
+                            #"The key :clj-xml.core/first is incompatible with class clojure.lang.PersistentArrayMap"
+            (sut/force-xml-seq-at-path nested-data [sut/first-child])))
       (is (thrown-with-msg? IllegalArgumentException
-                              #"The key :c is incompatible with class clojure.lang.PersistentVector"
-              (sut/force-xml-seq-at-path nested-data [:a :b :c]))))))
+                            #"The key :c is incompatible with class clojure.lang.PersistentVector"
+            (sut/force-xml-seq-at-path nested-data [:a :b :c]))))))
 
 
 (deftest force-xml-seq-at-paths-test
   (testing "Parsed XML can coerce child nodes to collections"
     (let [nested-data {:a {:b [1 2 3] :c {:d "e"}}}]
       (is (= (sut/force-xml-seq-at-paths nested-data [[:a :b sut/first-child] [:a :b sut/last-child] [:a]])
-               {:a [{:b [[1] 2 [3]] :c {:d "e"}}]}))
+             {:a [{:b [[1] 2 [3]] :c {:d "e"}}]}))
       (is (= (sut/force-xml-seq-at-paths nested-data [[:a] [:a sut/first-child :b]])
-               {:a [{:b [[1 2 3]] :c {:d "e"}}]})))))
+             {:a [{:b [[1 2 3]] :c {:d "e"}}]})))))
 
 
 (deftest xml-sequence-coercion-test
   (testing "parsed XML can be coerced"
     (is (= (sut/xml->edn' xml-example {:force-seq-for-paths [[:test-document :file :segments sut/every-child]
-                                                               [:test-document]]})
-             edn-example-with-targeted-coercion))))
+                                                             [:test-document]]})
+           edn-example-with-targeted-coercion))))
