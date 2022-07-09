@@ -1,6 +1,6 @@
 ## v1.7.1 / 2022 Jul 09
 
-> This release fixes a compatability issue with clojure versions 1.20.* and lower
+> This release fixes a compatibility issue with clojure versions 1.20.* and lower
 
 * **Fix** - Revert 1.7.0, and re-alias `update-keys` as `update-keys*` and `update-vals` as `update-vals*`
 
