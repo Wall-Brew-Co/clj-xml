@@ -33,6 +33,8 @@
     For each element in `key-path`, `force-xml-seq-at-path` will traverse `xml-edn` one level
        - If the current node is a map, clj-xml expects a keyword to update
        - If the current node is a sequence, clj-xml expects one of the supplied namespaced keywords and will update the related members of that sequence"
+  {:added "1.6"
+   :see-also ["every-child" "first-child" "last-child"]}
   [xml-edn [key & key-seq]]
   (if key
     (cond
@@ -58,6 +60,8 @@
     For each element in `key-path`, `force-xml-seq-at-paths` will traverse `xml-edn` one level
        - If the current node is a map, clj-xml expects a keyword to update
        - If the current node is a sequence, clj-xml expects one of the supplied namespaced keywords and will update the related members of that sequence"
+  {:added "1.6"
+   :see-also ["every-child" "first-child" "last-child"]}
   [xml-edn key-paths]
   (let [reducing-fn (fn [running-xml path] (force-xml-seq-at-path running-xml path))]
     (reduce reducing-fn xml-edn key-paths)))
@@ -77,6 +81,7 @@
      stringify-values?   - to coerce non-nil, non-string, non-collection values to strings
      remove-empty-attrs? - to remove any empty attribute maps
      force-seq?          - to coerce child XML nodes into a sequence of maps"
+  {:added "1.0"}
   ([xml-seq]
    (xml-seq->edn xml-seq {}))
 
@@ -110,6 +115,7 @@
      preserve-attrs? - to maintain embedded XML attributes
      stringify-values? - to coerce non-nil, non-string, non-collection values to strings
      remove-empty-attrs? - to remove any empty attribute maps"
+  {:added "1.0"}
   ([xml-map]
    (xml-map->edn xml-map {}))
 
@@ -122,7 +128,7 @@
      (if (and attrs preserve-attrs?)
        (let [attrs-suffix (if preserve-keys? "_ATTRS" "-attrs")
              attrs-key    (keyword (str (name edn-tag) attrs-suffix))
-             attrs-val    (update-vals (update-keys attrs kw-function) val-function)
+             attrs-val    (impl/update-vals* (impl/update-keys* attrs kw-function) val-function)
              add-attrs?   (or (not remove-empty-attrs?)
                               (and remove-empty-attrs? (seq attrs-val)))]
          (merge {edn-tag edn-value}
@@ -139,6 +145,7 @@
      stringify-values?   - A boolean, that if set to true, coerces non-nil, non-string, non-collection values to strings
      remove-empty-attrs? - A boolean, that if set to true, removes any empty attribute maps
      force-seq?          - A boolean, that if set to true, coerces child XML nodes into a sequence of maps"
+  {:added "1.0"}
   ([xml-doc]
    (xml->edn xml-doc {}))
 
@@ -156,6 +163,7 @@
 
 (defn xml->edn'
   "Wrapper around xml->edn to apply sequence coercion"
+  {:added "1.0"}
   ([xml-doc]
    (xml->edn' xml-doc {}))
 
@@ -191,6 +199,7 @@
      resolver                     - An instance of a XMLInputFactory/RESOLVER to use in place of defaults
      support-dtd                  - A boolean, that if set to false, disables DTD support in parsers
      skip-whitespace              - A boolean, that if set to true, removes whitespace only elements"
+  {:added "1.0"}
   ([xml-str]
    (xml-str->edn xml-str {}))
 
@@ -240,6 +249,7 @@
      resolver                     - An instance of a XMLInputFactory/RESOLVER to use in place of defaults
      support-dtd                  - A boolean, that if set to false, disables DTD support in parsers
      skip-whitespace              - A boolean, that if set to true, removes whitespace only elements"
+  {:added "1.0"}
   ([xml-source]
    (xml-source->edn xml-source {}))
 
@@ -267,9 +277,10 @@
 (defn edn-seq->xml
   "Transform an EDN sequence to the pseudo XML expected by `clojure.data.xml`.
    To change the default behavior, an option map may be provided with the following keys:
-   to-xml-case? - To modify the keys representing XML tags to XML_CASE
-   from-xml-case? - If the source EDN has XML_CASE keys
-   stringify-values? - to coerce non-nil, non-string, non-collection values to strings"
+     to-xml-case? - To modify the keys representing XML tags to XML_CASE
+     from-xml-case? - If the source EDN has XML_CASE keys
+     stringify-values? - to coerce non-nil, non-string, non-collection values to strings"
+  {:added "1.0"}
   ([edn]
    (edn-seq->xml edn {}))
 
@@ -283,6 +294,7 @@
      to-xml-case? - To modify the keys representing XML tags to XML_CASE
      from-xml-case? - If the source EDN has XML_CASE keys
      stringify-values? - to coerce non-nil, non-string, non-collection values to strings"
+  {:added "1.0"}
   ([edn]
    (edn-map->xml edn {}))
 
@@ -299,8 +311,8 @@
                                           xml-content (edn->xml (get edn t) opts)
                                           xml-attrs   (when (contains? attrs-set (name t))
                                                         (-> (get edn (impl/tag->attrs-tag t from-xml-case?))
-                                                            (update-keys kw-function)
-                                                            (update-vals val-function)))]
+                                                            (impl/update-keys* kw-function)
+                                                            (impl/update-vals* val-function)))]
                                       {:tag     xml-tag
                                        :content xml-content
                                        :attrs   xml-attrs}))]
@@ -315,6 +327,7 @@
      to-xml-case? - To modify the keys representing XML tags to XML_CASE
      from-xml-case? - If the source EDN has XML_CASE keys
      stringify-values? - to coerce non-nil, non-string, non-collection values to strings"
+  {:added "1.0"}
   ([edn]
    (edn->xml edn {}))
 
@@ -341,6 +354,7 @@
    It also surfaces the original options from `clojure.data.xml/emit-str`
      encoding - The character encoding to use
      doctype - The DOCTYPE declaration to use"
+  {:added "1.0"}
   ([edn]
    (edn->xml-str edn {}))
 
@@ -367,6 +381,7 @@
    It also surfaces the original options from `clojure.data.xml/emit`
      encoding - The character encoding to use
      doctype - The DOCTYPE declaration to use"
+  {:added "1.0"}
   ([edn java-writer]
    (edn->xml-stream edn java-writer {}))
 

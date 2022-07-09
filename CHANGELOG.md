@@ -1,8 +1,13 @@
+## v1.7.1 / 2022 Jul 09
+
+> This release fixes a compatibility issue with clojure versions 1.20.* and lower
+
+* **Fix** - Revert 1.7.0, and re-alias `update-keys` as `update-keys*` and `update-vals` as `update-vals*`
+
 ## v1.7.0 / 2022 May 17
 
 > This release updates to use Clojure 1.11.1 and the new `update-vals` and `update-keys` functions.
 
-* **Add** - VS Code/Calva files to gitignore
 * **Update** - Update Clojure to 1.11.1. Use new functions in place of existing.
 
 ## v1.6.2 / 2021 May 27
