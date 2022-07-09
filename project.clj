@@ -1,4 +1,4 @@
-(defproject com.wallbrew/clj-xml "1.7.0"
+(defproject com.wallbrew/clj-xml "1.7.1"
   :description "The missing link between clj and xml"
   :url "https://github.com/nnichols/clj-xml"
   :license {:name "MIT"
