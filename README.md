@@ -6,6 +6,8 @@
 
 A clojure library designed to make conversions between EDN and XML a little easier.
 
+This repository follows the guidelines and standards of the [Wall Brew Open Source Policy.](https://github.com/Wall-Brew-Co/open-source "Our open source guidelines")
+
 ## Installation
 
 A deployed copy of the most recent version of [clj-xml can be found on clojars.](https://clojars.org/com.wallbrew/clj-xml)
