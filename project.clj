@@ -4,6 +4,6 @@
   :license {:name "MIT"
             :url  "https://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.11.1"]
-                 [org.clojure/data.xml "0.2.0-alpha7"]]
+                 [org.clojure/data.xml "0.2.0-alpha8"]]
   :profiles {:uberjar {:aot :all}}
   :min-lein-version "2.5.3")
