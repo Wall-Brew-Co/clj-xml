@@ -20,9 +20,9 @@ jobs:
           cache-name: cache-maven
       with:
           path: ~/.m2
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/project.clj') }}
+          key: ${{ runner.os }}-clj-${{ hashFiles('**/project.clj') }}
           restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}
+            ${{ runner.os }}-clj
 
     - name: Check deps
       uses: nnichols/clojure-dependency-update-action@v4

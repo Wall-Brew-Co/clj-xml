@@ -3,6 +3,8 @@
 [![Clojars Project](https://img.shields.io/clojars/v/com.wallbrew/clj-xml.svg)](https://clojars.org/com.wallbrew/clj-xml)
 [![cljdoc badge](https://cljdoc.org/badge/com.wallbrew/clj-xml)](https://cljdoc.org/d/com.wallbrew/clj-xml/CURRENT)
 ![GitHub Runner](https://github.com/Wall-Brew-Co/clj-xml/workflows/Clojure%20CI/badge.svg)
+[![GitHub](https://img.shields.io/github/license/Wall-Brew-Co/clj-xml)](https://github.com/Wall-Brew-Co/clj-xml/blob/master/LICENSE)
+[![Twitter Follow](https://img.shields.io/twitter/follow/WallBrew?style=social)](https://twitter.com/WallBrew)
 
 A clojure library designed to make conversions between EDN and XML a little easier.
 
@@ -216,6 +218,10 @@ Let's see how it works:
 ;; => "<?xml version=\"1.0\" encoding=\"UTF-8\"?><TEST_DOCUMENT XMLNS=\"https://www.fake.not/real\"><HEAD><META_DATA TYPE=\"title\">Some Fake Data!</META_DATA><META_DATA TYPE=\"tag\">Example Content</META_DATA></HEAD><FILE POSTER=\"JANE DOE &lt;j.doe@fake-email.not-real&gt;\" DATE=\"2020/04/12\" SUBJECT=\"TEST DATA\"><GROUPS><GROUP>test-data-club</GROUP></GROUPS><SEGMENTS><SEGMENT BITS=\"00111010\" NUMBER=\"58\">more data</SEGMENT><SEGMENT BYTES=\"10100010\" NUMBER=\"-94\">more fake data</SEGMENT></SEGMENTS></FILE></TEST_DOCUMENT>"
 
 ```
+
+## Contributors
+
+<a href="https://github.com/Wall-Brew-Co/clj-xml/graphs/contributors"><img src="https://raw.githubusercontent.com/Wall-Brew-Co/clj-xml/master/CONTRIBUTORS.svg" alt="The GitHub profile pictures of all current contributors. Clicking this image will lead you to the GitHub contribution graph." /></a>
 
 ## License
 

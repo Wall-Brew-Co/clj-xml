@@ -17,9 +17,9 @@ jobs:
           cache-name: cache-maven
       with:
           path: ~/.m2
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/project.clj') }}
+          key: ${{ runner.os }}-clj-${{ hashFiles('**/project.clj') }}
           restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/project.clj') }}
+            ${{ runner.os }}-clj
 
     - name: Install dependencies
       run: lein deps
