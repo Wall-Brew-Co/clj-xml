@@ -1,6 +1,6 @@
 (ns clj-xml.core-test
   (:require [clj-xml.core :as sut]
-            [clojure.string :as cs]
+            [clojure.string :as str]
             [clojure.test :refer :all]))
 
 
@@ -132,7 +132,7 @@
 
 (deftest xml-string-tests
   (testing "functional correctness"
-    (is (= (cs/replace xml-test-string #"\n   " " ") ;; The formatting of xml-test-string spans multiple lines with spaces for alignment, this is stripped internally
+    (is (= (str/replace xml-test-string #"\n   " " ") ;; The formatting of xml-test-string spans multiple lines with spaces for alignment, this is stripped internally
            (sut/edn->xml-str (sut/xml-str->edn xml-test-string {:preserve-attrs? true :support-dtd false :remove-newlines? true}) {:to-xml-case? true})))))
 
 

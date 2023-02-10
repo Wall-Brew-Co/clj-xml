@@ -33,21 +33,21 @@
     For each element in `key-path`, `force-xml-seq-at-path` will traverse `xml-edn` one level
        - If the current node is a map, clj-xml expects a keyword to update
        - If the current node is a sequence, clj-xml expects one of the supplied namespaced keywords and will update the related members of that sequence"
-  {:added "1.6"
+  {:added    "1.6"
    :see-also ["every-child" "first-child" "last-child"]}
-  [xml-edn [key & key-seq]]
-  (if key
+  [xml-edn [xml-key & key-seq]]
+  (if xml-key
     (cond
       (and (sequential? xml-edn)
-           (= every-child key))   (mapv #(force-xml-seq-at-path % key-seq) xml-edn)
+           (= every-child xml-key))   (mapv #(force-xml-seq-at-path % key-seq) xml-edn)
       (and (sequential? xml-edn)
-           (= first-child key))   (cons (force-xml-seq-at-path (first xml-edn) key-seq) (rest xml-edn))
+           (= first-child xml-key))   (cons (force-xml-seq-at-path (first xml-edn) key-seq) (rest xml-edn))
       (and (sequential? xml-edn)
-           (= last-child key))    (conj (into [] (butlast xml-edn)) (force-xml-seq-at-path (last xml-edn) key-seq))
+           (= last-child xml-key))    (conj (into [] (butlast xml-edn)) (force-xml-seq-at-path (last xml-edn) key-seq))
       (and (map? xml-edn)
-           (not (child-key? key))
-           (keyword? key))        (update xml-edn key force-xml-seq-at-path key-seq)
-      :else                       (throw (IllegalArgumentException. (str "The key " key " is incompatible with " (type xml-edn)))))
+           (not (child-key? xml-key))
+           (keyword? xml-key))        (update xml-edn xml-key force-xml-seq-at-path key-seq)
+      :else                       (throw (IllegalArgumentException. (str "The key " xml-key " is incompatible with " (type xml-edn)))))
     [xml-edn]))
 
 
@@ -63,8 +63,7 @@
   {:added "1.6"
    :see-also ["every-child" "first-child" "last-child"]}
   [xml-edn key-paths]
-  (let [reducing-fn (fn [running-xml path] (force-xml-seq-at-path running-xml path))]
-    (reduce reducing-fn xml-edn key-paths)))
+  (reduce force-xml-seq-at-path xml-edn key-paths))
 
 ;; Parsing XML into EDN
 
@@ -82,28 +81,28 @@
      remove-empty-attrs? - to remove any empty attribute maps
      force-seq?          - to coerce child XML nodes into a sequence of maps"
   {:added "1.0"}
-  ([xml-seq]
-   (xml-seq->edn xml-seq {}))
+  ([xml-sequence]
+   (xml-seq->edn xml-sequence {}))
 
-  ([xml-seq {:keys [stringify-values?
-                    force-seq?]
-             :as   opts}]
+  ([xml-sequence {:keys [stringify-values?
+                         force-seq?]
+                  :as   opts}]
    (let [xml-transformer (fn [x] (xml->edn x opts))]
      (cond
        (or (nil? xml-seq)
-           (string? xml-seq))               xml-seq
-       (and (= 1 (count xml-seq))
-            (or (nil? (first xml-seq))
-                (string? (first xml-seq)))) (first xml-seq)
-       (and (impl/unique-tags? xml-seq)
-            (> (count xml-seq) 1)
-            (not force-seq?))               (reduce into {} (mapv xml-transformer xml-seq))
-       (and (map? xml-seq)
-            (empty? xml-seq))               {}
-       (map? xml-seq)                       (xml-transformer xml-seq)
-       (sequential? xml-seq)                (mapv xml-transformer xml-seq)
+           (string? xml-seq))               xml-sequence
+       (and (= 1 (count xml-sequence))
+            (or (nil? (first xml-sequence))
+                (string? (first xml-sequence)))) (first xml-sequence)
+       (and (impl/unique-tags? xml-sequence)
+            (> (count xml-sequence) 1)
+            (not force-seq?))               (reduce into {} (mapv xml-transformer xml-sequence))
+       (and (map? xml-sequence)
+            (empty? xml-sequence))               {}
+       (map? xml-sequence)                       (xml-transformer xml-sequence)
+       (sequential? xml-sequence)                (mapv xml-transformer xml-sequence)
        (and stringify-values?
-            (some? xml-seq))                (str xml-seq)))))
+            (some? xml-sequence))                (str xml-sequence)))))
 
 
 (defn xml-map->edn
@@ -358,13 +357,13 @@
   ([edn]
    (edn->xml-str edn {}))
 
-  ([edn {:keys [:encoding :doctype]
+  ([edn {:keys [encoding doctype]
          :as   opts}]
    (let [c-xml (cond
                  (and encoding doctype) (fn [edn] (xml/emit-str edn :encoding encoding :doctype doctype))
                  encoding               (fn [edn] (xml/emit-str edn :encoding encoding))
                  doctype                (fn [edn] (xml/emit-str edn :doctype doctype))
-                 :else                  (fn [edn] (xml/emit-str edn)))]
+                 :else                  xml/emit-str)]
      (-> edn
          (edn->xml opts)
          c-xml))))
@@ -385,7 +384,7 @@
   ([edn java-writer]
    (edn->xml-stream edn java-writer {}))
 
-  ([edn java-writer {:keys [:encoding :doctype]
+  ([edn java-writer {:keys [encoding doctype]
                      :as   opts}]
    (let [c-xml (cond
                  (and encoding doctype) (fn [edn] (xml/emit edn java-writer :encoding encoding :doctype doctype))
