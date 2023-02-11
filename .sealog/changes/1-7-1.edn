@@ -6,6 +6,6 @@
                 :changed    []
                 :deprecated []
                 :removed    []
-                :fixed      ["Compatability issue with consumers using Clojure versions beneath 1.10"]
+                :fixed      ["Compatibility issue with consumers using Clojure versions beneath 1.10"]
                 :security   []}
  :timestamp    "2022-07-09T16:24:31.681779400Z"}

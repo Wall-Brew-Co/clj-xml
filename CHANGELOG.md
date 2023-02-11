@@ -35,7 +35,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## 1.7.1 - 2022-07-09
 
 * Fixed
-  * Compatability issue with consumers using Clojure versions beneath 1.10
+  * Compatibility issue with consumers using Clojure versions beneath 1.10
 
 ## 1.7.0 - 2022-05-17
 

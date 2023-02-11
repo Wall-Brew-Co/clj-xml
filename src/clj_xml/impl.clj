@@ -86,7 +86,7 @@
 (defn update-vals*
   "Return `m` with `f` applied to each val in `m` with its `args`.
    
-   Used to maintain backwards-compatability for consumers on older versions of clojure.
+   Used to maintain backwards-compatibility for consumers on older versions of clojure.
    Not intended to be consumed outside of this library."
   {:added   "1.0"
    :changed "1.7"}
@@ -97,7 +97,7 @@
 (defn update-keys*
   "Return `m` with `f` applied to each key in `m` with its `args`.
    
-   Used to maintain backwards-compatability for consumers on older versions of clojure.
+   Used to maintain backwards-compatibility for consumers on older versions of clojure.
    Not intended to be consumed outside of this library."
   {:added   "1.0"
    :changed "1.7"}
