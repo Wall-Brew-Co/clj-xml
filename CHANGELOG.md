@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [1.8.0 - 2023-02-11](#180---2023-02-11)
 * [1.7.2 - 2022-12-10](#172---2022-12-10)
 * [1.7.1 - 2022-07-09](#171---2022-07-09)
 * [1.7.0 - 2022-05-17](#170---2022-05-17)
@@ -18,6 +19,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 * [1.2.0 - 2021-03-13](#120---2021-03-13)
 * [1.1.0 - 2020-12-14](#110---2020-12-14)
 * [1.0.0 - 2020-12-12](#100---2020-12-12)
+
+## 1.8.0 - 2023-02-11
+
+* Added
+  * Add missing docstrings to public functions and vars.
+* Fixed
+  * Fix warnings presented by new Wall Brew linting rules.
 
 ## 1.7.2 - 2022-12-10
 
