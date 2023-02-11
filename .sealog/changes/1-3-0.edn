@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 3
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["A `remove-newlines?` option for `xml-str->edn`."]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2021-03-17T16:17:26.093622Z"}

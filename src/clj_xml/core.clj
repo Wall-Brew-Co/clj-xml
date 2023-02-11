@@ -1,21 +1,21 @@
 (ns clj-xml.core
-  "A bunch of utility functions for xml documents"
+  "A bunch of utility functions for xml documents."
   (:require [clj-xml.impl :as impl]
             [clojure.data.xml :as xml]))
 
 
 (def every-child
-  "An alias for the ::every namespaced keyword"
+  "An alias for the ::every namespaced keyword."
   ::every)
 
 
 (def first-child
-  "An alias for the ::first namespaced keyword"
+  "An alias for the ::first namespaced keyword."
   ::first)
 
 
 (def last-child
-  "An alias for the ::last namespaced keyword"
+  "An alias for the ::last namespaced keyword."
   ::last)
 
 
@@ -64,6 +64,7 @@
    :see-also ["every-child" "first-child" "last-child"]}
   [xml-edn key-paths]
   (reduce force-xml-seq-at-path xml-edn key-paths))
+
 
 ;; Parsing XML into EDN
 
@@ -222,6 +223,9 @@
      (xml->edn' parsed-xml opts))))
 
 
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+
+
 (defn xml-source->edn
   "Parse an XML document source with `clojure.xml/parse` and transform it into normalized EDN.
    `xml-source` may be an instance of java.io.InputStream or java.io.Reader
@@ -267,6 +271,7 @@
          parsing-args    (cons xml-source flattened-args)
          parsed-xml      (apply xml/parse parsing-args)]
      (xml->edn' parsed-xml opts))))
+
 
 ;; Parsing EDN as XML
 
@@ -367,6 +372,9 @@
      (-> edn
          (edn->xml opts)
          c-xml))))
+
+
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 
 
 (defn edn->xml-stream

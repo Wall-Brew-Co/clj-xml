@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 5
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["New parser option `force-seq?` to force all children nodes into sequences."]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2021-04-19T16:19:39.759785200Z"}
