@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 0
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["Initial release of the library, as a fork out of `common-beer-format`"]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2020-12-12T04:04:26.081401900Z"}

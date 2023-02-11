@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 7
+                :patch 2}
+ :version-type :semver3
+ :changes      {:added      ["Fix project file to allow for proper deployment to Clojars."]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2022-12-10T16:25:36.757449100Z"}

@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 1
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["`remove-empty-attrs?` options to allow allows consumers to prune empty `*-attrs` maps."]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2020-12-14T16:15:55.755853700Z"}

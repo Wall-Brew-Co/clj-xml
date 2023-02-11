@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 4
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["A `skip-whitespace` option to remove whitespace between tags for all parsers."]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      ["Parsing of whitespace separator elements emitted by `clojure.data.xml` that are not present in XML source files."]
+                :security   []}
+ :timestamp    "2021-04-16T16:18:14.545113300Z"}

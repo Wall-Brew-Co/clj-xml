@@ -1,10 +1,11 @@
 (ns clj-xml.core-test
   (:require [clj-xml.core :as sut]
-            [clojure.string :as cs]
+            [clojure.string :as str]
             [clojure.test :refer :all]))
 
 
 (def xml-example
+  "A sample XML document, as it would appear as parse by `clojure.data.xml`"
   {:tag :TEST_DOCUMENT
    :attrs {:XMLNS "https://www.fake.not/real"}
    :content
@@ -35,6 +36,7 @@
 
 
 (def edn-example
+  "An EDN-like map of data"
   {:test-document
    {:head [{:meta-data "Some Fake Data!"}
            {:meta-data "Example Content"}]
@@ -44,6 +46,7 @@
 
 
 (def edn-example-original-keys
+  "An EDN-like map of data, with the original XML_CASE keys"
   {:TEST_DOCUMENT
    {:HEAD [{:META_DATA "Some Fake Data!"}
            {:META_DATA "Example Content"}]
@@ -53,6 +56,7 @@
 
 
 (def edn-example-original-keys-force-seq
+  "An EDN-like map of data, with the original XML_CASE keys, and forcing children into sequences."
   {:TEST_DOCUMENT
    [{:HEAD [{:META_DATA "Some Fake Data!"}
             {:META_DATA "Example Content"}]}
@@ -62,6 +66,7 @@
 
 
 (def edn-example-with-targeted-coercion
+  "An EDN-like map of data and forcing some children into sequences."
   {:test-document
    [{:head [{:meta-data "Some Fake Data!"}
             {:meta-data "Example Content"}]
@@ -71,6 +76,7 @@
 
 
 (def edn-example-with-attrs
+  "An EDN-like map of data with XML attributes."
   {:test-document
    {:head [{:meta-data "Some Fake Data!" :meta-data-attrs {:type "title"}}
            {:meta-data "Example Content" :meta-data-attrs {:type "tag"}}]
@@ -85,6 +91,7 @@
 
 
 (def edn-example-with-attrs-and-original-keys
+  "An EDN-like map of data with XML attributes, and the original XML_CASE keys."
   {:TEST_DOCUMENT
    {:HEAD [{:META_DATA "Some Fake Data!" :META_DATA_ATTRS {:TYPE "title"}}
            {:META_DATA "Example Content" :META_DATA_ATTRS {:TYPE "tag"}}]
@@ -126,13 +133,14 @@
 
 
 (def xml-test-string
+  "A string of XML data."
   "<?xml version=\"1.0\" encoding=\"UTF-8\"?><TEST_DOCUMENT XMLNS=\"https://www.fake.not/real\"
    XSI=\"abc\"><HEAD><META_DATA TYPE=\"title\">Some Fake Data!</META_DATA> <META_DATA TYPE=\"tag\">Example Content</META_DATA></HEAD><FILE POSTER=\"JANE DOE &lt;j.doe@fake-email.not-real&gt;\" DATE=\"2020/04/12\" SUBJECT=\"TEST DATA\"><GROUPS><GROUP>test-data-club</GROUP></GROUPS><SEGMENTS><SEGMENT BITS=\"00111010\" NUMBER=\"58\">more data</SEGMENT><SEGMENT BYTES=\"10100010\" NUMBER=\"-94\">more fake data</SEGMENT></SEGMENTS></FILE></TEST_DOCUMENT>")
 
 
 (deftest xml-string-tests
   (testing "functional correctness"
-    (is (= (cs/replace xml-test-string #"\n   " " ") ;; The formatting of xml-test-string spans multiple lines with spaces for alignment, this is stripped internally
+    (is (= (str/replace xml-test-string #"\n   " " ") ; The formatting of xml-test-string spans multiple lines with spaces for alignment, this is stripped internally
            (sut/edn->xml-str (sut/xml-str->edn xml-test-string {:preserve-attrs? true :support-dtd false :remove-newlines? true}) {:to-xml-case? true})))))
 
 

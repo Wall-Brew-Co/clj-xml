@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 6
+                :patch 2}
+ :version-type :semver3
+ :changes      {:added      []
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      ["Fix a bug in parsing XML documents with non-standard formatting of attributes within a single node."]
+                :security   []}
+ :timestamp    "2021-05-27T16:22:36.273785500Z"}

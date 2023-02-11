@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 8
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["Add missing docstrings to public functions and vars."]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      ["Fix warnings presented by new Wall Brew linting rules."]
+                :security   []}
+ :timestamp    "2023-02-11T16:27:29.253309100Z"}

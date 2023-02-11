@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 7
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["Upgrade to Clojure 1.11.1"]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2022-05-17T16:23:51.630090100Z"}

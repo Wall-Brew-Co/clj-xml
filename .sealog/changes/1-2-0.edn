@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 2
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["Add option maps to pass XMLInputFactory options for all parsers."]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2021-03-13T16:16:48.731572Z"}

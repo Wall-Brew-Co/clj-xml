@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 6
+                :patch 1}
+ :version-type :semver3
+ :changes      {:added      []
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      ["Clean up a typo in the project manifest."]
+                :security   []}
+ :timestamp    "2021-05-06T16:21:55.491354400Z"}

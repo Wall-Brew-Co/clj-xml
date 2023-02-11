@@ -1,4 +1,4 @@
-(defproject com.wallbrew/clj-xml "1.7.2"
+(defproject com.wallbrew/clj-xml "1.8.0"
   :description "The missing link between clj and xml"
   :url "https://github.com/nnichols/clj-xml"
   :license {:name         "MIT"
@@ -9,7 +9,11 @@
         :url  "https://github.com/Wall-Brew-Co/clj-xml"}
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [org.clojure/data.xml "0.2.0-alpha8"]]
-  :plugins [[lein-project-version "0.1.0"]]
+  :plugins [[com.github.clj-kondo/lein-clj-kondo "0.2.4"]
+            [com.wallbrew/lein-sealog "1.0.2"]
+            [lein-project-version "0.1.0"]
+            [mvxcvi/cljstyle "0.15.0"]]
+  :deploy-branches ["master"]
   :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
                                     :username      :env/clojars_user
                                     :password      :env/clojars_pass
