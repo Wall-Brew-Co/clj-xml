@@ -20,7 +20,7 @@
     <url>https://github.com/Wall-Brew-Co/clj-xml</url>
     <connection>scm:git:git://github.com/Wall-Brew-Co/clj-xml.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Wall-Brew-Co/clj-xml.git</developerConnection>
-    <tag>67fb03942d16e69d44cdcd8b481b996ce1868d6f</tag>
+    <tag>310c3bc430107a8742d8f92fccd74c1c40fc8865</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
