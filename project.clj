@@ -10,7 +10,7 @@
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [org.clojure/data.xml "0.2.0-alpha8"]]
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2024.03.05"]
-            [com.wallbrew/lein-sealog "1.1.0"]
+            [com.wallbrew/lein-sealog "1.2.0"]
             [lein-project-version "0.1.0"]
             [mvxcvi/cljstyle "0.16.630"]]
   :deploy-branches ["master"]
