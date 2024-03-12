@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 9
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      []
+                :changed    ["Bumped `org.clojure/data.xml` to `0.2.0-alpha9`."]
+                :deprecated []
+                :removed    []
+                :fixed      ["Added `:no-doc` metadata to private functions in `impl.clj`."]
+                :security   []}
+ :timestamp    "2024-03-12T01:25:55.857700600Z"}
