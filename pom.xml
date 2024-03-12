@@ -73,7 +73,7 @@
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>data.xml</artifactId>
-      <version>0.2.0-alpha8</version>
+      <version>0.2.0-alpha9</version>
     </dependency>
   </dependencies>
 </project>
