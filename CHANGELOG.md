@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [1.9.0 - 2024-03-12](#190---2024-03-12)
 * [1.8.1 - 2024-03-10](#181---2024-03-10)
 * [1.8.0 - 2023-02-11](#180---2023-02-11)
 * [1.7.2 - 2022-12-10](#172---2022-12-10)
@@ -21,9 +22,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 * [1.1.0 - 2020-12-14](#110---2020-12-14)
 * [1.0.0 - 2020-12-12](#100---2020-12-12)
 
-## 1.8.1 - 2024-03-10
+## 1.9.0 - 2024-03-12
 
 * Changed
+  * Bumped `org.clojure/data.xml` to `0.2.0-alpha9`.
+* Fixed
+  * Added `:no-doc` metadata to private functions in `impl.clj`.
+
+## 1.8.1 - 2024-03-10
+
+* Security
   * Bumped `org.clojure/clojure` to `1.11.2`. Note: Addressing `CVE-2024-22871` / `GHSA-vr64-r9qj-h27f` requires consumers to upgrade to this version.
 
 ## 1.8.0 - 2023-02-11

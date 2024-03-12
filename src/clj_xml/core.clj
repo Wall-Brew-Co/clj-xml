@@ -5,17 +5,26 @@
 
 
 (def every-child
-  "An alias for the ::every namespaced keyword."
+  "An alias for the ::every namespaced keyword.
+
+   Used to ensure selective paths in the returned XML are coerced to sequences.
+   This option forces all child nodes to be coerced into a sequence of maps."
   ::every)
 
 
 (def first-child
-  "An alias for the ::first namespaced keyword."
+  "An alias for the ::first namespaced keyword.
+
+   Used to ensure selective paths in the returned XML are coerced to sequences.
+   This option forces only the first child node to be coerced into a sequence of maps."
   ::first)
 
 
 (def last-child
-  "An alias for the ::last namespaced keyword."
+  "An alias for the ::last namespaced keyword.
+
+   Used to ensure selective paths in the returned XML are coerced to sequences.
+   This option forces only the last child node to be coerced into a sequence of maps."
   ::last)
 
 
@@ -60,7 +69,7 @@
     For each element in `key-path`, `force-xml-seq-at-paths` will traverse `xml-edn` one level
        - If the current node is a map, clj-xml expects a keyword to update
        - If the current node is a sequence, clj-xml expects one of the supplied namespaced keywords and will update the related members of that sequence"
-  {:added "1.6"
+  {:added    "1.6"
    :see-also ["every-child" "first-child" "last-child"]}
   [xml-edn key-paths]
   (reduce force-xml-seq-at-path xml-edn key-paths))

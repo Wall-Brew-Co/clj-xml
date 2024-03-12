@@ -2,7 +2,6 @@
 
 [![Clojars Project](https://img.shields.io/clojars/v/com.wallbrew/clj-xml.svg)](https://clojars.org/com.wallbrew/clj-xml)
 [![cljdoc badge](https://cljdoc.org/badge/com.wallbrew/clj-xml)](https://cljdoc.org/d/com.wallbrew/clj-xml/CURRENT)
-![GitHub Runner](https://github.com/Wall-Brew-Co/clj-xml/workflows/Clojure%20CI/badge.svg)
 [![GitHub](https://img.shields.io/github/license/Wall-Brew-Co/clj-xml)](https://github.com/Wall-Brew-Co/clj-xml/blob/master/LICENSE)
 [![Twitter Follow](https://img.shields.io/twitter/follow/WallBrew?style=social)](https://twitter.com/WallBrew)
 
@@ -225,6 +224,6 @@ Let's see how it works:
 
 ## License
 
-Copyright © 2020-2022 - [Wall Brew Co](https://wallbrew.com/)
+Copyright © [Wall Brew Co](https://wallbrew.com/)
 
 This software is provided for free, public use as outlined in the [MIT License](https://github.com/Wall-Brew-Co/clj-xml/blob/master/LICENSE)
