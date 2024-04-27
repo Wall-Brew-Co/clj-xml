@@ -7,7 +7,7 @@
             :comments     "Same-as all Wall-Brew projects"}
   :scm {:name "git"
         :url  "https://github.com/Wall-Brew-Co/clj-xml"}
-  :dependencies [[org.clojure/clojure "1.11.2"]
+  :dependencies [[org.clojure/clojure "1.11.3"]
                  [org.clojure/data.xml "0.2.0-alpha9"]]
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2024.03.13"]
             [com.wallbrew/lein-sealog "1.3.0"]
