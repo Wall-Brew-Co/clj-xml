@@ -7,7 +7,7 @@
   <version>1.9.0</version>
   <name>clj-xml</name>
   <description>The missing link between clj and xml</description>
-  <url>https://github.com/nnichols/clj-xml</url>
+  <url>https://github.com/Wall-Brew-Co/clj-xml</url>
   <licenses>
     <license>
       <name>MIT</name>

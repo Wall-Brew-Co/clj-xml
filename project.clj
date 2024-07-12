@@ -1,6 +1,6 @@
 (defproject com.wallbrew/clj-xml "1.9.0"
   :description "The missing link between clj and xml"
-  :url "https://github.com/nnichols/clj-xml"
+  :url "https://github.com/Wall-Brew-Co/clj-xml"
   :license {:name         "MIT"
             :url          "https://opensource.org/licenses/MIT"
             :distribution :repo
