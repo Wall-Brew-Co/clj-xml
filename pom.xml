@@ -4,7 +4,7 @@
   <groupId>com.wallbrew</groupId>
   <artifactId>clj-xml</artifactId>
   <packaging>jar</packaging>
-  <version>1.9.0</version>
+  <version>1.9.1</version>
   <name>clj-xml</name>
   <description>The missing link between clj and xml</description>
   <url>https://github.com/Wall-Brew-Co/clj-xml</url>
@@ -20,7 +20,7 @@
     <url>https://github.com/Wall-Brew-Co/clj-xml</url>
     <connection>scm:git:git://github.com/Wall-Brew-Co/clj-xml.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Wall-Brew-Co/clj-xml.git</developerConnection>
-    <tag>6fef3d3cc034286fbfaa9326ef79be3f78c20620</tag>
+    <tag>26a62e4e4997482fafb1652ef189b07c022be9f8</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>

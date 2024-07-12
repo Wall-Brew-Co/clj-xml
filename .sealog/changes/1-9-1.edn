@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 9
+                :patch 1}
+ :version-type :semver3
+ :changes      {:added      []
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      ["Fixed Project URL to point to Wall Brew's GitHub."]
+                :security   []}
+ :timestamp    "2024-07-12T17:25:32.736064Z"}

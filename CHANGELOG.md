@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [1.9.1 - 2024-07-12](#191---2024-07-12)
 * [1.9.0 - 2024-03-12](#190---2024-03-12)
 * [1.8.1 - 2024-03-10](#181---2024-03-10)
 * [1.8.0 - 2023-02-11](#180---2023-02-11)
@@ -21,6 +22,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 * [1.2.0 - 2021-03-13](#120---2021-03-13)
 * [1.1.0 - 2020-12-14](#110---2020-12-14)
 * [1.0.0 - 2020-12-12](#100---2020-12-12)
+
+## 1.9.1 - 2024-07-12
+
+* Fixed
+  * Fixed Project URL to point to Wall Brew's GitHub.
 
 ## 1.9.0 - 2024-03-12
 
