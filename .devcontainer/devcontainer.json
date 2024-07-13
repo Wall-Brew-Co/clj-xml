@@ -17,5 +17,7 @@
 				"betterthantomorrow.calva"
 			]
 		}
-	}
+	},
+	// create  a non-root user
+	"remoteUser": "vscode"
 }
