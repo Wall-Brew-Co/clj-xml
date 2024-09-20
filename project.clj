@@ -7,11 +7,14 @@
             :comments     "Same-as all Wall-Brew projects"}
   :scm {:name "git"
         :url  "https://github.com/Wall-Brew-Co/clj-xml"}
+  :pom-addition [:organization
+                 [:name "Wall Brew Co."]
+                 [:url "https://wallbrew.com"]]
   :dependencies [[org.clojure/clojure "1.11.3"]
                  [org.clojure/data.xml "0.2.0-alpha9"]]
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2024.05.24"]
             [com.wallbrew/lein-sealog "1.6.0"]
-            [lein-project-version "0.1.0"]
+            [com.wallbrew/bouncer "1.0.0"]
             [mvxcvi/cljstyle "0.16.630"]]
   :deploy-branches ["master"]
   :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
