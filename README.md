@@ -19,6 +19,11 @@ To use it, add the following as a dependency in your project.clj file:
 The next time you build your application, [Leiningen](https://leiningen.org/) or [deps.edn](https://clojure.org/guides/deps_and_cli) should pull it automatically.
 Alternatively, you may clone or fork the repository to work with it directly.
 
+### Clojure Version Compatibility
+
+clj-xml runs its test suite in a matrix, replacing the clojure version with multiple previous versions of the language.
+If your project is not running the most recent version of clojure, please consult the most recent compatibility testing results in the [CI/CD pipeline](https://github.com/Wall-Brew-Co/clj-xml/actions/workflows/compatibility.yml).
+
 ## Public Functions
 
 ### XML Parsing
