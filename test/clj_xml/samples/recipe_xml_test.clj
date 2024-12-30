@@ -1,4 +1,5 @@
 (ns clj-xml.samples.recipe-xml-test
+  "Tests clj-xml against recipe data that we'd encounter in brew-bot"
   (:require [clj-xml.core :as xml]
             [clojure.java.io :as io]
             [clojure.test :refer :all]

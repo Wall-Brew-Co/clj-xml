@@ -1,7 +1,8 @@
 (ns clj-xml.core
   "A bunch of utility functions for xml documents."
   (:require [clj-xml.impl :as impl]
-            [clojure.data.xml :as xml]))
+            [clojure.data.xml :as xml])
+  (:import [java.lang IllegalArgumentException]))
 
 (set! *warn-on-reflection* true)
 
@@ -103,14 +104,16 @@
 
   ([xml-sequence {:keys [stringify-values? force-seq?] :as opts}]
    (cond
-     (impl/string-or-nil? xml-seq)
+     (impl/string-or-nil? xml-sequence)
      xml-sequence
 
-     (and (= 1 (count xml-sequence))
+     (and (coll? xml-sequence)
+          (= 1 (count xml-sequence))
           (impl/string-or-nil? (first xml-sequence)))
      (first xml-sequence)
 
      (and (not force-seq?)
+          (coll? xml-sequence)
           (> (count xml-sequence) 1)
           (impl/unique-tags? xml-sequence))
      (reduce (fn [acc v] (merge acc (xml->edn v opts))) {} xml-sequence)
@@ -127,7 +130,9 @@
 
      (and stringify-values?
           (some? xml-sequence))
-     (str xml-sequence))))
+     (str xml-sequence)
+
+     :else xml-sequence)))
 
 
 (defn xml-map->edn
