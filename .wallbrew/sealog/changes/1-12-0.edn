@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 12
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["A new option `:limit-eagerness?` is available for all public functions. Enabling this option disables automatic, intermediate vector coercion."]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2024-12-30T22:06:11.767347Z"}

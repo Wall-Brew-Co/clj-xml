@@ -39,6 +39,7 @@ Each of these functions accepts an option map as an optional second argument, su
 
 | Option                 | Default Value |Description                                                                                                                          |
 |------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| `:limit-eagerness?`    | `false`       | A boolean, that if set to true, disables automatic coercion to vectors for returned sequences                                       |
 | `:preserve-keys?`      | `false`       |Maintain the exact keyword structure provided by `clojure.xml/parse`                                                                 |
 | `:preserve-attrs?`     | `false`       |Maintain embedded XML attributes                                                                                                     |
 | `:remove-empty-attrs?` | `false`       |Remove any empty attribute maps                                                                                                      |
@@ -188,11 +189,12 @@ To convert EDN into XML, you'll want to use one of the following functions based
 
 Each of these functions accepts an option map as an optional final argument, supporting the following keys:
 
-| Option               | Default Value | Description                                                                           |
-|----------------------|---------------|---------------------------------------------------------------------------------------|
-| `:to-xml-case?`      | `false`       | Wether or not the keys representing XML tags will be coerced to XML_CASE              |
-| `:from-xml-case?`    | `false`       | Wether or not the source EDN is in XML_CASE                                           |
-| `:stringify-values?` | `false`       | Wether or not non-nil, non-string, non-collection values should be coerced to strings |
+| Option               | Default Value | Description                                                                                     |
+|----------------------|---------------|-------------------------------------------------------------------------------------------------|
+| `:limit-eagerness?`    | `false`       | A boolean, that if set to true, disables automatic coercion to vectors for returned sequences |
+| `:to-xml-case?`      | `false`       | Wether or not the keys representing XML tags will be coerced to XML_CASE                        |
+| `:from-xml-case?`    | `false`       | Wether or not the source EDN is in XML_CASE                                                     |
+| `:stringify-values?` | `false`       | Wether or not non-nil, non-string, non-collection values should be coerced to strings           |
 
 `edn->xml-str` and `edn->xml-stream` also support the parsing options from `clojure.data.xml`:
 

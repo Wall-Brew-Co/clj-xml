@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [1.12.0 - 2024-12-30](#1120---2024-12-30)
 * [1.11.0 - 2024-12-30](#1110---2024-12-30)
 * [1.10.0 - 2024-09-20](#1100---2024-09-20)
 * [1.9.1 - 2024-07-12](#191---2024-07-12)
@@ -24,6 +25,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 * [1.2.0 - 2021-03-13](#120---2021-03-13)
 * [1.1.0 - 2020-12-14](#110---2020-12-14)
 * [1.0.0 - 2020-12-12](#100---2020-12-12)
+
+## 1.12.0 - 2024-12-30
+
+* Added
+  * A new option `:limit-eagerness?` is available for all public functions. Enabling this option disables automatic, intermediate vector coercion.
 
 ## 1.11.0 - 2024-12-30
 

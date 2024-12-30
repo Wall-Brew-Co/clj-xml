@@ -131,17 +131,49 @@
     (is (match? edn-example-with-attrs
                 (sut/xml->edn xml-example {:preserve-attrs? true})))
     (is (match? (update-in edn-example-with-attrs [:test-document :file] dissoc :groups-attrs)
-                (sut/xml->edn xml-example {:preserve-attrs? true :remove-empty-attrs? true})))
+                (sut/xml->edn xml-example {:preserve-attrs?     true
+                                           :remove-empty-attrs? true})))
     (is (match? edn-example-with-attrs-and-original-keys
-                (sut/xml->edn xml-example {:preserve-keys? true :preserve-attrs? true})))
+                (sut/xml->edn xml-example {:preserve-keys?  true
+                                           :preserve-attrs? true})))
     (is (match? edn-example-original-keys-force-seq
-                (sut/xml->edn xml-example {:preserve-keys? true :force-seq? true})))
+                (sut/xml->edn xml-example {:preserve-keys? true
+                                           :force-seq?     true})))
     (is (nil? (sut/xml->edn nil)))
     (is (nil? (sut/xml->edn :edn)))
     (is (match? {} (sut/xml->edn {})))
     (is (match? []
                 (sut/xml->edn [])))
-    (is (match? "XML" (sut/xml->edn "XML")))))
+    (is (match? "XML" (sut/xml->edn "XML"))))
+  (testing "Limiting eagerness does not impact correctness"
+    (is (match? edn-example
+                (sut/xml->edn xml-example {:limit-eagerness? true})))
+    (is (match? edn-example-original-keys
+                (sut/xml->edn xml-example {:preserve-keys?   true
+                                           :limit-eagerness? true})))
+    (is (match? edn-example-with-attrs
+                (sut/xml->edn xml-example {:preserve-attrs?  true
+                                           :limit-eagerness? true})))
+    (is (match? (update-in edn-example-with-attrs [:test-document :file] dissoc :groups-attrs)
+                (sut/xml->edn xml-example {:preserve-attrs?     true
+                                           :limit-eagerness?    true
+                                           :remove-empty-attrs? true})))
+    (is (match? edn-example-with-attrs-and-original-keys
+                (sut/xml->edn xml-example {:preserve-keys?   true
+                                           :limit-eagerness? true
+                                           :preserve-attrs?  true})))
+    (is (match? edn-example-original-keys-force-seq
+                (sut/xml->edn xml-example {:preserve-keys?   true
+                                           :limit-eagerness? true
+                                           :force-seq?       true})))
+    (is (nil?
+          (sut/xml->edn nil {:limit-eagerness? true})))
+    (is (nil?
+          (sut/xml->edn :edn {:limit-eagerness? true})))
+    (is (match? {} (sut/xml->edn {} {:limit-eagerness? true})))
+    (is (match? []
+                (sut/xml->edn [] {:limit-eagerness? true})))
+    (is (match? "XML" (sut/xml->edn "XML" {:limit-eagerness? true})))))
 
 
 (deftest edn->xml-test
@@ -169,7 +201,37 @@
                 (sut/edn->xml "XML")))
     (is (match? "100"
                 (sut/edn->xml 100 {:stringify-values? true})))
-    (is (nil? (sut/edn->xml 100)))))
+    (is (nil? (sut/edn->xml 100))))
+  (testing "Limiting eagerness does not impact correctness"
+    (is (match? xml-example
+                (-> xml-example
+                    (sut/xml->edn {:limit-eagerness? true
+                                   :preserve-attrs?  true})
+                    (sut/edn->xml {:limit-eagerness?  true
+                                   :to-xml-case?      true
+                                   :stringify-values? true}))))
+    (is (match? xml-example
+                (sut/edn->xml edn-example-with-attrs-and-original-keys
+                              {:to-xml-case?      true
+                               :limit-eagerness?  true
+                               :from-xml-case?    true
+                               :stringify-values? true})))
+    (is (match? xml-example
+                (sut/edn->xml edn-example-with-attrs
+                              {:to-xml-case?      true
+                               :limit-eagerness?  true
+                               :stringify-values? true})))
+    (is (match? [nil]
+                (sut/edn->xml nil {:limit-eagerness? true})))
+    (is (nil? (sut/edn->xml :edn {:limit-eagerness? true})))
+    (is (match? {}
+                (sut/edn->xml {} {:limit-eagerness? true})))
+    (is (match? ["XML"]
+                (sut/edn->xml "XML" {:limit-eagerness? true})))
+    (is (match? "100"
+                (sut/edn->xml 100 {:stringify-values? true
+                                   :limit-eagerness?  true})))
+    (is (nil? (sut/edn->xml 100 {:limit-eagerness? true})))))
 
 
 (def xml-test-string
@@ -192,6 +254,14 @@
                                      :support-dtd      false
                                      :remove-newlines? true})
                (sut/edn->xml-str  {:to-xml-case? true}))
+           (-> xml-test-string
+               string->stream
+               (sut/xml-source->edn {:preserve-attrs?  true
+                                     :limit-eagerness? true
+                                     :support-dtd      false
+                                     :remove-newlines? true})
+               (sut/edn->xml-str  {:limit-eagerness? true
+                                   :to-xml-case?     true}))
            (-> xml-test-string
                (sut/xml-str->edn {:preserve-attrs?  true
                                   :support-dtd      false
@@ -247,25 +317,63 @@
             (sut/force-xml-seq-at-path nested-data [sut/first-child])))
       (is (thrown-with-msg? IllegalArgumentException
                             #"The key :c is incompatible with class clojure.lang.PersistentVector"
-            (sut/force-xml-seq-at-path nested-data [:a :b :c]))))))
+            (sut/force-xml-seq-at-path nested-data [:a :b :c])))
+      (testing "Limiting eagerness does not impact correctness"
+        (is (match? (sut/force-xml-seq-at-path nested-data [:a :b sut/last-child] {:limit-eagerness? true})
+                    {:a {:b [1 2 [3]] :c {:d "e"}}}))
+        (is (match? (sut/force-xml-seq-at-path nested-data [:a :b sut/first-child] {:limit-eagerness? true})
+                    {:a {:b [[1] 2 3] :c {:d "e"}}}))
+        (is (match? (sut/force-xml-seq-at-path nested-data [:a :b sut/every-child] {:limit-eagerness? true})
+                    {:a {:b [[1] [2] [3]] :c {:d "e"}}}))
+        (is (match? (sut/force-xml-seq-at-path nested-data [:a :c :d] {:limit-eagerness? true})
+                    {:a {:b [1 2 3] :c {:d ["e"]}}}))
+        (is (match? (sut/force-xml-seq-at-path nested-data [:a :c :f] {:limit-eagerness? true})
+                    {:a {:b [1 2 3] :c {:d "e" :f [nil]}}}))
+        (is (thrown-with-msg? IllegalArgumentException
+                              #"The key :clj-xml.core/first is incompatible with class clojure.lang.PersistentArrayMap"
+              (sut/force-xml-seq-at-path nested-data [sut/first-child] {:limit-eagerness? true})))
+        (is (thrown-with-msg? IllegalArgumentException
+                              #"The key :c is incompatible with class clojure.lang.PersistentVector"
+              (sut/force-xml-seq-at-path nested-data [:a :b :c] {:limit-eagerness? true})))))))
 
 
 (deftest force-xml-seq-at-paths-test
   (testing "Parsed XML can coerce child nodes to collections"
-    (let [nested-data {:a {:b [1 2 3] :c {:d "e"}}}]
-      (is (match? {:a [{:b [[1] 2 [3]] :c {:d "e"}}]}
+    (let [nested-data {:a {:b [1 2 3]
+                           :c {:d "e"}}}]
+      (is (match? {:a [{:b [[1] 2 [3]]
+                        :c {:d "e"}}]}
                   (sut/force-xml-seq-at-paths nested-data [[:a :b sut/first-child]
                                                            [:a :b sut/last-child]
                                                            [:a]])))
-      (is (match? {:a [{:b [[1 2 3]] :c {:d "e"}}]}
+      (is (match? {:a [{:b [[1 2 3]]
+                        :c {:d "e"}}]}
                   (sut/force-xml-seq-at-paths nested-data [[:a]
-                                                           [:a sut/first-child :b]]))))))
+                                                           [:a sut/first-child :b]])))
+      (testing "Limiting eagerness does not impact correctness"
+        (is (match? {:a [{:b [[1] 2 [3]]
+                          :c {:d "e"}}]}
+                    (sut/force-xml-seq-at-paths nested-data
+                                                [[:a :b sut/first-child]
+                                                 [:a :b sut/last-child]
+                                                 [:a]]
+                                                {:limit-eagerness? true})))
+        (is (match? {:a [{:b [[1 2 3]]
+                          :c {:d "e"}}]}
+                    (sut/force-xml-seq-at-paths nested-data
+                                                [[:a]
+                                                 [:a sut/first-child :b]]
+                                                {:limit-eagerness? true})))))))
 
 
 (deftest xml-sequence-coercion-test
   (testing "parsed XML can be coerced"
     (is (match? edn-example-with-targeted-coercion
                 (sut/xml->edn' xml-example {:force-seq-for-paths [[:test-document :file :segments sut/every-child]
+                                                                  [:test-document]]})))
+    (is (match? edn-example-with-targeted-coercion
+                (sut/xml->edn' xml-example {:limit-eagerness?    true
+                                            :force-seq-for-paths [[:test-document :file :segments sut/every-child]
                                                                   [:test-document]]})))))
 
 
@@ -304,4 +412,43 @@
 
     (testing "Default branch"
       (is (= 12345
-             (sut/xml-seq->edn 12345))))))
+             (sut/xml-seq->edn 12345)))))
+  (testing "The inner `cond` dispatches as expected without eagerness"
+    (testing "First branch"
+      (is (nil? (sut/xml-seq->edn nil {:limit-eagerness? true})))
+      (is (= "xml" (sut/xml-seq->edn "xml" {:limit-eagerness? true}))))
+    (testing "Second branch"
+      (is (nil? (sut/xml-seq->edn [nil] {:limit-eagerness? true})))
+      (is (= "xml" (sut/xml-seq->edn ["xml"] {:limit-eagerness? true}))))
+    (testing "Third branch"
+      (is (= {:hello   "World"
+              :goodbye "Space"}
+             (sut/xml-seq->edn [{:tag     "Hello"
+                                 :content "World"}
+                                {:tag     "Goodbye"
+                                 :content "Space"}]
+                               {:limit-eagerness? true}))))
+    (testing "Fourth branch"
+      (is (= {}
+             (sut/xml-seq->edn {} {:limit-eagerness? true}))))
+    (testing "Fifth branch"
+      (is (= {:hello "Space"}
+             (sut/xml-seq->edn {:tag     "Hello"
+                                :content "Space"}
+                               {:limit-eagerness? true}))))
+    (testing "Sixth branch"
+      (is (match? [{:hello "World"}
+                   {:hello "Space"}]
+                  (sut/xml-seq->edn [{:tag     "Hello"
+                                      :content "World"}
+                                     {:tag     "Hello"
+                                      :content "Space"}]
+                                    {:limit-eagerness? true}))))
+    (testing "Seventh branch"
+      (is (= "12345"
+             (sut/xml-seq->edn 12345 {:stringify-values? true
+                                      :limit-eagerness?  true}))))
+
+    (testing "Default branch"
+      (is (= 12345
+             (sut/xml-seq->edn 12345 {:limit-eagerness? true}))))))
