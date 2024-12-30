@@ -1,4 +1,4 @@
-(defproject com.wallbrew/clj-xml "1.10.0"
+(defproject com.wallbrew/clj-xml "1.11.0"
   :description "The missing link between clj and xml"
   :url "https://github.com/Wall-Brew-Co/clj-xml"
   :license {:name         "MIT"
@@ -21,5 +21,6 @@
                                     :username      :env/clojars_user
                                     :password      :env/clojars_pass
                                     :sign-releases false}]]
-  :profiles {:uberjar {:aot :all}}
+  :profiles {:uberjar {:aot :all}
+             :dev     {:dependencies [[nubank/matcher-combinators "3.9.1"]]}}
   :min-lein-version "2.5.3")

@@ -4,7 +4,7 @@
   <groupId>com.wallbrew</groupId>
   <artifactId>clj-xml</artifactId>
   <packaging>jar</packaging>
-  <version>1.10.0</version>
+  <version>1.11.0</version>
   <name>clj-xml</name>
   <description>The missing link between clj and xml</description>
   <url>https://github.com/Wall-Brew-Co/clj-xml</url>
@@ -20,7 +20,7 @@
     <url>https://github.com/Wall-Brew-Co/clj-xml</url>
     <connection>scm:git:git://github.com/Wall-Brew-Co/clj-xml.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Wall-Brew-Co/clj-xml.git</developerConnection>
-    <tag>7d818b084c9e2155c6c18e819933ab069f03d076</tag>
+    <tag>73eadc1a3113c58bf6521de0515b0c0f23d5048e</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -74,6 +74,12 @@
       <groupId>org.clojure</groupId>
       <artifactId>data.xml</artifactId>
       <version>0.2.0-alpha9</version>
+    </dependency>
+    <dependency>
+      <groupId>nubank</groupId>
+      <artifactId>matcher-combinators</artifactId>
+      <version>3.9.1</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <organization>
