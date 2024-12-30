@@ -3,6 +3,8 @@
   (:require [clj-xml.impl :as impl]
             [clojure.data.xml :as xml]))
 
+(set! *warn-on-reflection* true)
+
 
 (def every-child
   "An alias for the ::every namespaced keyword.
@@ -27,10 +29,15 @@
    This option forces only the last child node to be coerced into a sequence of maps."
   ::last)
 
+(def ^:private child-keys
+  "The set of all allowable child keys used by `force-xml-seq-at-path`"
+  #{first-child last-child every-child})
+
 
 (defn- child-key?
+  "Returns true iff `k` is in the set of child keys."
   [k]
-  (#{first-child last-child every-child} k))
+  (contains? child-keys k))
 
 
 (defn force-xml-seq-at-path
@@ -56,7 +63,7 @@
       (and (map? xml-edn)
            (not (child-key? xml-key))
            (keyword? xml-key))        (update xml-edn xml-key force-xml-seq-at-path key-seq)
-      :else                       (throw (IllegalArgumentException. (str "The key " xml-key " is incompatible with " (type xml-edn)))))
+      :else                           (throw (IllegalArgumentException. (str "The key " xml-key " is incompatible with " (type xml-edn)))))
     [xml-edn]))
 
 
@@ -94,25 +101,33 @@
   ([xml-sequence]
    (xml-seq->edn xml-sequence {}))
 
-  ([xml-sequence {:keys [stringify-values?
-                         force-seq?]
-                  :as   opts}]
-   (let [xml-transformer (fn [x] (xml->edn x opts))]
-     (cond
-       (or (nil? xml-seq)
-           (string? xml-seq))               xml-sequence
-       (and (= 1 (count xml-sequence))
-            (or (nil? (first xml-sequence))
-                (string? (first xml-sequence)))) (first xml-sequence)
-       (and (impl/unique-tags? xml-sequence)
-            (> (count xml-sequence) 1)
-            (not force-seq?))               (reduce into {} (mapv xml-transformer xml-sequence))
-       (and (map? xml-sequence)
-            (empty? xml-sequence))               {}
-       (map? xml-sequence)                       (xml-transformer xml-sequence)
-       (sequential? xml-sequence)                (mapv xml-transformer xml-sequence)
-       (and stringify-values?
-            (some? xml-sequence))                (str xml-sequence)))))
+  ([xml-sequence {:keys [stringify-values? force-seq?] :as opts}]
+   (cond
+     (impl/string-or-nil? xml-seq)
+     xml-sequence
+
+     (and (= 1 (count xml-sequence))
+          (impl/string-or-nil? (first xml-sequence)))
+     (first xml-sequence)
+
+     (and (not force-seq?)
+          (> (count xml-sequence) 1)
+          (impl/unique-tags? xml-sequence))
+     (reduce (fn [acc v] (merge acc (xml->edn v opts))) {} xml-sequence)
+
+     (and (map? xml-sequence)
+          (empty? xml-sequence))
+     {}
+
+     (map? xml-sequence)
+     (xml->edn xml-sequence opts)
+
+     (sequential? xml-sequence)
+     (mapv #(xml->edn % opts) xml-sequence)
+
+     (and stringify-values?
+          (some? xml-sequence))
+     (str xml-sequence))))
 
 
 (defn xml-map->edn
@@ -130,18 +145,20 @@
 
   ([{:keys [tag attrs content]} {:keys [preserve-keys? preserve-attrs? stringify-values? remove-empty-attrs?]
                                  :as   opts}]
-   (let [kw-function  (fn [k] (if preserve-keys? k (impl/xml-tag->keyword k)))
-         val-function (fn [v] (if stringify-values? (str v) v))
-         edn-tag      (kw-function tag)
-         edn-value    (xml->edn content opts)]
+   (let [edn-tag   (impl/keywordify tag preserve-keys?)
+         edn-value (xml->edn content opts)]
      (if (and attrs preserve-attrs?)
-       (let [attrs-suffix (if preserve-keys? "_ATTRS" "-attrs")
-             attrs-key    (keyword (str (name edn-tag) attrs-suffix))
-             attrs-val    (impl/update-vals* (impl/update-keys* attrs kw-function) val-function)
-             add-attrs?   (or (not remove-empty-attrs?)
-                              (and remove-empty-attrs? (seq attrs-val)))]
+       (let [attrs-key  (impl/tag->attrs-tag edn-tag preserve-keys?)
+             add-attrs? (or (not remove-empty-attrs?)
+                            (and remove-empty-attrs?
+                                 (seq attrs)))]
          (merge {edn-tag edn-value}
-                (when add-attrs? {attrs-key attrs-val})))
+                (when add-attrs? {attrs-key (reduce-kv (fn [m k v]
+                                                         (assoc m
+                                                                (impl/keywordify k preserve-keys?)
+                                                                (impl/stringify v stringify-values?)))
+                                                       {}
+                                                       attrs)})))
        {edn-tag edn-value}))))
 
 
@@ -160,14 +177,22 @@
 
   ([xml-doc {:keys [stringify-values?] :as opts}]
    (cond
-     (or (nil? xml-doc)
-         (string? xml-doc)) xml-doc
-     (sequential? xml-doc)  (xml-seq->edn xml-doc opts)
+     (impl/string-or-nil? xml-doc)
+     xml-doc
+
+     (sequential? xml-doc)
+     (xml-seq->edn xml-doc opts)
+
      (and (map? xml-doc)
-          (empty? xml-doc)) {}
-     (map? xml-doc)         (xml-map->edn xml-doc opts)
+          (empty? xml-doc))
+     {}
+
+     (map? xml-doc)
+     (xml-map->edn xml-doc opts)
+
      (and stringify-values?
-          (some? xml-doc))  (str xml-doc))))
+          (some? xml-doc))
+     (str xml-doc))))
 
 
 (defn xml->edn'
@@ -301,6 +326,7 @@
    (mapv #(edn->xml % opts) edn)))
 
 
+
 (defn edn-map->xml
   "Transform an EDN map to the pseudo XML expected by `clojure.data.xml`.
    To change the default behavior, an option map may be provided with the following keys:
@@ -314,18 +340,20 @@
   ([edn {:keys [to-xml-case? from-xml-case? stringify-values?]
          :as   opts}]
    (let [edn-keys                 (keys edn)
-         key-set                  (set (map name edn-keys))
+         key-set                  (reduce (fn ->keys [acc v] (conj acc (name v))) #{} edn-keys)
          {attrs true tags false}  (group-by #(impl/edn-attrs-tag? (name %) key-set) edn-keys)
-         attrs-set                (set (map #(impl/attrs-tag->tag (name %)) attrs))
-         kw-function              (fn [k] (if to-xml-case? (impl/keyword->xml-tag k) k))
-         val-function             (fn [v] (if stringify-values? (str v) v))
-         tag-generator            (fn [t]
-                                    (let [xml-tag     (kw-function t)
+         attrs-set                (reduce (fn ->attrs [acc v] (conj acc (impl/attrs-tag->tag (name v)))) #{} attrs)
+         tag-generator            (fn tag-generator-fn
+                                    [t]
+                                    (let [xml-tag     (impl/tagify t to-xml-case?)
                                           xml-content (edn->xml (get edn t) opts)
                                           xml-attrs   (when (contains? attrs-set (name t))
-                                                        (-> (get edn (impl/tag->attrs-tag t from-xml-case?))
-                                                            (impl/update-keys* kw-function)
-                                                            (impl/update-vals* val-function)))]
+                                                        (->> (get edn (impl/tag->attrs-tag t from-xml-case?))
+                                                             (reduce-kv (fn [m k v]
+                                                                          (assoc m
+                                                                                 (impl/tagify k to-xml-case?)
+                                                                                 (impl/stringify v stringify-values?)))
+                                                                        {})))]
                                       {:tag     xml-tag
                                        :content xml-content
                                        :attrs   xml-attrs}))]
@@ -346,14 +374,22 @@
 
   ([edn {:keys [stringify-values?] :as opts}]
    (cond
-     (or (nil? edn)
-         (string? edn))     [edn]
-     (sequential? edn)      (edn-seq->xml edn opts)
+     (impl/string-or-nil? edn)
+     [edn]
+
+     (sequential? edn)
+     (edn-seq->xml edn opts)
+
      (and (map? edn)
-          (empty? edn))     {}
-     (map? edn)             (edn-map->xml edn opts)
+          (empty? edn))
+     {}
+
+     (map? edn)
+     (edn-map->xml edn opts)
+
      (and stringify-values?
-          (some? edn))      (str edn))))
+          (some? edn))
+     (str edn))))
 
 
 (defn edn->xml-str
@@ -374,9 +410,9 @@
   ([edn {:keys [encoding doctype]
          :as   opts}]
    (let [c-xml (cond
-                 (and encoding doctype) (fn [edn] (xml/emit-str edn :encoding encoding :doctype doctype))
-                 encoding               (fn [edn] (xml/emit-str edn :encoding encoding))
-                 doctype                (fn [edn] (xml/emit-str edn :doctype doctype))
+                 (and encoding doctype) (fn emit [edn] (xml/emit-str edn :encoding encoding :doctype doctype))
+                 encoding               (fn emit [edn] (xml/emit-str edn :encoding encoding))
+                 doctype                (fn emit [edn] (xml/emit-str edn :doctype doctype))
                  :else                  xml/emit-str)]
      (-> edn
          (edn->xml opts)
@@ -404,10 +440,10 @@
   ([edn java-writer {:keys [encoding doctype]
                      :as   opts}]
    (let [c-xml (cond
-                 (and encoding doctype) (fn [edn] (xml/emit edn java-writer :encoding encoding :doctype doctype))
-                 encoding               (fn [edn] (xml/emit edn java-writer :encoding encoding))
-                 doctype                (fn [edn] (xml/emit edn java-writer :doctype doctype))
-                 :else                  (fn [edn] (xml/emit edn java-writer)))]
+                 (and encoding doctype) (fn emit [edn] (xml/emit edn java-writer :encoding encoding :doctype doctype))
+                 encoding               (fn emit [edn] (xml/emit edn java-writer :encoding encoding))
+                 doctype                (fn emit [edn] (xml/emit edn java-writer :doctype doctype))
+                 :else                  (fn emit [edn] (xml/emit edn java-writer)))]
      (-> edn
          (edn->xml opts)
          c-xml))))

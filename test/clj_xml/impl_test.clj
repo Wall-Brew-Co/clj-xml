@@ -46,3 +46,44 @@
     (is (= {"a" 2 "b" 3} (sut/update-keys* {:a 2 :b 3} name)))
     (is (= {} (sut/update-keys* {} dec)))
     (is (= {":b-key" 3 ":c-key" 4} (sut/update-keys* {:b 3 :c 4} str "-key")))))
+
+(deftest keywordify-test
+  (testing "Call through to `xml-tag->keyword` if `preserve-keys?` is false"
+    (is (= :xml-tag
+           (sut/keywordify :xml-tag false)
+           (sut/xml-tag->keyword :xml-tag)))
+    (is (= :xml-tag
+           (sut/keywordify :XML_TAG false)
+           (sut/xml-tag->keyword :XML_TAG))))
+  (testing "Returns the original value otherwise"
+    (is (= :xml-tag (sut/keywordify :xml-tag true)))
+    (is (= :XML_TAG (sut/keywordify :XML_TAG true)))))
+
+(deftest tagify-test
+  (testing "Call through to `keyword->xml-tag` if `to-xml-case?` is true"
+    (is (= :XML_TAG
+           (sut/tagify :xml-tag true)
+           (sut/keyword->xml-tag :xml-tag)))
+    (is (= :XML_TAG
+           (sut/tagify :XML_TAG true)
+           (sut/keyword->xml-tag :XML_TAG))))
+  (testing "Returns the original value otherwise"
+    (is (= :xml-tag
+           (sut/tagify :xml-tag false)))
+    (is (= :XML_TAG
+           (sut/tagify :XML_TAG false)))))
+
+(deftest stringify-test
+  (testing "Calls str if `stringify-values?` is true"
+    (is (= ":xml"
+           (str :xml)
+           (sut/stringify :xml true)))
+    (is (= "xml"
+           (str "xml")
+           (sut/stringify "xml" true))))
+  (testing "Returns the original value otherwise"
+    (is (= :xml
+           (sut/stringify :xml false)))
+    (is (= "xml"
+           (sut/stringify "xml" false)))))
+
