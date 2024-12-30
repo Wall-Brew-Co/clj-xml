@@ -1,0 +1,1572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FERMENTABLES>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.783</YIELD>
+    <COLOR>1</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Clear Candi Sugar</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Crystalized candi sugar for use in Tripels, Dubbels, and holiday ales.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>1.0</YIELD>
+    <COLOR>1</COLOR>
+    <POTENTIAL>1.046</POTENTIAL>
+    <NAME>Sucrose</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>A sugar used to increase starting gravity.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.8</YIELD>
+    <COLOR>4</COLOR>
+    <POTENTIAL>1.037</POTENTIAL>
+    <NAME>Mild Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Also called 'English Mild' - a light specialty malt used in Brown Ales.</NOTES>
+    <PROTEIN>0.106</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>53</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.79</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Pilsner (2 Row) - Belgium</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Belgian base malt for Continental lagers.</NOTES>
+    <PROTEIN>0.105</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>105</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.77</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.035</POTENTIAL>
+    <NAME>Wheat, Flaked</NAME>
+    <MOISTURE>0.09</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Flaked wheat adds to increased body and foam retention. May be used in small amounts to improve head retention and body.</NOTES>
+    <PROTEIN>0.16</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.4</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.79</YIELD>
+    <COLOR>23</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Biscuit Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Use for English ales, brown ales and porters. Adds a biscuit like flavor and aroma. Can be used as a substitute for toasted malt.</NOTES>
+    <PROTEIN>0.105</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>6</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.8</YIELD>
+    <COLOR>1</COLOR>
+    <POTENTIAL>1.037</POTENTIAL>
+    <NAME>Grits</NAME>
+    <TYPE>Adjunct</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Imparts a corn and grain taste.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.75</YIELD>
+    <COLOR>20</COLOR>
+    <POTENTIAL>1.035</POTENTIAL>
+    <NAME>Carared</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds body, color and improves head retention.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.8</YIELD>
+    <COLOR>1</COLOR>
+    <POTENTIAL>1.037</POTENTIAL>
+    <NAME>Oats, Flaked</NAME>
+    <MOISTURE>0.09</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds body, mouth feel and head retention to the beer. Adds substantial protein haze to light beers. Protein rest recommended unless flakes are pre-gelatinized.</NOTES>
+    <PROTEIN>0.09</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.3</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.75</YIELD>
+    <COLOR>30</COLOR>
+    <POTENTIAL>1.035</POTENTIAL>
+    <NAME>Caraamber</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds body, color and improves head retention.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.8</YIELD>
+    <COLOR>3</COLOR>
+    <POTENTIAL>1.037</POTENTIAL>
+    <NAME>Pale Malt (2 Row) - Belgium</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Base malt for all beer styles.</NOTES>
+    <PROTEIN>0.105</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>60</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>1.0</YIELD>
+    <COLOR>0</COLOR>
+    <POTENTIAL>1.046</POTENTIAL>
+    <NAME>Cane Sugar</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Common, household sugar used to lighten the flavor and body.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.07</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.652</YIELD>
+    <COLOR>180</COLOR>
+    <POTENTIAL>1.03</POTENTIAL>
+    <NAME>Special B Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Extreme caramel aroma and flavored malt. Used in dark Belgian Abbey and Trappist ales.</NOTES>
+    <PROTEIN>0</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.609</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.028</POTENTIAL>
+    <NAME>Barley, Raw</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Raw, unmalted barley can be used to add body to your beer. Use in homebrew requires very fine milling combined with a decoction or multi-stage mash. Performs best when used in small quantities with well modified grains.</NOTES>
+    <PROTEIN>0.117</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.15</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.72</YIELD>
+    <COLOR>50</COLOR>
+    <POTENTIAL>1.033</POTENTIAL>
+    <NAME>Special Roast</NAME>
+    <MOISTURE>0.025</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Use for English ales, nut brown ales and porters. Adds a toasted, biscuit like flavor and aroma.</NOTES>
+    <PROTEIN>0.105</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>6</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.761</YIELD>
+    <COLOR>0</COLOR>
+    <POTENTIAL>1.035</POTENTIAL>
+    <NAME>Lactose</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>A partially fermentable sugar that adds lasting sweetness.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.95</YIELD>
+    <COLOR>8</COLOR>
+    <POTENTIAL>1.044</POTENTIAL>
+    <NAME>Light Dry Extract</NAME>
+    <TYPE>Dry Extract</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>For general-purpose use in light beers.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1.0</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>1.0</YIELD>
+    <COLOR>0</COLOR>
+    <POTENTIAL>1.046</POTENTIAL>
+    <NAME>Beet Sugar</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Common, household sugar used to lighten the flavor and body.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.07</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.81</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.037</POTENTIAL>
+    <NAME>Wheat Malt - Belgium</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Malted wheat for use in Wheat beers.</NOTES>
+    <PROTEIN>0.115</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.6</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>74</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.86</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.04</POTENTIAL>
+    <NAME>White Wheat Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>White wheat gives a malty flavor not available from raw wheat.</NOTES>
+    <PROTEIN>0.145</PROTEIN>
+    <COARSE_FINE_DIFF>0.022</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.6</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>130</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.55</YIELD>
+    <COLOR>500</COLOR>
+    <POTENTIAL>1.025</POTENTIAL>
+    <NAME>Black Barley (Stout)</NAME>
+    <MOISTURE>0.05</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Unmalted barley roasted at high temperature to create a dry, coffee like flavor. Imparts a sharp acrid flavor characteristic of dry stouts. Gives dryness to a stout or porter.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.73</YIELD>
+    <COLOR>25</COLOR>
+    <POTENTIAL>1.034</POTENTIAL>
+    <NAME>Victory Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Toasted malt that adds a Biscuit or toasted flavor to English ales.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.15</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>50</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.783</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Rye, Flaked</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Imparts a dry, crisp rye flavor to rye beers. Can be easier to mash than raw rye.</NOTES>
+    <PROTEIN>0</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.73</YIELD>
+    <COLOR>450</COLOR>
+    <POTENTIAL>1.034</POTENTIAL>
+    <NAME>Chocolate Malt (UK)</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Dark malt that gives a rich red or brown color and nutty flavor. Maintains some malty flavor, not as dark as roasted malt.</NOTES>
+    <PROTEIN>0.105</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.55</YIELD>
+    <COLOR>500</COLOR>
+    <POTENTIAL>1.025</POTENTIAL>
+    <NAME>Black (Patent) Malt</NAME>
+    <MOISTURE>0.06</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Dark color and dry roasted flavor characteristic of Stouts and Porters. Used for: Coloring in small amounts, or flavoring of Stouts and Porters in larger amounts.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.95</YIELD>
+    <COLOR>18</COLOR>
+    <POTENTIAL>1.044</POTENTIAL>
+    <NAME>Dark Dry Extract</NAME>
+    <TYPE>Dry Extract</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>For general-purpose use in darker beers.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1.0</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.783</YIELD>
+    <COLOR>60</COLOR>
+    <POTENTIAL>1.032</POTENTIAL>
+    <NAME>Belgian Candi Syrup - 45L</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Crystalized candi sugar for use in Tripels, Dubbels, and holiday ales.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.6</YIELD>
+    <COLOR>350</COLOR>
+    <POTENTIAL>1.028</POTENTIAL>
+    <NAME>Chocolate Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Dark malt that gives a rich red or brown color and nutty flavor. Maintains some malty flavor, not as dark as roasted malt.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.717</YIELD>
+    <COLOR>56</COLOR>
+    <POTENTIAL>1.033</POTENTIAL>
+    <NAME>Caramunich Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Caramel, copper colored malt. Used in Belgian ales and German bocks.</NOTES>
+    <PROTEIN>0</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.8</YIELD>
+    <COLOR>9</COLOR>
+    <POTENTIAL>1.037</POTENTIAL>
+    <NAME>Munich Malt</NAME>
+    <MOISTURE>0.05</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Malty-sweet flavor characteristic and adds a reddish amber color to the beer. Does not contribute significantly to body or head retention.</NOTES>
+    <PROTEIN>0.115</PROTEIN>
+    <COARSE_FINE_DIFF>0.013</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.8</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>72</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.75</YIELD>
+    <COLOR>10</COLOR>
+    <POTENTIAL>1.035</POTENTIAL>
+    <NAME>Caramel/Crystal Malt - 10L</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds body, color and improves head retention.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.63</YIELD>
+    <COLOR>5</COLOR>
+    <POTENTIAL>1.029</POTENTIAL>
+    <NAME>Rye Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds a dry, crisp character to the beer. Yields a deep red color, and a distinctive rye flavor.</NOTES>
+    <PROTEIN>0.103</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.15</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>75</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.7</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.032</POTENTIAL>
+    <NAME>Barley, Flaked</NAME>
+    <MOISTURE>0.09</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds significant body to Porters and Stouts. High haze producing protein prevents use in light beers.</NOTES>
+    <PROTEIN>0.135</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.72</YIELD>
+    <COLOR>120</COLOR>
+    <POTENTIAL>1.033</POTENTIAL>
+    <NAME>Caramel/Crystal Malt - 120L</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds body, color and improves head retention.</NOTES>
+    <PROTEIN>0.102</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.543</YIELD>
+    <COLOR>425</COLOR>
+    <POTENTIAL>1.025</POTENTIAL>
+    <NAME>Wheat, Roasted</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Also called Chocolate Wheat Malt. Adds a deep, dark brown color to dunkelweizens and other dark beer styles.</NOTES>
+    <PROTEIN>0.13</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.75</YIELD>
+    <COLOR>20</COLOR>
+    <POTENTIAL>1.035</POTENTIAL>
+    <NAME>Caramel/Crystal Malt - 20L</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds body, color and improves head retention.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.78</YIELD>
+    <COLOR>8</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Pale Liquid Extract</NAME>
+    <TYPE>Extract</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>For general-purpose use in light and pale beers.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1.0</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.95</YIELD>
+    <COLOR>8</COLOR>
+    <POTENTIAL>1.044</POTENTIAL>
+    <NAME>Wheat Dry Extract</NAME>
+    <TYPE>Dry Extract</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Wheat extract for general-purpose use in wheat beers.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1.0</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.74</YIELD>
+    <COLOR>60</COLOR>
+    <POTENTIAL>1.034</POTENTIAL>
+    <NAME>Caramel/Crystal Malt - 60L</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds body, color and improves head retention.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.72</YIELD>
+    <COLOR>140</COLOR>
+    <POTENTIAL>1.033</POTENTIAL>
+    <NAME>Caramel/Crystal Malt - 140L</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds body, color and improves head retention.</NOTES>
+    <PROTEIN>0.102</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.78</YIELD>
+    <COLOR>26</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Aromatic Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Provides a very strong malt flavor and aroma to your beer.</NOTES>
+    <PROTEIN>0.118</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>29</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.783</YIELD>
+    <COLOR>0</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Corn Syrup</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Syrup derived from corn sugar.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.74</YIELD>
+    <COLOR>40</COLOR>
+    <POTENTIAL>1.034</POTENTIAL>
+    <NAME>Caramel/Crystal Malt - 40L</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds body, color and improves head retention.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.55</YIELD>
+    <COLOR>300</COLOR>
+    <POTENTIAL>1.025</POTENTIAL>
+    <NAME>Roasted Barley</NAME>
+    <MOISTURE>0.05</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Roasted at high temperature to create a burnt, grainy, coffee like flavor. Imparts a red to deep brown color to beer, and very strong roasted flavor.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>1.0</YIELD>
+    <COLOR>0</COLOR>
+    <POTENTIAL>1.046</POTENTIAL>
+    <NAME>Dextrose</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Common bottling sugar.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.05</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.8</YIELD>
+    <COLOR>20</COLOR>
+    <POTENTIAL>1.037</POTENTIAL>
+    <NAME>Melanoiden Malt</NAME>
+    <MOISTURE>0.035</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Aromatic malt from Banberg, Germany. Promotes a full flavor and rounds off beer color. Promotes deep red color and malty flavor.</NOTES>
+    <PROTEIN>0.11</PROTEIN>
+    <COARSE_FINE_DIFF>0.013</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.15</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>10</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.75</YIELD>
+    <COLOR>30</COLOR>
+    <POTENTIAL>1.035</POTENTIAL>
+    <NAME>Caramel/Crystal Malt - 30L</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds body, color and improves head retention.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.78</YIELD>
+    <COLOR>4</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Pilsner Liquid Extract</NAME>
+    <TYPE>Extract</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>For general-purpose use in pale beers.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1.0</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.79</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Wheat, Torrified</NAME>
+    <MOISTURE>0.09</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Unmodified wheat that has been popped to open the kernels. Protein rest recommended when mashing.</NOTES>
+    <PROTEIN>0.16</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.4</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.825</YIELD>
+    <COLOR>3</COLOR>
+    <POTENTIAL>1.03</POTENTIAL>
+    <NAME>Corn (Flaked)</NAME>
+    <MOISTURE>0.09</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Generally a neutral flavor, used to reduce maltiness of beer.</NOTES>
+    <PROTEIN>0.1</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.7</YIELD>
+    <COLOR>65</COLOR>
+    <POTENTIAL>1.032</POTENTIAL>
+    <NAME>Brown Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Imparts a dry, biscuit flavor. Used in nut brown ales, porters and some Belgian ales.</NOTES>
+    <PROTEIN>0</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.77</YIELD>
+    <COLOR>10</COLOR>
+    <POTENTIAL>1.035</POTENTIAL>
+    <NAME>Munich Malt - 10L</NAME>
+    <MOISTURE>0.05</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Malty-sweet flavor characteristic and adds a slight orange color to the beer.</NOTES>
+    <PROTEIN>0.135</PROTEIN>
+    <COARSE_FINE_DIFF>0.028</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.8</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>50</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.74</YIELD>
+    <COLOR>3</COLOR>
+    <POTENTIAL>1.034</POTENTIAL>
+    <NAME>Peat Smoked Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Robust smoky malt that provides a smoky flavor. Used in scottish ales and wee heavy ales.</NOTES>
+    <PROTEIN>0</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.76</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.035</POTENTIAL>
+    <NAME>Pale Malt (6 Row) - USA</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Base malt for all beer styles.</NOTES>
+    <PROTEIN>0.13</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>150</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.81</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.037</POTENTIAL>
+    <NAME>Pilsner (2 Row) - Germany</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>German base for Pilsners and Bohemian Lagers.</NOTES>
+    <PROTEIN>0.11</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>110</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.78</YIELD>
+    <COLOR>1</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Pilsner (2 Row) - UK</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Pilsner base malt.</NOTES>
+    <PROTEIN>0.1</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>60</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>1.0</YIELD>
+    <COLOR>1</COLOR>
+    <POTENTIAL>1.046</POTENTIAL>
+    <NAME>Table Sugar</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>A sugar used to increase starting gravity.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.75</YIELD>
+    <COLOR>20</COLOR>
+    <POTENTIAL>1.035</POTENTIAL>
+    <NAME>Munich Malt - 20L</NAME>
+    <MOISTURE>0.05</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Malty-sweet flavor characteristic and adds a orange to deep orange color to the beer.</NOTES>
+    <PROTEIN>0.135</PROTEIN>
+    <COARSE_FINE_DIFF>0.028</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.8</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>25</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.8</YIELD>
+    <COLOR>1</COLOR>
+    <POTENTIAL>1.037</POTENTIAL>
+    <NAME>Oats, Malted</NAME>
+    <MOISTURE>0.09</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Malted oats. Adds body, mouth feel and head retention to the beer. Creates chill haze in lighter beers, so is primarily used in dark ones.</NOTES>
+    <PROTEIN>0.09</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.75</YIELD>
+    <COLOR>22</COLOR>
+    <POTENTIAL>1.035</POTENTIAL>
+    <NAME>Amber Malt</NAME>
+    <MOISTURE>0.028</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Roasted specialty malt used in some English browns, milds and old ales to add color and a biscuit taste. Intense flavor - so limit use. Low diastatic power so must be mashed with well modified malts.</NOTES>
+    <PROTEIN>0.1</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>20</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.79</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Pale Malt (2 Row) - USA</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Base malt for all beer styles.</NOTES>
+    <PROTEIN>0.123</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>140</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.78</YIELD>
+    <COLOR>7</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Sorghum Syrup</NAME>
+    <TYPE>Extract</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>A gluten-free extract based on sorghum grain. Can be used as a substitute for Light Malt Extract.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1.0</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.78</YIELD>
+    <COLOR>3</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Pale Malt (2 Row) - UK</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Base malt for all English beer styles.</NOTES>
+    <PROTEIN>0.101</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>45</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.78</YIELD>
+    <COLOR>8</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Wheat Liquid Extract</NAME>
+    <TYPE>Extract</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Wheat/barley extract for general-purpose use in wheat beers.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1.0</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.8</YIELD>
+    <COLOR>9</COLOR>
+    <POTENTIAL>1.037</POTENTIAL>
+    <NAME>Smoked Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Malt that has been smoked over an open fire. Creates a distinctive smoke flavor and aroma.</NOTES>
+    <PROTEIN>0.115</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.0</YIELD>
+    <COLOR>0</COLOR>
+    <POTENTIAL>1.0</POTENTIAL>
+    <NAME>Rice Hulls</NAME>
+    <TYPE>Adjunct</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Neutral hulls used to improve lautering.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.05</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.783</YIELD>
+    <COLOR>80</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Molasses</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>A strong, dark, and sweet sugar.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.05</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.0</YIELD>
+    <COLOR>0</COLOR>
+    <POTENTIAL>1.0</POTENTIAL>
+    <NAME>Barley Hulls</NAME>
+    <TYPE>Adjunct</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Neutral hulls used to improve lautering.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.05</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.72</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.033</POTENTIAL>
+    <NAME>Cara-Pils/Dextrine</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Significantly increases foam/head retention and body of the beer.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.69</YIELD>
+    <COLOR>7</COLOR>
+    <POTENTIAL>1.032</POTENTIAL>
+    <NAME>Rice Extract Syrup</NAME>
+    <TYPE>Extract</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Used like other rice adjuncts in American and Japanese lagers.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.15</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.95</YIELD>
+    <COLOR>13</COLOR>
+    <POTENTIAL>1.044</POTENTIAL>
+    <NAME>Amber Dry Extract</NAME>
+    <TYPE>Dry Extract</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Amber colored dry malt extract for general purpose use.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1.0</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.69</YIELD>
+    <COLOR>7</COLOR>
+    <POTENTIAL>1.034</POTENTIAL>
+    <NAME>Rye Liquid Extract</NAME>
+    <TYPE>Extract</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Mixed rye/barley extract for general-purpose brewing.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1.0</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.72</YIELD>
+    <COLOR>160</COLOR>
+    <POTENTIAL>1.033</POTENTIAL>
+    <NAME>Caramel/Crystal Malt - 160L</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds body, color and improves head retention.</NOTES>
+    <PROTEIN>0.102</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.717</YIELD>
+    <COLOR>23</COLOR>
+    <POTENTIAL>1.033</POTENTIAL>
+    <NAME>Brumalt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Dark German malt developed to add malt flavor of Alt, Marzen and Oktoberfest beers. Helps create authentic maltiness without having to do a decoction mash.</NOTES>
+    <PROTEIN>0.07</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.75</YIELD>
+    <COLOR>1</COLOR>
+    <POTENTIAL>1.035</POTENTIAL>
+    <NAME>Honey</NAME>
+    <TYPE>Extract</TYPE>
+    <ADD_AFTER_BOIL>true</ADD_AFTER_BOIL>
+    <NOTES>Used for light flavor and body. Can be added to primary fermentation, but must be pasteurized.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.3</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.84</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.039</POTENTIAL>
+    <NAME>Wheat Malt - Germany</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Malted wheat base for use in all wheat styles.</NOTES>
+    <PROTEIN>0.125</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.6</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>95</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.783</YIELD>
+    <COLOR>243</COLOR>
+    <POTENTIAL>1.032</POTENTIAL>
+    <NAME>Belgian Candi Syrup - 180L</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Crystalized candi sugar for use in Tripels, Dubbels, and holiday ales.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.78</YIELD>
+    <COLOR>18</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Dark Liquid Extract</NAME>
+    <TYPE>Extract</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>For general-purpose use in darker beers.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1.0</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.761</YIELD>
+    <COLOR>0</COLOR>
+    <POTENTIAL>1.035</POTENTIAL>
+    <NAME>Milk Sugar</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>A partially fermentable sugar that adds lasting sweetness.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.739</YIELD>
+    <COLOR>22</COLOR>
+    <POTENTIAL>1.034</POTENTIAL>
+    <NAME>Caravienne Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Light Belgian crystal malt. Used in light Trappist and Abbey style Belgian ales.</NOTES>
+    <PROTEIN>0</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.78</YIELD>
+    <COLOR>13</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Amber Liquid Extract</NAME>
+    <TYPE>Extract</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Amber colored liquid malt extract for general purpose use.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1.0</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.72</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.033</POTENTIAL>
+    <NAME>CaraFoam</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Significantly increases foam/head retention and body of the beer.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>1.0</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.046</POTENTIAL>
+    <NAME>Demerara Sugar</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>A dark, unrefined sugar that contains molasses.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.72</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.033</POTENTIAL>
+    <NAME>Dextrine</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Significantly increases foam/head retention and body of the beer.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.78</YIELD>
+    <COLOR>4</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Vienna Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Kiln dried malt darker than Pale Malt, but not as dark as Munich Malt. Imparts a golden to orange color to the beer.</NOTES>
+    <PROTEIN>0.11</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.9</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>50</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.74</YIELD>
+    <COLOR>80</COLOR>
+    <POTENTIAL>1.034</POTENTIAL>
+    <NAME>Caramel/Crystal Malt - 80L</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds body, color and improves head retention.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.957</YIELD>
+    <COLOR>10</COLOR>
+    <POTENTIAL>1.044</POTENTIAL>
+    <NAME>Turbinado</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>A light, raw brown sugar used to increase starting gravity.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>1.0</YIELD>
+    <COLOR>0</COLOR>
+    <POTENTIAL>1.046</POTENTIAL>
+    <NAME>Corn Sugar</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Common bottling sugar.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.05</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>1.0</YIELD>
+    <COLOR>0</COLOR>
+    <POTENTIAL>1.046</POTENTIAL>
+    <NAME>Invert Sugar</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>A sugar used to increase starting gravity.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.717</YIELD>
+    <COLOR>27</COLOR>
+    <POTENTIAL>1.033</POTENTIAL>
+    <NAME>Toasted Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Similar to Biscuit or Victory malt, this malt adds reddish/orange color and improved body without sweetness along with a toasted flavor.</NOTES>
+    <PROTEIN>0.117</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>1.0</YIELD>
+    <COLOR>50</COLOR>
+    <POTENTIAL>1.046</POTENTIAL>
+    <NAME>Dark Brown Sugar</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Imparts a sweet, rich flavor.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.783</YIELD>
+    <COLOR>121</COLOR>
+    <POTENTIAL>1.032</POTENTIAL>
+    <NAME>Belgian Candi Syrup - 90L</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Crystalized candi sugar for use in Tripels, Dubbels, and holiday ales.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>1.0</YIELD>
+    <COLOR>8</COLOR>
+    <POTENTIAL>1.046</POTENTIAL>
+    <NAME>Light Brown Sugar</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Imparts a sweet, rich flavor.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.7</YIELD>
+    <COLOR>1</COLOR>
+    <POTENTIAL>1.032</POTENTIAL>
+    <NAME>Rice, Flaked</NAME>
+    <MOISTURE>0.09</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Used to add fermentable sugar without increasing body. Produces a milder, less grainy tasting beer.</NOTES>
+    <PROTEIN>0.1</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.25</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.74</YIELD>
+    <COLOR>90</COLOR>
+    <POTENTIAL>1.034</POTENTIAL>
+    <NAME>Caramel/Crystal Malt - 90L</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Adds body, color and improves head retention.</NOTES>
+    <PROTEIN>0.132</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.79</YIELD>
+    <COLOR>2</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Barley, Torrefied</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Raw barley that has been popped to open the kernels. Used in place of raw barley for faster conversion and higher yields. High in haze producing protein.</NOTES>
+    <PROTEIN>0.16</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.4</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.652</YIELD>
+    <COLOR>35</COLOR>
+    <POTENTIAL>1.03</POTENTIAL>
+    <NAME>Maple Syrup</NAME>
+    <TYPE>Sugar</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>If added during the boil it will add a dry, woodsy flavor. If added at bottling, the smooth maple flavor comes through.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.587</YIELD>
+    <COLOR>3</COLOR>
+    <POTENTIAL>1.027</POTENTIAL>
+    <NAME>Acid Malt</NAME>
+    <MOISTURE>0.04</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Acid malt contains acids from natural lactic acids. Used by German brewers to adjust malt PH without chemicals to adhere to German purity laws. Also enhances the head retention.</NOTES>
+    <PROTEIN>0.06</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>0</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.8</YIELD>
+    <COLOR>1</COLOR>
+    <POTENTIAL>1.037</POTENTIAL>
+    <NAME>Maris Otter Pale Malt</NAME>
+    <MOISTURE>0.035</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>A base malt from the UK.</NOTES>
+    <PROTEIN>0.1</PROTEIN>
+    <COARSE_FINE_DIFF>0.013</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>10</DIASTATIC_POWER>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.95</YIELD>
+    <COLOR>3</COLOR>
+    <POTENTIAL>1.036</POTENTIAL>
+    <NAME>Extra Light Dry Extract</NAME>
+    <TYPE>Dry Extract</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>For general-purpose use in light and very light beers.</NOTES>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>1.0</MAX_IN_BATCH>
+    <RECOMMEND_MASH>false</RECOMMEND_MASH>
+  </FERMENTABLE>
+  <FERMENTABLE>
+    <AMOUNT>0.0</AMOUNT>
+    <YIELD>0.84</YIELD>
+    <COLOR>9</COLOR>
+    <POTENTIAL>1.039</POTENTIAL>
+    <NAME>Dark Wheat Malt</NAME>
+    <MOISTURE>0.035</MOISTURE>
+    <TYPE>Grain</TYPE>
+    <ADD_AFTER_BOIL>false</ADD_AFTER_BOIL>
+    <NOTES>Dark malted wheat base for use in dark wheat styles such as Dunkleweizen.</NOTES>
+    <PROTEIN>0.115</PROTEIN>
+    <COARSE_FINE_DIFF>0.015</COARSE_FINE_DIFF>
+    <VERSION>1</VERSION>
+    <MAX_IN_BATCH>0.2</MAX_IN_BATCH>
+    <RECOMMEND_MASH>true</RECOMMEND_MASH>
+    <DIASTATIC_POWER>10</DIASTATIC_POWER>
+  </FERMENTABLE>
+</FERMENTABLES>
