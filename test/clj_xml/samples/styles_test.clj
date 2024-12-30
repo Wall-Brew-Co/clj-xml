@@ -13,7 +13,7 @@
         io/input-stream
         (xml/xml-source->edn {:skip-whitespace true})))
 
-  (deftest styles
+  (deftest styles-test
     (testing "Style XML may be parsed into a sufficiently useful format"
       (is (match? parsed-xml
                   (-> parsed-xml xml/edn->xml-str xml/xml-str->edn))
