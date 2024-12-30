@@ -90,6 +90,7 @@
     (is (= "xml"
            (sut/stringify "xml" false)))))
 
+
 (deftest map*-test
   (is (instance? clojure.lang.LazySeq (sut/map* inc [1 2 4] true)))
   (is (not (instance? clojure.lang.LazySeq (sut/map* inc [1 2 4] false))))

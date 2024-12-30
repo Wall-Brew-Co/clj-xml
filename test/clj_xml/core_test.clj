@@ -167,9 +167,9 @@
                                            :limit-eagerness? true
                                            :force-seq?       true})))
     (is (nil?
-         (sut/xml->edn nil {:limit-eagerness? true})))
+          (sut/xml->edn nil {:limit-eagerness? true})))
     (is (nil?
-         (sut/xml->edn :edn {:limit-eagerness? true})))
+          (sut/xml->edn :edn {:limit-eagerness? true})))
     (is (match? {} (sut/xml->edn {} {:limit-eagerness? true})))
     (is (match? []
                 (sut/xml->edn [] {:limit-eagerness? true})))
@@ -314,10 +314,10 @@
                   {:a {:b [1 2 3] :c {:d "e" :f [nil]}}}))
       (is (thrown-with-msg? IllegalArgumentException
                             #"The key :clj-xml.core/first is incompatible with class clojure.lang.PersistentArrayMap"
-                            (sut/force-xml-seq-at-path nested-data [sut/first-child])))
+            (sut/force-xml-seq-at-path nested-data [sut/first-child])))
       (is (thrown-with-msg? IllegalArgumentException
                             #"The key :c is incompatible with class clojure.lang.PersistentVector"
-                            (sut/force-xml-seq-at-path nested-data [:a :b :c])))
+            (sut/force-xml-seq-at-path nested-data [:a :b :c])))
       (testing "Limiting eagerness does not impact correctness"
         (is (match? (sut/force-xml-seq-at-path nested-data [:a :b sut/last-child] {:limit-eagerness? true})
                     {:a {:b [1 2 [3]] :c {:d "e"}}}))
@@ -331,10 +331,10 @@
                     {:a {:b [1 2 3] :c {:d "e" :f [nil]}}}))
         (is (thrown-with-msg? IllegalArgumentException
                               #"The key :clj-xml.core/first is incompatible with class clojure.lang.PersistentArrayMap"
-                              (sut/force-xml-seq-at-path nested-data [sut/first-child] {:limit-eagerness? true})))
+              (sut/force-xml-seq-at-path nested-data [sut/first-child] {:limit-eagerness? true})))
         (is (thrown-with-msg? IllegalArgumentException
                               #"The key :c is incompatible with class clojure.lang.PersistentVector"
-                              (sut/force-xml-seq-at-path nested-data [:a :b :c] {:limit-eagerness? true})))))))
+              (sut/force-xml-seq-at-path nested-data [:a :b :c] {:limit-eagerness? true})))))))
 
 
 (deftest force-xml-seq-at-paths-test

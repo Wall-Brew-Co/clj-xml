@@ -170,6 +170,7 @@
   [m f & args]
   (reduce-kv (fn [m' k v] (assoc m' (apply f k args) v)) {} m))
 
+
 (defn map*
   "Applies either `map` or `mapv`, depending on `limit-eagerness?`"
   {:added  "1.12"

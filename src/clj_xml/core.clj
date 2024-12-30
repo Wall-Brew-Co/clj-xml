@@ -59,19 +59,19 @@
   ([xml-edn key-path]
    (force-xml-seq-at-path xml-edn key-path {}))
   ([xml-edn [xml-key & key-seq] {:keys [limit-eagerness?]}]
-  (if xml-key
-    (cond
-      (and (sequential? xml-edn)
-           (= every-child xml-key))   (impl/map* #(force-xml-seq-at-path % key-seq) xml-edn limit-eagerness?)
-      (and (sequential? xml-edn)
-           (= first-child xml-key))   (cons (force-xml-seq-at-path (first xml-edn) key-seq) (rest xml-edn))
-      (and (sequential? xml-edn)
-           (= last-child xml-key))    (conj (into [] (butlast xml-edn)) (force-xml-seq-at-path (last xml-edn) key-seq))
-      (and (map? xml-edn)
-           (not (child-key? xml-key))
-           (keyword? xml-key))        (update xml-edn xml-key force-xml-seq-at-path key-seq)
-      :else                           (throw (IllegalArgumentException. (str "The key " xml-key " is incompatible with " (type xml-edn)))))
-    [xml-edn])))
+   (if xml-key
+     (cond
+       (and (sequential? xml-edn)
+            (= every-child xml-key))   (impl/map* #(force-xml-seq-at-path % key-seq) xml-edn limit-eagerness?)
+       (and (sequential? xml-edn)
+            (= first-child xml-key))   (cons (force-xml-seq-at-path (first xml-edn) key-seq) (rest xml-edn))
+       (and (sequential? xml-edn)
+            (= last-child xml-key))    (conj (into [] (butlast xml-edn)) (force-xml-seq-at-path (last xml-edn) key-seq))
+       (and (map? xml-edn)
+            (not (child-key? xml-key))
+            (keyword? xml-key))        (update xml-edn xml-key force-xml-seq-at-path key-seq)
+       :else                           (throw (IllegalArgumentException. (str "The key " xml-key " is incompatible with " (type xml-edn)))))
+     [xml-edn])))
 
 
 (defn force-xml-seq-at-paths
@@ -90,7 +90,7 @@
   ([xml-edn key-paths]
    (force-xml-seq-at-paths xml-edn key-paths {}))
   ([xml-edn key-paths opts]
-  (reduce #(force-xml-seq-at-path %1 %2 opts) xml-edn key-paths)))
+   (reduce #(force-xml-seq-at-path %1 %2 opts) xml-edn key-paths)))
 
 
 ;; Parsing XML into EDN
