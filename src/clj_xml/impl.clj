@@ -104,7 +104,7 @@
 
 
 (defn edn-attrs-tag?
-  "Returns true iff the list of `all-tags` to see if it contains the normalized `tag`.
+  "Returns true iff the list of `all-tags` contains the normalized `tag`.
 
    Not intended to be consumed outside of this library."
   {:added  "1.0"
