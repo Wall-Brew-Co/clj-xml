@@ -51,14 +51,18 @@
       - ::last or the alias last-child
     For each element in `key-path`, `force-xml-seq-at-path` will traverse `xml-edn` one level
        - If the current node is a map, clj-xml expects a keyword to update
-       - If the current node is a sequence, clj-xml expects one of the supplied namespaced keywords and will update the related members of that sequence"
+       - If the current node is a sequence, clj-xml expects one of the supplied namespaced keywords and will update the related members of that sequence.
+   Accepts an option map as an optional third argument:
+     limit-eagerness? - A boolean, that if set to true, disables automatic coercion to vectors for returned sequences"
   {:added    "1.6"
    :see-also ["every-child" "first-child" "last-child"]}
-  [xml-edn [xml-key & key-seq]]
+  ([xml-edn key-path]
+   (force-xml-seq-at-path xml-edn key-path {}))
+  ([xml-edn [xml-key & key-seq] {:keys [limit-eagerness?]}]
   (if xml-key
     (cond
       (and (sequential? xml-edn)
-           (= every-child xml-key))   (mapv #(force-xml-seq-at-path % key-seq) xml-edn)
+           (= every-child xml-key))   (impl/map* #(force-xml-seq-at-path % key-seq) xml-edn limit-eagerness?)
       (and (sequential? xml-edn)
            (= first-child xml-key))   (cons (force-xml-seq-at-path (first xml-edn) key-seq) (rest xml-edn))
       (and (sequential? xml-edn)
@@ -67,7 +71,7 @@
            (not (child-key? xml-key))
            (keyword? xml-key))        (update xml-edn xml-key force-xml-seq-at-path key-seq)
       :else                           (throw (IllegalArgumentException. (str "The key " xml-key " is incompatible with " (type xml-edn)))))
-    [xml-edn]))
+    [xml-edn])))
 
 
 (defn force-xml-seq-at-paths
@@ -78,11 +82,15 @@
       - ::last or the alias last-child
     For each element in `key-path`, `force-xml-seq-at-paths` will traverse `xml-edn` one level
        - If the current node is a map, clj-xml expects a keyword to update
-       - If the current node is a sequence, clj-xml expects one of the supplied namespaced keywords and will update the related members of that sequence"
+       - If the current node is a sequence, clj-xml expects one of the supplied namespaced keywords and will update the related members of that sequence
+   Accepts an option map as an optional third argument:
+     limit-eagerness? - A boolean, that if set to true, disables automatic coercion to vectors for returned sequences"
   {:added    "1.6"
    :see-also ["every-child" "first-child" "last-child"]}
-  [xml-edn key-paths]
-  (reduce force-xml-seq-at-path xml-edn key-paths))
+  ([xml-edn key-paths]
+   (force-xml-seq-at-paths xml-edn key-paths {}))
+  ([xml-edn key-paths opts]
+  (reduce #(force-xml-seq-at-path %1 %2 opts) xml-edn key-paths)))
 
 
 ;; Parsing XML into EDN
@@ -95,6 +103,7 @@
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
 
    To change this behavior, an option map be provided with the following keys:
+     limit-eagerness?    - A boolean, that if set to true, disables automatic coercion to vectors for returned sequences
      preserve-keys?      - to maintain the exact keyword structure provided by `clojure.xml/parse`
      preserve-attrs?     - to maintain embedded XML attributes
      stringify-values?   - to coerce non-nil, non-string, non-collection values to strings
@@ -104,7 +113,7 @@
   ([xml-sequence]
    (xml-seq->edn xml-sequence {}))
 
-  ([xml-sequence {:keys [stringify-values? force-seq?] :as opts}]
+  ([xml-sequence {:keys [stringify-values? force-seq? limit-eagerness?] :as opts}]
    (cond
      (impl/string-or-nil? xml-sequence)
      xml-sequence
@@ -128,7 +137,7 @@
      (xml->edn xml-sequence opts)
 
      (sequential? xml-sequence)
-     (mapv #(xml->edn % opts) xml-sequence)
+     (impl/map* #(xml->edn % opts) xml-sequence limit-eagerness?)
 
      (and stringify-values?
           (some? xml-sequence))
@@ -142,9 +151,10 @@
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
 
    To change this behavior, an option map be provided with the following keys:
-     preserve-keys? - to maintain the exact keyword structure provided by `clojure.xml/parse`
-     preserve-attrs? - to maintain embedded XML attributes
-     stringify-values? - to coerce non-nil, non-string, non-collection values to strings
+     limit-eagerness?    - A boolean, that if set to true, disables automatic coercion to vectors for returned sequences
+     preserve-keys?      - to maintain the exact keyword structure provided by `clojure.xml/parse`
+     preserve-attrs?     - to maintain embedded XML attributes
+     stringify-values?   - to coerce non-nil, non-string, non-collection values to strings
      remove-empty-attrs? - to remove any empty attribute maps"
   {:added "1.0"}
   ([xml-map]
@@ -173,6 +183,7 @@
   "Transform an XML document as formatted by `clojure.xml/parse`, and transform it into normalized EDN.
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
    To change this behavior, an option map may be provided with the following keys:
+     limit-eagerness?    - A boolean, that if set to true, disables automatic coercion to vectors for returned sequences
      preserve-keys?      - A boolean, that if set to true, maintains the exact keyword structure provided by `clojure.xml/parse`
      preserve-attrs?     - A boolean, that if set to true, maintains embedded XML attributes
      stringify-values?   - A boolean, that if set to true, coerces non-nil, non-string, non-collection values to strings
@@ -211,7 +222,7 @@
   ([xml-doc {:keys [force-seq-for-paths] :as opts}]
    (cond-> xml-doc
      :always                   (xml->edn opts)
-     (seq force-seq-for-paths) (force-xml-seq-at-paths force-seq-for-paths))))
+     (seq force-seq-for-paths) (force-xml-seq-at-paths force-seq-for-paths opts))))
 
 
 (defn xml-str->edn
@@ -219,6 +230,7 @@
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
 
    To change this behavior, an option map may be provided with the following keys:
+     limit-eagerness?    - A boolean, that if set to true, disables automatic coercion to vectors for returned sequences
      preserve-keys?      - A boolean, that if set to true, maintains the exact keyword structure provided by `clojure.xml/parse`
      preserve-attrs?     - A boolean, that if set to true, maintains embedded XML attributes
      stringify-values?   - A boolean, that if set to true, coerces non-nil, non-string, non-collection values to strings
@@ -273,6 +285,7 @@
    By default, this also mutates keys from XML_CASE to lisp-case and ignores XML attributes within tags.
 
    To change this behavior, an option map may be provided with the following keys:
+     limit-eagerness?    - A boolean, that if set to true, disables automatic coercion to vectors for returned sequences
      preserve-keys?      - A boolean, that if set to true, maintains the exact keyword structure provided by `clojure.xml/parse`
      preserve-attrs?     - A boolean, that if set to true, maintains embedded XML attributes
      stringify-values?   - A boolean, that if set to true, coerces non-nil, non-string, non-collection values to strings
@@ -322,28 +335,30 @@
 (defn edn-seq->xml
   "Transform an EDN sequence to the pseudo XML expected by `clojure.data.xml`.
    To change the default behavior, an option map may be provided with the following keys:
-     to-xml-case? - To modify the keys representing XML tags to XML_CASE
-     from-xml-case? - If the source EDN has XML_CASE keys
+     limit-eagerness?  - A boolean, that if set to true, disables automatic coercion to vectors for returned sequences
+     to-xml-case?      - To modify the keys representing XML tags to XML_CASE
+     from-xml-case?    - If the source EDN has XML_CASE keys
      stringify-values? - to coerce non-nil, non-string, non-collection values to strings"
   {:added "1.0"}
   ([edn]
    (edn-seq->xml edn {}))
 
-  ([edn opts]
-   (mapv #(edn->xml % opts) edn)))
+  ([edn {:keys [limit-eagerness?] :as opts}]
+   (impl/map* #(edn->xml % opts) edn limit-eagerness?)))
 
 
 (defn edn-map->xml
   "Transform an EDN map to the pseudo XML expected by `clojure.data.xml`.
    To change the default behavior, an option map may be provided with the following keys:
-     to-xml-case? - To modify the keys representing XML tags to XML_CASE
-     from-xml-case? - If the source EDN has XML_CASE keys
+     limit-eagerness?  - A boolean, that if set to true, disables automatic coercion to vectors for returned sequences
+     to-xml-case?      - To modify the keys representing XML tags to XML_CASE
+     from-xml-case?    - If the source EDN has XML_CASE keys
      stringify-values? - to coerce non-nil, non-string, non-collection values to strings"
   {:added "1.0"}
   ([edn]
    (edn-map->xml edn {}))
 
-  ([edn {:keys [to-xml-case? from-xml-case? stringify-values?]
+  ([edn {:keys [to-xml-case? from-xml-case? stringify-values? limit-eagerness?]
          :as   opts}]
    (let [edn-keys                 (keys edn)
          key-set                  (reduce (fn ->keys [acc v] (conj acc (name v))) #{} edn-keys)
@@ -365,14 +380,15 @@
                                        :attrs   xml-attrs}))]
      (if (= 1 (count tags))
        (tag-generator (first tags))
-       (mapv tag-generator tags)))))
+       (impl/map* tag-generator tags limit-eagerness?)))))
 
 
 (defn edn->xml
   "Transform an EDN data structure to the pseudo XML expected by `clojure.data.xml`.
    To change the default behavior, an option map may be provided with the following keys:
-     to-xml-case? - To modify the keys representing XML tags to XML_CASE
-     from-xml-case? - If the source EDN has XML_CASE keys
+     limit-eagerness?  - A boolean, that if set to true, disables automatic coercion to vectors for returned sequences
+     to-xml-case?      - To modify the keys representing XML tags to XML_CASE
+     from-xml-case?    - If the source EDN has XML_CASE keys
      stringify-values? - to coerce non-nil, non-string, non-collection values to strings"
   {:added "1.0"}
   ([edn]
@@ -402,8 +418,9 @@
   "Transform an EDN data structure into an XML string via `clojure.data.xml`.
 
    To change the default behavior, an option map may be provided with the following keys:
-     to-xml-case? - To modify the keys representing XML tags to XML_CASE
-     from-xml-case? - If the source EDN has XML_CASE keys
+     limit-eagerness?  - A boolean, that if set to true, disables automatic coercion to vectors for returned sequences
+     to-xml-case?      - To modify the keys representing XML tags to XML_CASE
+     from-xml-case?    - If the source EDN has XML_CASE keys
      stringify-values? - to coerce non-nil, non-string, non-collection values to strings
 
    It also surfaces the original options from `clojure.data.xml/emit-str`
@@ -432,8 +449,9 @@
   "Transform an EDN data structure into XML and stream is out via `clojure.data.xml`.
 
    To change the default behavior, an option map may be provided with the following keys:
-     to-xml-case? - To modify the keys representing XML tags to XML_CASE
-     from-xml-case? - If the source EDN has XML_CASE keys
+     limit-eagerness?  - A boolean, that if set to true, disables automatic coercion to vectors for returned sequences
+     to-xml-case?      - To modify the keys representing XML tags to XML_CASE
+     from-xml-case?    - If the source EDN has XML_CASE keys
      stringify-values? - to coerce non-nil, non-string, non-collection values to strings
 
    It also surfaces the original options from `clojure.data.xml/emit`

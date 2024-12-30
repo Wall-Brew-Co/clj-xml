@@ -12,7 +12,8 @@
   (-> "recipe.xml"
       io/resource
       io/input-stream
-      (xml/xml-source->edn {:skip-whitespace true})))
+      (xml/xml-source->edn {:skip-whitespace  true
+                            :limit-eagerness? true})))
 
 
 (deftest recipe-test
