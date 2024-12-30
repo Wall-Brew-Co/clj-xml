@@ -5,6 +5,7 @@
             [clojure.test :refer :all]
             [matcher-combinators.test]))
 
+
 (def parsed-xml
   "Parsed fermentable XML.
      Adapted from: https://github.com/Wall-Brew-Co/common-beer-data/blob/master/exports/xml/fermentables.xml"
@@ -12,6 +13,7 @@
       io/resource
       io/input-stream
       (xml/xml-source->edn {:skip-whitespace true})))
+
 
 (deftest fermentables-test
   (testing "Fermentable XML may be parsed into a sufficiently useful format"

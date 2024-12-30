@@ -5,6 +5,7 @@
             [clojure.test :refer :all]
             [matcher-combinators.test]))
 
+
 (def parsed-xml
   "Parsed example XML.
      Adapted from: https://learn.microsoft.com/en-us/dotnet/standard/linq/sample-xml-file-test-configuration-namespace"
@@ -13,6 +14,7 @@
       io/input-stream
       (xml/xml-source->edn {:skip-whitespace true
                             :preserve-attrs? true})))
+
 
 (deftest microsoft-test
   (testing "XML may be parsed into a sufficiently useful format"

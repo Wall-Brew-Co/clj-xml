@@ -47,6 +47,7 @@
     (is (= {} (sut/update-keys* {} dec)))
     (is (= {":b-key" 3 ":c-key" 4} (sut/update-keys* {:b 3 :c 4} str "-key")))))
 
+
 (deftest keywordify-test
   (testing "Call through to `xml-tag->keyword` if `preserve-keys?` is false"
     (is (= :xml-tag
@@ -58,6 +59,7 @@
   (testing "Returns the original value otherwise"
     (is (= :xml-tag (sut/keywordify :xml-tag true)))
     (is (= :XML_TAG (sut/keywordify :XML_TAG true)))))
+
 
 (deftest tagify-test
   (testing "Call through to `keyword->xml-tag` if `to-xml-case?` is true"
@@ -72,6 +74,7 @@
            (sut/tagify :xml-tag false)))
     (is (= :XML_TAG
            (sut/tagify :XML_TAG false)))))
+
 
 (deftest stringify-test
   (testing "Calls str if `stringify-values?` is true"

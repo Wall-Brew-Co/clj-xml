@@ -5,7 +5,9 @@
   {:no-doc true}
   (:require [clojure.string :as str]))
 
+
 (set! *warn-on-reflection* true)
+
 
 (defn string-or-nil?
   "Returns true iff `v` is a string or nil."
@@ -43,15 +45,17 @@
       (str/replace "-" "_")
       keyword))
 
+
 (defn keywordify
   "Returns `k` if `preserve-keys?` is false.
      Otherwise, applies `xml-tag->keyword`"
-   {:added  "1.11"
-    :no-doc true}
-   [k preserve-keys?]
-   (if preserve-keys?
-     k
-     (xml-tag->keyword k)))
+  {:added  "1.11"
+   :no-doc true}
+  [k preserve-keys?]
+  (if preserve-keys?
+    k
+    (xml-tag->keyword k)))
+
 
 (defn tagify
   "Returns `k` if `to-xml-case?` is false.
@@ -62,6 +66,7 @@
   (if to-xml-case?
     (keyword->xml-tag k)
     k))
+
 
 (defn stringify
   "Returns `v` if `stringify-values?` is false.

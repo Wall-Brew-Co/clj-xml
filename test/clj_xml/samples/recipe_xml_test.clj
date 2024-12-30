@@ -5,6 +5,7 @@
             [clojure.test :refer :all]
             [matcher-combinators.test]))
 
+
 (def parsed-xml
   "Parsed recipe XML.
    Adapted from: https://github.com/Wall-Brew-Co/common-beer-format/blob/8894ba3f21b27d441af2e732dae85572ecc0b908/resources/xml/recipes.xml"
@@ -13,10 +14,11 @@
       io/input-stream
       (xml/xml-source->edn {:skip-whitespace true})))
 
+
 (deftest recipe-test
   (testing "Recipe XML may be parsed into a sufficiently useful format"
     (is (match? parsed-xml
-           (-> parsed-xml xml/edn->xml-str xml/xml-str->edn))
+                (-> parsed-xml xml/edn->xml-str xml/xml-str->edn))
         "Parsed data can be round-tripped")
     (is (match? parsed-xml
                 {:recipes [{:recipe {:age                 "24.0"

@@ -5,6 +5,7 @@
             [clojure.test :refer :all]
             [matcher-combinators.test]))
 
+
 (def parsed-xml
   "Parsed example XML.
        Adapted from: https://raw.githubusercontent.com/testmoapp/junitxml/refs/heads/main/examples/junit-complete.xml"
@@ -14,6 +15,7 @@
       (xml/xml-source->edn {:include-node? #{:element :characters :comment}
                             :skip-whitespace true
                             :preserve-attrs? true})))
+
 
 (deftest junit-test
   (testing "XML may be parsed into a sufficiently useful format"

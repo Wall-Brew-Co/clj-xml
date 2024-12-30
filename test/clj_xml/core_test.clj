@@ -4,6 +4,7 @@
             [clojure.test :refer :all]
             [matcher-combinators.test]))
 
+
 (defn string->stream
   "Load an Input stream with `s`"
   [^String s]
@@ -232,15 +233,15 @@
   (testing "Parsed XML can coerce child nodes to collections"
     (let [nested-data {:a {:b [1 2 3] :c {:d "e"}}}]
       (is (match? (sut/force-xml-seq-at-path nested-data [:a :b sut/last-child])
-             {:a {:b [1 2 [3]] :c {:d "e"}}}))
+                  {:a {:b [1 2 [3]] :c {:d "e"}}}))
       (is (match? (sut/force-xml-seq-at-path nested-data [:a :b sut/first-child])
-             {:a {:b [[1] 2 3] :c {:d "e"}}}))
+                  {:a {:b [[1] 2 3] :c {:d "e"}}}))
       (is (match? (sut/force-xml-seq-at-path nested-data [:a :b sut/every-child])
-             {:a {:b [[1] [2] [3]] :c {:d "e"}}}))
+                  {:a {:b [[1] [2] [3]] :c {:d "e"}}}))
       (is (match? (sut/force-xml-seq-at-path nested-data [:a :c :d])
-             {:a {:b [1 2 3] :c {:d ["e"]}}}))
+                  {:a {:b [1 2 3] :c {:d ["e"]}}}))
       (is (match? (sut/force-xml-seq-at-path nested-data [:a :c :f])
-             {:a {:b [1 2 3] :c {:d "e" :f [nil]}}}))
+                  {:a {:b [1 2 3] :c {:d "e" :f [nil]}}}))
       (is (thrown-with-msg? IllegalArgumentException
                             #"The key :clj-xml.core/first is incompatible with class clojure.lang.PersistentArrayMap"
             (sut/force-xml-seq-at-path nested-data [sut/first-child])))
@@ -266,6 +267,7 @@
     (is (match? edn-example-with-targeted-coercion
                 (sut/xml->edn' xml-example {:force-seq-for-paths [[:test-document :file :segments sut/every-child]
                                                                   [:test-document]]})))))
+
 
 (deftest xml-seq->edn-test
   (testing "The inner `cond` dispatches as expected"

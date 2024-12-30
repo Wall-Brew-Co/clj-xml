@@ -4,6 +4,7 @@
             [clojure.data.xml :as xml])
   (:import [java.lang IllegalArgumentException]))
 
+
 (set! *warn-on-reflection* true)
 
 
@@ -29,6 +30,7 @@
    Used to ensure selective paths in the returned XML are coerced to sequences.
    This option forces only the last child node to be coerced into a sequence of maps."
   ::last)
+
 
 (def ^:private child-keys
   "The set of all allowable child keys used by `force-xml-seq-at-path`"
@@ -329,7 +331,6 @@
 
   ([edn opts]
    (mapv #(edn->xml % opts) edn)))
-
 
 
 (defn edn-map->xml
