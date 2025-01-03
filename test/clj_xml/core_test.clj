@@ -246,7 +246,7 @@
 
 (deftest xml-string-tests
   (testing "functional correctness"
-    ; The formatting of xml-test-string spans multiple lines with spaces for alignment, this is stripped internally
+    ;; The formatting of xml-test-string spans multiple lines with spaces for alignment, this is stripped internally
     (is (= (str/replace xml-test-string #"\n   " " ")
            (-> xml-test-string
                string->stream
