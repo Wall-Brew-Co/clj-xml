@@ -21,11 +21,21 @@ jobs:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.WALL_BREW_BOT_PAT }}
 
-      - name: Install cljstyle
-        id: install-cljstyle
-        uses: just-sultanov/setup-cljstyle@v1
+      - name: Setup Java
+        id: install-java
+        uses: actions/setup-java@v4.6.0
         with:
-          version: '0.14.0'
+          distribution: 'adopt'
+          java-version: '21'
+          # This should match system.properties
+
+      - name: Install Leiningen
+        id: install-leiningen
+        uses: DeLaGuardo/setup-clojure@13.1
+        with:
+          lein: 'latest'
+          clj-kondo: 'latest'
+          cljstyle: 'latest'
 
       - name: Format Clojure Code
         id: format
