@@ -27,13 +27,31 @@ jobs:
       id: echo-git-ref
       run: echo "Using ${{ github.ref }} branch from ${{ github.repository }} repository"
 
-    - name: Checkout Repository
-      uses: actions/checkout@v4.2.1
-
-    - name: Print concurrency group
+    - name: Echo Concurrency Group
+      id: echo-concurrency-group
       run: echo '${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}'
 
+    - name: Checkout Repository
+      id: checkout
+      uses: actions/checkout@v4.2.1
+
+    - name: Setup Java
+      id: install-java
+      uses: actions/setup-java@v4.6.0
+      with:
+        distribution: 'adopt'
+        java-version: '21'
+
+    - name: Install Leiningen
+      id: install-leiningen
+      uses: DeLaGuardo/setup-clojure@13.1
+      with:
+        lein: 'latest'
+        clj-kondo: 'latest'
+        cljstyle: 'latest'
+
     - name: Cache maven dependencies
+      id: cache-maven
       uses: actions/cache@v4
       env:
           cache-name: cache-maven
@@ -45,13 +63,24 @@ jobs:
             ${{ runner.os }}-clj
 
     - name: Install Clojure Dependencies
+      id: install-deps
       run: lein deps
 
+    - name: Echo Leiningen Version
+      id: lein-version
+      run: lein -v
+
     - name: Override Clojure Version
+      id: override-clojure-version
       run: lein change :dependencies:org.clojure/clojure set '"${{ matrix.clojure_version }}"'
 
     - name: Run all tests
+      id: run-tests
       run: lein test
+
+    - name: Package The Library As A Jar
+      id: package
+      run: lein jar
 
     - name: Echo Status
       id: echo-status
