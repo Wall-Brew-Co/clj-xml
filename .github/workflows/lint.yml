@@ -63,6 +63,22 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      - name: Setup Java
+        id: install-java
+        uses: actions/setup-java@v4.6.0
+        with:
+          distribution: 'adopt'
+          java-version: '21'
+          # This should match system.properties
+
+      - name: Install Leiningen
+        id: install-leiningen
+        uses: DeLaGuardo/setup-clojure@13.1
+        with:
+          lein: 'latest'
+          clj-kondo: 'latest'
+          cljstyle: 'latest'
+
       - name: Cache Maven Dependencies
         id: cache-maven
         uses: actions/cache@v4
@@ -73,6 +89,10 @@ jobs:
           key: ${{ runner.os }}-clj-${{ hashFiles('**/project.clj') }}
           restore-keys: |
             ${{ runner.os }}-clj
+
+      - name: Echo Leiningen Version
+        id: lein-version
+        run: lein -v
 
       - name: Validate Sealog Entries
         id: validate-changelog
@@ -89,6 +109,22 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      - name: Setup Java
+        id: install-java
+        uses: actions/setup-java@v4.6.0
+        with:
+          distribution: 'adopt'
+          java-version: '21'
+          # This should match system.properties
+
+      - name: Install Leiningen
+        id: install-leiningen
+        uses: DeLaGuardo/setup-clojure@13.1
+        with:
+          lein: 'latest'
+          clj-kondo: 'latest'
+          cljstyle: 'latest'
+
       - name: Cache Maven Dependencies
         id: cache-maven
         uses: actions/cache@v4
@@ -99,6 +135,10 @@ jobs:
           key: ${{ runner.os }}-clj-${{ hashFiles('**/project.clj') }}
           restore-keys: |
             ${{ runner.os }}-clj
+
+      - name: Echo Leiningen Version
+        id: lein-version
+        run: lein -v
 
       - name: Validate Bouncer Rules
         id: validate-bouncer
