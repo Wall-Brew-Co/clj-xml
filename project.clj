@@ -7,6 +7,7 @@
             :comments     "Same-as all Wall-Brew projects"}
   :scm {:name "git"
         :url  "https://github.com/Wall-Brew-Co/clj-xml"}
+  :global-vars {*warn-on-reflection* true}
   :pom-addition [:organization
                  [:name "Wall Brew Co."]
                  [:url "https://wallbrew.com"]]
