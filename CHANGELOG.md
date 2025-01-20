@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [1.13.0 - 2025-01-20](#1130---2025-01-20)
 * [1.12.0 - 2024-12-30](#1120---2024-12-30)
 * [1.11.0 - 2024-12-30](#1110---2024-12-30)
 * [1.10.0 - 2024-09-20](#1100---2024-09-20)
@@ -26,20 +27,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 * [1.1.0 - 2020-12-14](#110---2020-12-14)
 * [1.0.0 - 2020-12-12](#100---2020-12-12)
 
+## 1.13.0 - 2025-01-20
+
+* Changed
+  * Performance - Updated internal `let` bindings to limit sequences held in memory as other processing steps continue.
+
 ## 1.12.0 - 2024-12-30
 
 * Added
-  * A new option `:limit-eagerness?` is available for all public functions. Enabling this option disables automatic, intermediate vector coercion.
+  * Performance - A new option `:limit-eagerness?` is available for all public functions. Enabling this option disables automatic, intermediate vector coercion.
 
 ## 1.11.0 - 2024-12-30
 
 * Added
   * Added real-world sample data to `resources/` to test common production scenarios,
 * Changed
-  * Inline function definitions have largely been moved to static `defn`s in `clj-xml.impl`.
+  * Performance - Inline function definitions have largely been moved to static `defn`s in `clj-xml.impl`.
   * Anonymous writer functions in `edn->xml-stream` and `edn->xml-str` are now named anonymous functions.
 * Fixed
-  * Several processing steps inadvertently walked the same sequence multiple times. These have been refactored out where possible.
+  * Performance - Several processing steps inadvertently walked the same sequence multiple times. These have been refactored out where possible.
 
 ## 1.10.0 - 2024-09-20
 
