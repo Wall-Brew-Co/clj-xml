@@ -3,10 +3,10 @@
                 :patch 0}
  :version-type :semver3
  :changes      {:added      ["Added real-world sample data to `resources/` to test common production scenarios,"]
-                :changed    ["Inline function definitions have largely been moved to static `defn`s in `clj-xml.impl`."
+                :changed    ["Performance - Inline function definitions have largely been moved to static `defn`s in `clj-xml.impl`."
                              "Anonymous writer functions in `edn->xml-stream` and `edn->xml-str` are now named anonymous functions."]
                 :deprecated []
                 :removed    []
-                :fixed      ["Several processing steps inadvertently walked the same sequence multiple times. These have been refactored out where possible."]
+                :fixed      ["Performance - Several processing steps inadvertently walked the same sequence multiple times. These have been refactored out where possible."]
                 :security   []}
  :timestamp    "2024-12-30T19:31:04.110889Z"}

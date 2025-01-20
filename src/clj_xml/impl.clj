@@ -91,8 +91,7 @@
   {:added  "1.0"
    :no-doc true}
   [^String attrs-tag]
-  (let [tag-length (count attrs-tag)]
-    (subs attrs-tag 0 (- tag-length attrs-length))))
+  (subs attrs-tag 0 (- (count attrs-tag) attrs-length)))
 
 
 (defn tag->attrs-tag
@@ -134,17 +133,24 @@
                        (conj acc (:tag v)))) #{} xml-sequence)))
 
 
+(defn new-line-handler
+  "Remove line termination formatting specific to Windows."
+  [^String s {:keys [remove-newlines?]}]
+  (if remove-newlines?
+    (apply str (str/split-lines s))
+    (str/replace s #"\r\n" "\n")))
+
+
 (defn deformat
   "Remove line termination formatting specific to Windows (since we're ingesting XML) and double spacing.
 
    Not intended to be consumed outside of this library."
   {:added  "1.0"
    :no-doc true}
-  [^String s {:keys [remove-newlines?]}]
-  (let [trimmed-str (if remove-newlines?
-                      (apply str (str/split-lines s))
-                      (str/replace s #"\r\n" "\n"))]
-    (str/replace trimmed-str #"  " " ")))
+  [^String s opts]
+  (-> s
+      (new-line-handler opts)
+      (str/replace #"  " " ")))
 
 
 (defn update-vals*

@@ -162,21 +162,20 @@
 
   ([{:keys [tag attrs content]} {:keys [preserve-keys? preserve-attrs? stringify-values? remove-empty-attrs?]
                                  :as   opts}]
-   (let [edn-tag   (impl/keywordify tag preserve-keys?)
-         edn-value (xml->edn content opts)]
+   (let [edn-tag (impl/keywordify tag preserve-keys?)]
      (if (and attrs preserve-attrs?)
        (let [attrs-key  (impl/tag->attrs-tag edn-tag preserve-keys?)
              add-attrs? (or (not remove-empty-attrs?)
                             (and remove-empty-attrs?
                                  (seq attrs)))]
-         (merge {edn-tag edn-value}
+         (merge {edn-tag (xml->edn content opts)}
                 (when add-attrs? {attrs-key (reduce-kv (fn [m k v]
                                                          (assoc m
                                                                 (impl/keywordify k preserve-keys?)
                                                                 (impl/stringify v stringify-values?)))
                                                        {}
                                                        attrs)})))
-       {edn-tag edn-value}))))
+       {edn-tag (xml->edn content opts)}))))
 
 
 (defn xml->edn
@@ -269,11 +268,12 @@
                                             :resolver
                                             :support-dtd
                                             :skip-whitespace])
-         flattened-args  (flatten (into [] additional-args))
-         sanitized-xml   (impl/deformat xml-str opts)
-         parsing-args    (cons sanitized-xml flattened-args)
-         parsed-xml      (apply xml/parse-str parsing-args)]
-     (xml->edn' parsed-xml opts))))
+         flattened-args  (flatten (seq additional-args))]
+     (as-> xml-str %
+           (impl/deformat % opts)
+           (cons % flattened-args)
+           (apply xml/parse-str %)
+           (xml->edn' % opts)))))
 
 
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
@@ -321,10 +321,11 @@
                                             :resolver
                                             :support-dtd
                                             :skip-whitespace])
-         flattened-args  (flatten (into [] additional-args))
-         parsing-args    (cons xml-source flattened-args)
-         parsed-xml      (apply xml/parse parsing-args)]
-     (xml->edn' parsed-xml opts))))
+         flattened-args  (flatten (seq additional-args))]
+     (as-> xml-source %
+           (cons % flattened-args)
+           (apply xml/parse %)
+           (xml->edn' % opts)))))
 
 
 ;; Parsing EDN as XML
@@ -360,24 +361,21 @@
 
   ([edn {:keys [to-xml-case? from-xml-case? stringify-values? limit-eagerness?]
          :as   opts}]
-   (let [edn-keys                 (keys edn)
-         key-set                  (reduce (fn ->keys [acc v] (conj acc (name v))) #{} edn-keys)
-         {attrs true tags false}  (group-by #(impl/edn-attrs-tag? (name %) key-set) edn-keys)
-         attrs-set                (reduce (fn ->attrs [acc v] (conj acc (impl/attrs-tag->tag (name v)))) #{} attrs)
-         tag-generator            (fn tag-generator-fn
-                                    [t]
-                                    (let [xml-tag     (impl/tagify t to-xml-case?)
-                                          xml-content (edn->xml (get edn t) opts)
-                                          xml-attrs   (when (contains? attrs-set (name t))
-                                                        (->> (get edn (impl/tag->attrs-tag t from-xml-case?))
-                                                             (reduce-kv (fn [m k v]
-                                                                          (assoc m
-                                                                                 (impl/tagify k to-xml-case?)
-                                                                                 (impl/stringify v stringify-values?)))
-                                                                        {})))]
-                                      {:tag     xml-tag
-                                       :content xml-content
-                                       :attrs   xml-attrs}))]
+   (let [edn-keys                (keys edn)
+         key-set                 (reduce (fn ->keys [acc v] (conj acc (name v))) #{} edn-keys)
+         {attrs true tags false} (group-by #(impl/edn-attrs-tag? (name %) key-set) edn-keys)
+         attrs-set               (reduce (fn ->attrs [acc v] (conj acc (impl/attrs-tag->tag (name v)))) #{} attrs)
+         tag-generator           (fn tag-generator-fn
+                                   [t]
+                                   {:tag     (impl/tagify t to-xml-case?)
+                                    :content (edn->xml (get edn t) opts)
+                                    :attrs   (when (contains? attrs-set (name t))
+                                               (->> (get edn (impl/tag->attrs-tag t from-xml-case?))
+                                                    (reduce-kv (fn [m k v]
+                                                                 (assoc m
+                                                                        (impl/tagify k to-xml-case?)
+                                                                        (impl/stringify v stringify-values?)))
+                                                               {})))})]
      (if (= 1 (count tags))
        (tag-generator (first tags))
        (impl/map* tag-generator tags limit-eagerness?)))))

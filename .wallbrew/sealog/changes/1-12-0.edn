@@ -2,7 +2,7 @@
                 :minor 12
                 :patch 0}
  :version-type :semver3
- :changes      {:added      ["A new option `:limit-eagerness?` is available for all public functions. Enabling this option disables automatic, intermediate vector coercion."]
+ :changes      {:added      ["Performance - A new option `:limit-eagerness?` is available for all public functions. Enabling this option disables automatic, intermediate vector coercion."]
                 :changed    []
                 :deprecated []
                 :removed    []
