@@ -12,7 +12,7 @@
                  [:name "Wall Brew Co."]
                  [:url "https://wallbrew.com"]]
   :dependencies [[org.clojure/clojure "1.12.4"]
-                 [org.clojure/data.xml "0.2.0-alpha9"]]
+                 [org.clojure/data.xml "0.2.0-alpha10"]]
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2026.01.19"]
             [com.wallbrew/lein-sealog "1.9.0"]
             [com.wallbrew/bouncer "1.2.0"]
