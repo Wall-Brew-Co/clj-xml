@@ -23,5 +23,5 @@
                                     :password      :env/clojars_pass
                                     :sign-releases false}]]
   :profiles {:uberjar {:aot :all}
-             :dev     {:dependencies [[nubank/matcher-combinators "3.10.1"]]}}
+             :dev     {:dependencies [[nubank/matcher-combinators "3.11.0"]]}}
   :min-lein-version "2.5.3")
